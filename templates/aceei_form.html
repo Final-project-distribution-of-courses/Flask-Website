@@ -44,6 +44,7 @@
 
                 var capacityInput = document.createElement('input');
                 capacityInput.type = 'number';
+                capacityInput.min = 1;
                 capacityInput.name = 'c' + i + 'Capacity';
                 capacityInput.required = true;
                 courseFieldsDiv.appendChild(capacityInput);
@@ -72,6 +73,7 @@
                 var budgetInput = document.createElement('input');
                 budgetInput.type = 'number';
                 budgetInput.name = 's' + i + 'Budget';
+                budgetInput.min = 1;
                 budgetInput.required = true;
                 studentFieldsDiv.appendChild(budgetInput);
 
@@ -81,6 +83,7 @@
 
                 var coursesInput = document.createElement('input');
                 coursesInput.type = 'number';
+                coursesInput.min = 1;
                 coursesInput.name = 's' + i + 'CoursesToTake';
                 coursesInput.required = true;
                 studentFieldsDiv.appendChild(coursesInput);
@@ -94,25 +97,15 @@
                     ratingLabel.textContent = ' c' + j + ':';
                     studentFieldsDiv.appendChild(ratingLabel);
 
-                    var ratingInput = document.createElement('select');
+                    var ratingInput = document.createElement('input');
+                    ratingInput.type = 'number';
                     ratingInput.name = 's' + i + 'c' + j + 'Rating';
+                    ratingInput.min = 1;
+                    ratingInput.step = 1;
                     ratingInput.required = true;
-
-                    var optionDefault = document.createElement('option');
-                    optionDefault.value = '';
-                    optionDefault.text = 'Choose rating';
-                    ratingInput.appendChild(optionDefault);
-
-                    for (var k = 1; k <= 5; k++) {
-                        var option = document.createElement('option');
-                        option.value = k;
-                        option.text = k;
-                        ratingInput.appendChild(option);
-                    }
-
+                    ratingInput.placeholder = 'Rating for c' + j;
                     studentFieldsDiv.appendChild(ratingInput);
                 }
-
                 studentFieldsDiv.appendChild(document.createElement('br'));
             }
         }
