@@ -26,6 +26,22 @@
         <div id="studentFields">
             <!-- Fields for students will be added dynamically -->
         </div><br><br>
+        <!-- Epsilon (ε) Input Field -->
+        <label for="epsilon">Epsilon (ε):</label>
+        <input type="number" id="epsilon" name="epsilon" step="0.01" required><br><br>
+
+        <!-- Delta (δ) Input Field -->
+        <label for="delta">Delta (δ):</label>
+        <input type="number" id="delta" name="delta" step="0.01" required><br><br>
+
+        <!-- t Input Field with Options -->
+        <label for="t">t:</label>
+        <select id="t" name="t" required>
+            <option value="">Choose t</option>
+            <option value="no EFTB">no EFTB</option>
+            <option value="EFTB">EFTB</option>
+            <option value="contested EFTB">contested EFTB</option>
+        </select><br><br>
 
         <input type="submit" value="Submit">
     </form>
