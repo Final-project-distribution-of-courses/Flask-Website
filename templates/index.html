@@ -7,19 +7,19 @@
         function showAlgorithmFields() {
             var selectedAlgorithm = document.getElementById("algorithm").value;
             var aceeiFields = document.getElementById("aceei-fields");
-            var validationFields = document.getElementById("validation-fields");
-            var customFields = document.getElementById("custom-fields");
+            var manipulationFields = document.getElementById("manipulation-fields");
+            var tabusearchFields = document.getElementById("tabusearch-fields");
 
             aceeiFields.style.display = "none";
-            validationFields.style.display = "none";
-            customFields.style.display = "none";
+            manipulationFields.style.display = "none";
+            tabusearchFields.style.display = "none";
 
             if (selectedAlgorithm === "ACEEI") {
                 aceeiFields.style.display = "block";
             } else if (selectedAlgorithm === "Find a profitable manipulation for a student") {
-                validationFields.style.display = "block";
+                manipulationFields.style.display = "block";
             } else if (selectedAlgorithm === "Tabu Search") {
-                customFields.style.display = "block";
+                tabusearchFields.style.display = "block";
             }
         }
     </script>
@@ -56,11 +56,11 @@
             <input type="text" id="course3" name="course3"><br><br>
         </div>
 
-        <div id="validation-fields" style="display:none;">
+        <div id="manipulation-fields" style="display:none;">
             <!-- Add specific input fields for Validation algorithm here -->
         </div>
 
-        <div id="custom-fields" style="display:none;">
+        <div id="tabusearch-fields" style="display:none;">
             <!-- Add specific input fields for שנו דקשרבי algorithm here -->
         </div>
 
