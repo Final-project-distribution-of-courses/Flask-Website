@@ -36,34 +36,14 @@
     <p>This advanced algorithm focuses on personalized allocation according to specific needs and preferences of students.</p>
 
     <h2>Try the Algorithm Yourself</h2>
-    <label for="algorithm">Select an Algorithm:</label>
-    <select id="algorithm" onchange="showAlgorithmFields()">
-        <option value="">Select</option>
-        <option value="aceei">ACEEI</option>
-        <option value="manipulation">Find a profitable manipulation for a student</option>
-        <option value="tabusearch">Tabu Search</option>
-    </select>
-
-    <form action="/process" method="POST">
-        <div id="aceei-fields" style="display:none;">
-            <label for="name">Name:</label>
-            <input type="text" id="name" name="name"><br><br>
-            <label for="course1">Course 1:</label>
-            <input type="text" id="course1" name="course1"><br><br>
-            <label for="course2">Course 2:</label>
-            <input type="text" id="course2" name="course2"><br><br>
-            <label for="course3">Course 3:</label>
-            <input type="text" id="course3" name="course3"><br><br>
-        </div>
-
-        <div id="manipulation-fields" style="display:none;">
-            <!-- Add specific input fields for Validation algorithm here -->
-        </div>
-
-        <div id="tabusearch-fields" style="display:none;">
-            <!-- Add specific input fields for שנו דקשרבי algorithm here -->
-        </div>
-
+    <form action="/form" method="GET">
+        <label for="algorithm">Select an Algorithm:</label>
+        <select id="algorithm" name="algorithm">
+            <option value="">Select</option>
+            <option value="aceei">ACEEI</option>
+            <option value="manipulation">Find a profitable manipulation for a student</option>
+            <option value="tabusearch">Tabu Search</option>
+        </select>
         <input type="submit" value="Submit">
     </form>
 </body>
