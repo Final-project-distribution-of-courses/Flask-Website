@@ -2,22 +2,120 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>ACEEI Form</title>
+    <title>ACEEI Algorithm Form</title>
 </head>
 <body>
     <h1>ACEEI Algorithm Form</h1>
-    <form action="/process" method="POST">
-        <!-- ACEEI specific input fields -->
-        <!-- Example: -->
-        <label for="numberOfStudents">Number of Students:</label>
-        <input type="text" id="numberOfStudents" name="numberOfStudents">
-
+    <form action="/process" method="POST" id="aceeiForm">
+        <!-- Choose Number of Courses -->
         <label for="numberOfCourses">Number of Courses:</label>
-        <input type="text" id="numberOfCourses" name="numberOfCourses">
+        <input type="number" id="numberOfCourses" name="numberOfCourses" min="1" required>
+        <button type="button" onclick="addCourseFields()">Set Courses</button><br><br>
 
-        <!-- Add more fields as per your requirements -->
+        <!-- Courses Input Fields (Generated Dynamically) -->
+        <div id="courseFields">
+            <!-- Fields for courses will be added dynamically -->
+        </div><br><br>
+
+        <!-- Choose Number of Students -->
+        <label for="numberOfStudents">Number of Students:</label>
+        <input type="number" id="numberOfStudents" name="numberOfStudents" min="1" required>
+        <button type="button" onclick="addStudentFields()">Set Students</button><br><br>
+
+        <!-- Student Input Fields (Generated Dynamically) -->
+        <div id="studentFields">
+            <!-- Fields for students will be added dynamically -->
+        </div><br><br>
 
         <input type="submit" value="Submit">
     </form>
+
+    <script>
+        // Function to add course input fields dynamically
+        function addCourseFields() {
+            var numberOfCourses = parseInt(document.getElementById('numberOfCourses').value);
+            var courseFieldsDiv = document.getElementById('courseFields');
+            courseFieldsDiv.innerHTML = ''; // Clear previous fields
+
+            for (var i = 1; i <= numberOfCourses; i++) {
+                var courseLabel = document.createElement('label');
+                courseLabel.textContent = 'Course ' + i + ' Capacity:';
+                courseFieldsDiv.appendChild(courseLabel);
+
+                var capacityInput = document.createElement('input');
+                capacityInput.type = 'number';
+                capacityInput.name = 'c' + i + 'Capacity';
+                capacityInput.required = true;
+                courseFieldsDiv.appendChild(capacityInput);
+
+                courseFieldsDiv.appendChild(document.createElement('br'));
+            }
+        }
+
+        // Function to add student input fields dynamically
+        function addStudentFields() {
+            var numberOfStudents = parseInt(document.getElementById('numberOfStudents').value);
+            var studentFieldsDiv = document.getElementById('studentFields');
+            studentFieldsDiv.innerHTML = ''; // Clear previous fields
+
+            var numberOfCourses = parseInt(document.getElementById('numberOfCourses').value);
+
+            for (var i = 1; i <= numberOfStudents; i++) {
+                var studentLabel = document.createElement('label');
+                studentLabel.textContent = 'Student ' + i + ':';
+                studentFieldsDiv.appendChild(studentLabel);
+
+                var budgetLabel = document.createElement('label');
+                budgetLabel.textContent = ' Budget:';
+                studentFieldsDiv.appendChild(budgetLabel);
+
+                var budgetInput = document.createElement('input');
+                budgetInput.type = 'number';
+                budgetInput.name = 's' + i + 'Budget';
+                budgetInput.required = true;
+                studentFieldsDiv.appendChild(budgetInput);
+
+                var coursesLabel = document.createElement('label');
+                coursesLabel.textContent = ' Courses to Take:';
+                studentFieldsDiv.appendChild(coursesLabel);
+
+                var coursesInput = document.createElement('input');
+                coursesInput.type = 'number';
+                coursesInput.name = 's' + i + 'CoursesToTake';
+                coursesInput.required = true;
+                studentFieldsDiv.appendChild(coursesInput);
+
+                var ratingsLabel = document.createElement('label');
+                ratingsLabel.textContent = ' Ratings for Courses:';
+                studentFieldsDiv.appendChild(ratingsLabel);
+
+                for (var j = 1; j <= numberOfCourses; j++) {
+                    var ratingLabel = document.createElement('label');
+                    ratingLabel.textContent = ' c' + j + ':';
+                    studentFieldsDiv.appendChild(ratingLabel);
+
+                    var ratingInput = document.createElement('select');
+                    ratingInput.name = 's' + i + 'c' + j + 'Rating';
+                    ratingInput.required = true;
+
+                    var optionDefault = document.createElement('option');
+                    optionDefault.value = '';
+                    optionDefault.text = 'Choose rating';
+                    ratingInput.appendChild(optionDefault);
+
+                    for (var k = 1; k <= 5; k++) {
+                        var option = document.createElement('option');
+                        option.value = k;
+                        option.text = k;
+                        ratingInput.appendChild(option);
+                    }
+
+                    studentFieldsDiv.appendChild(ratingInput);
+                }
+
+                studentFieldsDiv.appendChild(document.createElement('br'));
+            }
+        }
+    </script>
 </body>
 </html>
