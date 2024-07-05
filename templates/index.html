@@ -3,6 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <title>Course Allocation Algorithms</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='index.css') }}">
+
     <script>
         function showAlgorithmFields() {
             var selectedAlgorithm = document.getElementById("algorithm").value;
@@ -25,26 +27,37 @@
     </script>
 </head>
 <body>
-    <h1>Course Allocation Algorithms</h1>
-    <h2>ACEEI (Approximate Competitive Equilibrium from Equal Incomes)</h2>
-    <p>The goal of this algorithm is to find a fair and competitive allocation of courses to students.</p>
+    <div class="indexContainer">
+        <h1>Course Allocation Algorithms</h1>
 
-    <h2>Find a profitable manipulation for a student Algorithm</h2>
-    <p>This algorithm is designed to validate the allocations to ensure they meet predefined conditions.</p>
+        <div class="algosContainer">
+            <div class="aceeiContainer">
+                <h3>ACEEI (Approximate Competitive Equilibrium from Equal Incomes)</h3>
+                <p>The goal of this algorithm is to find a fair and competitive allocation of courses to students.</p>
+            </div>
 
-    <h2>Tabu Search</h2>
-    <p>This advanced algorithm focuses on personalized allocation according to specific needs and preferences of students.</p>
+            <div class="manipulationContainer">
+                <h3>Find a profitable manipulation for a student Algorithm</h3>
+                <p>This algorithm is designed to validate the allocations to ensure they meet predefined conditions.</p>
+            </div>
 
-    <h2>Try the Algorithm Yourself</h2>
-    <form action="/form" method="GET">
-        <label for="algorithm">Select an Algorithm:</label>
-        <select id="algorithm" name="algorithm">
-            <option value="">Select</option>
-            <option value="aceei">ACEEI</option>
-            <option value="manipulation">Find a profitable manipulation for a student</option>
-            <option value="tabusearch">Tabu Search</option>
-        </select>
-        <input type="submit" value="Submit">
-    </form>
+            <div class="tabusearchContainer">
+                <h3>Tabu Search</h3>
+                <p>This advanced algorithm focuses on personalized allocation according to specific needs and preferences of students.</p>
+            </div>
+        </div>
+
+        <h2>Try Our Algorithms Yourself</h2>
+        <form action="/form" method="GET">
+            <label for="algorithm">Select an Algorithm:</label>
+            <select id="algorithm" name="algorithm">
+                <option value="">Select</option>
+                <option value="aceei">ACEEI</option>
+                <option value="manipulation">Find a profitable manipulation for a student</option>
+                <option value="tabusearch">Tabu Search</option>
+            </select>
+            <input type="submit" value="Submit">
+        </form>
+    </div>
 </body>
 </html>
