@@ -7,7 +7,6 @@ header {
     width: 100%;
     height: auto;
     background-size: cover;
-    background: url('http://www.autodatz.com/wp-content/uploads/2017/05/Old-Car-Wallpapers-Hd-36-with-Old-Car-Wallpapers-Hd.jpg') fixed;
     position: relative;
     overflow: hidden;
     border-radius: 0 0 85% 85% / 30%;
@@ -102,7 +101,7 @@ input[type="submit"] {
 }
 
 input[type="submit"]:hover {
-    background-color: #3788b4;
+    background-color: #72653f;
 }
 
 
