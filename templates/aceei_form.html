@@ -1,51 +1,53 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+<header>
     <meta charset="UTF-8">
-    <title>ACEEI Algorithm Form</title>
-</head>
+    <link rel="stylesheet" href="{{ url_for('static', filename='aceei.css') }}">
+    <h1>ACEEI Algorithm</h1>
+
+</header>
 <body>
-    <h1>ACEEI Algorithm Form</h1>
-    <form action="/process" method="POST" id="aceeiForm">
-        <!-- Choose Number of Courses -->
-        <label for="numberOfCourses">Number of Courses:</label>
-        <input type="number" id="numberOfCourses" name="numberOfCourses" min="1" required>
-        <button type="button" onclick="addCourseFields()">Set Courses</button><br><br>
+    <div class="aceeiFormContainer">
+        <form action="/process" method="POST" id="aceeiForm">
+            <!-- Choose Number of Courses -->
+            <label for="numberOfCourses">Number of Courses:</label>
+            <input type="number" id="numberOfCourses" name="numberOfCourses" min="1" required>
+            <button type="button" onclick="addCourseFields()">Set Courses</button><br><br>
 
-        <!-- Courses Input Fields (Generated Dynamically) -->
-        <div id="courseFields">
-            <!-- Fields for courses will be added dynamically -->
-        </div><br><br>
+            <!-- Courses Input Fields (Generated Dynamically) -->
+            <div id="courseFields">
+                <!-- Fields for courses will be added dynamically -->
+            </div><br><br>
 
-        <!-- Choose Number of Students -->
-        <label for="numberOfStudents">Number of Students:</label>
-        <input type="number" id="numberOfStudents" name="numberOfStudents" min="1" required>
-        <button type="button" onclick="addStudentFields()">Set Students</button><br><br>
+            <!-- Choose Number of Students -->
+            <label for="numberOfStudents">Number of Students:</label>
+            <input type="number" id="numberOfStudents" name="numberOfStudents" min="1" required>
+            <button type="button" onclick="addStudentFields()">Set Students</button><br><br>
 
-        <!-- Student Input Fields (Generated Dynamically) -->
-        <div id="studentFields">
-            <!-- Fields for students will be added dynamically -->
-        </div><br><br>
-        <!-- Epsilon (ε) Input Field -->
-        <label for="epsilon">Epsilon (ε):</label>
-        <input type="number" id="epsilon" name="epsilon" step="0.01" required><br><br>
+            <!-- Student Input Fields (Generated Dynamically) -->
+            <div id="studentFields">
+                <!-- Fields for students will be added dynamically -->
+            </div><br><br>
+            <!-- Epsilon (ε) Input Field -->
+            <label for="epsilon">Epsilon (ε):</label>
+            <input type="number" id="epsilon" name="epsilon" step="0.01" required><br><br>
 
-        <!-- Delta (δ) Input Field -->
-        <label for="delta">Delta (δ):</label>
-        <input type="number" id="delta" name="delta" step="0.01" required><br><br>
+            <!-- Delta (δ) Input Field -->
+            <label for="delta">Delta (δ):</label>
+            <input type="number" id="delta" name="delta" step="0.01" required><br><br>
 
-        <!-- t Input Field with Options -->
-        <label for="t">t:</label>
-        <select id="t" name="t" required>
-            <option value="">Choose t</option>
-            <option value="no EFTB">no EFTB</option>
-            <option value="EFTB">EFTB</option>
-            <option value="contested EFTB">contested EFTB</option>
-        </select><br><br>
+            <!-- t Input Field with Options -->
+            <label for="ef-tb">EF-TB status:</label>
+            <select id="ef-tb" name="ef-tb" required>
+                <option value="">Choose EF-TB status</option>
+                <option value="no EFTB">no EFTB</option>
+                <option value="EFTB">EFTB</option>
+                <option value="contested EFTB">contested EFTB</option>
+            </select><br><br>
 
-        <input type="submit" value="Submit">
-    </form>
-
+            <input type="submit" value="Submit">
+        </form>
+    </div>
     <script>
         // Function to add course input fields dynamically
         function addCourseFields() {
