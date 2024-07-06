@@ -11,14 +11,13 @@ header {
     overflow: hidden;
     border-radius: 0 0 85% 85% / 30%;
 }
-header .overlay{
+header .overlay {
     width: 100%;
     height: 100%;
     padding: 50px;
     color: #FFF;
     text-shadow: 1px 1px 1px #333;
     background-image: linear-gradient( 135deg, #9f05ff69 10%, #fd5e086b 100%);
-
 }
 
 h1 {
@@ -27,18 +26,6 @@ h1 {
     margin-bottom: 15px;
 }
 
-
-
-
-/*h1 {*/
-/*    font-weight: bold;*/
-/*    font-family: 'Dancing Script', cursive;*/
-/*    font-size: 60px;*/
-/*    text-align: center;*/
-/*    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3); */
-/*}*/
-
-
 h2 {
     font-weight: bold;
     font-family: 'Dancing Script', cursive;
@@ -46,20 +33,12 @@ h2 {
     text-align: center;
 }
 
-
-.aceeiFormContainer{
+.aceeiFormContainer {
     text-align: center;
-    /*width: 1000px;*/
-    /*height: 1000px;*/
-    /*border-radius: 20px;*/
     padding: 40px;
-    /*box-sizing: border-box;*/
-    /*background: #ecf0f3;*/
-    /*box-shadow: 14px 14px 20px #cbced1, -14px -14px 20px white;*/
     margin: 0 auto;
     justify-content: flex-start;
 }
-
 
 input[type="number"] {
     width: 60px;
@@ -70,14 +49,12 @@ input[type="number"] {
     border: 2px solid #ccc;
     border-radius: 4px;
     box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
-
 }
-
 
 button {
     border: none;
     color: #ffffff;
-    padding: 5px;
+    padding: 5px 7px;
     font-size: 16px;
     font-weight: bold;
     border-radius: 4px;
@@ -86,20 +63,16 @@ button {
     transition: background 0.3s ease-in-out, transform 0.2s ease-in-out;
     box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
     background: linear-gradient(#9f05ff69, #fd5e086b);
-/*linear-gradient( 135deg, #9f05ff69 10%, #fd5e086b 100%);*/
 }
-
 
 label {
     font-family: 'Dancing Script', cursive;
     font-size: 20px;
-
 }
 
 option, select {
     font-family: 'Dancing Script', cursive;
 }
-
 
 input[type="submit"] {
     border: none;
@@ -107,21 +80,71 @@ input[type="submit"] {
     padding: 5px;
     font-size: 16px;
     font-weight: bold;
-    border-radius: 4px; /* Match border radius with input */
+    border-radius: 4px;
     cursor: pointer;
     transition: background 0.3s ease-in-out, transform 0.2s ease-in-out;
     font-family: 'Dancing Script', cursive;
-    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1); /* Match box shadow with input */
-    /*background: linear-gradient(135deg, #f06595, #845ef7);*/
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
     background: linear-gradient(#9f05ff69, #fd5e086b);
 }
-
 
 input[type="submit"]:hover {
     background-color: #72653f;
 }
 
+.fieldsContainer {
+    background-color: #cccccc;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 400px;
+    height: 50px;
+    margin: 20px auto;
+}
 
+#courseFields, #studentFields {
+    display: grid;
+    gap: 20px;
+    margin: 20px auto;
+}
 
+#courseFields {
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+}
 
+#studentFields {
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+}
 
+.courseField, .studentField {
+    background-color: #cccccc;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+#courseFields .courseField label, #studentFields .studentField label {
+    margin-right: 10px;
+    font-size: 14px;
+}
+
+#courseFields .courseField input, #studentFields .studentField input {
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+#studentFields .studentField {
+    display: flex;
+    flex-direction: column;
+}
+
+#studentFields .studentField label[for^="s"] {
+    margin-top: 10px;
+}
+
+#studentFields .studentField input[type="number"][name*="Rating"] {
+    margin-right: 10px;
+}
