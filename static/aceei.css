@@ -86,6 +86,8 @@ input[type="submit"] {
     font-family: 'Dancing Script', cursive;
     box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
     background: linear-gradient(#9f05ff69, #fd5e086b);
+    width: 440px;
+    height: 50px;
 }
 
 input[type="submit"]:hover {
@@ -123,12 +125,12 @@ input[type="submit"]:hover {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-#courseFields .courseField label, #studentFields .studentField label {
+#courseFields .courseField label{
     margin-right: 10px;
     font-size: 14px;
 }
 
-#courseFields .courseField input, #studentFields .studentField input {
+#courseFields .courseField input{
     padding: 8px;
     margin-bottom: 10px;
     border: 1px solid #ccc;
@@ -136,15 +138,27 @@ input[type="submit"]:hover {
     box-sizing: border-box;
 }
 
+.studentField label {
+    width: 120px;
+    font-size: 16px;
+    margin-top: 5px;
+}
+
+.studentField input {
+    padding: 5px;
+    margin-top: 5px;
+    margin-bottom: 10px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.studentLabel {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
 #studentFields .studentField {
-    display: flex;
-    flex-direction: column;
-}
-
-#studentFields .studentField label[for^="s"] {
-    margin-top: 10px;
-}
-
-#studentFields .studentField input[type="number"][name*="Rating"] {
-    margin-right: 10px;
+    display: block;
 }

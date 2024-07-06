@@ -6,7 +6,6 @@
     <div class="overlay">
         <h1>ACEEI Algorithm</h1>
     </div>
-
 </header>
 <body>
 <div class="aceeiFormContainer">
@@ -39,7 +38,6 @@
             <label for="epsilon">Epsilon (ε):</label>
             <input type="number" id="epsilon" name="epsilon" step="0.01" required><br><br>
         </div>
-
 
         <div class="fieldsContainer">
             <!-- Delta (δ) Input Field -->
@@ -98,12 +96,13 @@
             var studentField = document.createElement('div');
             studentField.className = 'studentField';
 
-            var studentLabel = document.createElement('label');
-            studentLabel.textContent = 'Student ' + i + ': ';
+            var studentLabel = document.createElement('div');
+            studentLabel.className = 'studentLabel';
+            studentLabel.textContent = 'Student ' + i;
             studentField.appendChild(studentLabel);
 
             var budgetLabel = document.createElement('label');
-            budgetLabel.textContent = ' Budget: ';
+            budgetLabel.textContent = 'Budget: ';
             studentField.appendChild(budgetLabel);
 
             var budgetInput = document.createElement('input');
@@ -114,7 +113,7 @@
             studentField.appendChild(budgetInput);
 
             var coursesLabel = document.createElement('label');
-            coursesLabel.textContent = ' Courses to Take: ';
+            coursesLabel.textContent = 'Courses to Take: ';
             studentField.appendChild(coursesLabel);
 
             var coursesInput = document.createElement('input');
@@ -125,12 +124,12 @@
             studentField.appendChild(coursesInput);
 
             var ratingsLabel = document.createElement('label');
-            ratingsLabel.textContent = ' Ratings for Courses: ';
+            ratingsLabel.textContent = 'Ratings for Courses: ';
             studentField.appendChild(ratingsLabel);
 
             for (var j = 1; j <= numberOfCourses; j++) {
                 var ratingLabel = document.createElement('label');
-                ratingLabel.textContent = ' c' + j + ': ';
+                ratingLabel.textContent = 'c' + j + ': ';
                 studentField.appendChild(ratingLabel);
 
                 var ratingInput = document.createElement('input');
@@ -139,14 +138,12 @@
                 ratingInput.min = 1;
                 ratingInput.step = 1;
                 ratingInput.required = true;
-                {#ratingInput.placeholder = 'Rating for c' + j;#}
                 studentField.appendChild(ratingInput);
             }
 
             studentFieldsDiv.appendChild(studentField);
         }
     }
-
 </script>
 </body>
 </html>
