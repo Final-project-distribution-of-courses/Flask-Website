@@ -9,7 +9,7 @@
 </header>
 <body>
 <div class="aceeiFormContainer">
-    <h2>Insert the parameters and run the algorithm</h2>
+    <h2>Insert the parameters and run the algorithm &#128512;</h2>
     <form action="/process" method="POST" id="aceeiForm">
         <!-- Choose Number of Courses -->
         <div class="fieldsContainer">
@@ -20,7 +20,7 @@
         <!-- Courses Input Fields (Generated Dynamically) -->
         <div id="courseFields">
             <!-- Fields for courses will be added dynamically -->
-        </div><br><br>
+        </div>
 
         <div class="fieldsContainer">
             <!-- Choose Number of Students -->
@@ -31,7 +31,7 @@
         <!-- Student Input Fields (Generated Dynamically) -->
         <div id="studentFields">
             <!-- Fields for students will be added dynamically -->
-        </div><br><br>
+        </div>
 
         <div class="fieldsContainer">
             <!-- Epsilon (ε) Input Field -->
@@ -101,45 +101,58 @@
             studentLabel.textContent = 'Student ' + i;
             studentField.appendChild(studentLabel);
 
+            var budgetGroup = document.createElement('div');
+            budgetGroup.className = 'fieldGroup';
             var budgetLabel = document.createElement('label');
+            budgetLabel.className = 'inputLabel';
             budgetLabel.textContent = 'Budget: ';
-            studentField.appendChild(budgetLabel);
-
+            budgetGroup.appendChild(budgetLabel);
             var budgetInput = document.createElement('input');
             budgetInput.type = 'number';
             budgetInput.name = 's' + i + 'Budget';
             budgetInput.min = 1;
             budgetInput.required = true;
-            studentField.appendChild(budgetInput);
+            budgetGroup.appendChild(budgetInput);
+            studentField.appendChild(budgetGroup);
 
+            var coursesGroup = document.createElement('div');
+            coursesGroup.className = 'fieldGroup';
             var coursesLabel = document.createElement('label');
+            budgetLabel.className = 'inputLabel';
             coursesLabel.textContent = 'Courses to Take: ';
-            studentField.appendChild(coursesLabel);
-
+            coursesGroup.appendChild(coursesLabel);
             var coursesInput = document.createElement('input');
             coursesInput.type = 'number';
             coursesInput.min = 1;
             coursesInput.name = 's' + i + 'CoursesToTake';
             coursesInput.required = true;
-            studentField.appendChild(coursesInput);
+            coursesGroup.appendChild(coursesInput);
+            studentField.appendChild(coursesGroup);
 
             var ratingsLabel = document.createElement('label');
+            ratingsLabel.className = 'inputLabel';
             ratingsLabel.textContent = 'Ratings for Courses: ';
             studentField.appendChild(ratingsLabel);
 
+            var ratingsGroup = document.createElement('div');
+            ratingsGroup.className = 'ratingsGroup';
             for (var j = 1; j <= numberOfCourses; j++) {
+                var ratingRow = document.createElement('div');
+                ratingRow.className = 'ratingRow';
                 var ratingLabel = document.createElement('label');
+                ratingsLabel.className = 'inputLabel';
                 ratingLabel.textContent = 'c' + j + ': ';
-                studentField.appendChild(ratingLabel);
-
+                ratingRow.appendChild(ratingLabel);
                 var ratingInput = document.createElement('input');
                 ratingInput.type = 'number';
                 ratingInput.name = 's' + i + 'c' + j + 'Rating';
                 ratingInput.min = 1;
                 ratingInput.step = 1;
                 ratingInput.required = true;
-                studentField.appendChild(ratingInput);
+                ratingRow.appendChild(ratingInput);
+                ratingsGroup.appendChild(ratingRow);
             }
+            studentField.appendChild(ratingsGroup);
 
             studentFieldsDiv.appendChild(studentField);
         }

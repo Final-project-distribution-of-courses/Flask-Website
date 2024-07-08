@@ -67,6 +67,12 @@ button {
     background: linear-gradient(#9f05ff69, #fd5e086b);
 }
 
+/* Btn of V  */
+button:hover {
+    background-color: #72653f;
+}
+
+
 /* The fields names */
 label {
     font-family: 'Dancing Script', cursive;
@@ -112,21 +118,19 @@ input[type="submit"]:hover {
     margin: 20px auto;
 }
 
-/* Container of each filed */
+/* Container for course and student fields */
 #courseFields, #studentFields {
-    display: grid;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
     gap: 20px;
     margin: 20px auto;
 }
 
 
-/* Students and courses style  */
+/* Students and courses style */
 #courseFields {
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-}
-
-#studentFields {
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    justify-content: center;
 }
 
 .courseField, .studentField {
@@ -149,27 +153,69 @@ input[type="submit"]:hover {
     box-sizing: border-box;
 }
 
-.studentField label {
-    width: 120px;
-    font-size: 16px;
-    margin-top: 5px;
+.studentField {
+    display: flex;
+    flex-direction: column;
 }
 
-.studentField input {
-    padding: 5px;
-    margin-top: 5px;
-    margin-bottom: 10px;
-    font-size: 14px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-}
-
-.studentLabel {
+.studentField .studentLabel {
     font-size: 20px;
     font-weight: bold;
     margin-bottom: 10px;
 }
 
-#studentFields .studentField {
-    display: block;
+.studentField .fieldGroup {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+.studentField .fieldGroup label {
+    margin-right: 10px;
+    font-size: 16px;
+    width: 50%;
+}
+
+.studentField .fieldGroup input {
+    padding: 5px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    width: 50%;
+}
+
+.studentField .ratingsGroup {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.studentField .ratingsGroup .ratingRow {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.studentField .ratingsGroup label {
+    width: auto;
+    margin-right: 5px;
+    font-size: 14px;
+    flex: 1;
+}
+
+.studentField .ratingsGroup input {
+    padding: 5px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    width: 50px;
+    flex: 1;
+}
+
+
+.inputLabel {
+    font-size: 15px;
+
 }
