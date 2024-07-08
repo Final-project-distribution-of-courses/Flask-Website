@@ -2,6 +2,7 @@ body {
     background: #e7e5e4;
 }
 
+/*********** Header Style ***********/
 header {
     text-align: center;
     width: 100%;
@@ -26,6 +27,7 @@ h1 {
     margin-bottom: 15px;
 }
 
+/*********** Body Style ***********/
 h2 {
     font-weight: bold;
     font-family: 'Dancing Script', cursive;
@@ -65,15 +67,18 @@ button {
     background: linear-gradient(#9f05ff69, #fd5e086b);
 }
 
+/* The fields names */
 label {
     font-family: 'Dancing Script', cursive;
     font-size: 20px;
 }
 
+/* The select and option of EF-TB */
 option, select {
     font-family: 'Dancing Script', cursive;
 }
 
+/* Btn of run the algorithm */
 input[type="submit"] {
     border: none;
     color: white;
@@ -90,10 +95,13 @@ input[type="submit"] {
     height: 50px;
 }
 
+/* Btn of run the algorithm when clicked on it */
 input[type="submit"]:hover {
     background-color: #72653f;
 }
 
+
+/* Container of each filed */
 .fieldsContainer {
     background-color: #cccccc;
     padding: 20px;
@@ -104,12 +112,15 @@ input[type="submit"]:hover {
     margin: 20px auto;
 }
 
+/* Container of each filed */
 #courseFields, #studentFields {
     display: grid;
     gap: 20px;
     margin: 20px auto;
 }
 
+
+/* Students and courses style  */
 #courseFields {
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
 }
