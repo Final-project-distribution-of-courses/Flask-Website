@@ -78,13 +78,14 @@
             capacityInput.min = 1;
             capacityInput.name = 'c' + i + 'Capacity';
             capacityInput.required = true;
+            capacityInput.addEventListener('input', checkAllCapacitiesFilled);
             courseField.appendChild(capacityInput);
 
             courseFieldsDiv.appendChild(courseField);
         }
 
         // Enable the number of students input field
-        document.getElementById('numberOfStudents').disabled = false;
+        document.getElementById('numberOfStudents').disabled = true;
     }
 
     // Function to add student input fields dynamically
@@ -161,11 +162,27 @@
         }
     }
 
+    // Function to check if all capacity fields are filled
+    function checkAllCapacitiesFilled() {
+        var numberOfCourses = parseInt(document.getElementById('numberOfCourses').value);
+        var allFilled = true;
+
+        for (var i = 1; i <= numberOfCourses; i++) {
+            var capacityInput = document.querySelector('input[name="c' + i + 'Capacity"]');
+            if (!capacityInput || capacityInput.value === '') {
+                allFilled = false;
+                break;
+            }
+        }
+
+        document.getElementById('numberOfStudents').disabled = !allFilled;
+    }
+
     // Enable the number of students input field when number of courses is selected
     document.getElementById('numberOfCourses').addEventListener('input', function() {
         var numberOfCourses = parseInt(document.getElementById('numberOfCourses').value);
         if (numberOfCourses > 0) {
-            document.getElementById('numberOfStudents').disabled = false;
+            document.getElementById('numberOfStudents').disabled = true;
         } else {
             document.getElementById('numberOfStudents').disabled = true;
         }
