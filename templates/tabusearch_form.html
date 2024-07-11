@@ -2,14 +2,15 @@
 <html lang="en">
 <header>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="{{ url_for('static', filename='tabusearch.css') }}">
+{#    <link rel="stylesheet" href="{{ url_for('static', filename='tabusear/ch.css') }}">#}
     <link rel="stylesheet" href="{{ url_for('static', filename='header.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='AlgosForm.css') }}">
     <div class="backgroundHeader">
         <h1>Tabu Search Algorithm</h1>
     </div>
 </header>
 <body>
-    <div class="tabusearchFormContainer">
+    <div class="formContainer">
         <h2>Insert the parameters and run the algorithm &#128512;</h2>
         <form action="/process" method="POST" id="tabuSearchForm">
 
@@ -17,7 +18,7 @@
                 <!-- Choose Number of Courses -->
                 <label for="numberOfCourses">Number of Courses:</label>
                 <input type="number" id="numberOfCourses" name="numberOfCourses" min="1" required>
-                <button type="button" onclick="addCourseFields()">Set Courses</button><br><br>
+                <button type="button" onclick="addCourseFields()">&#10004;</button>
             </div>
 
 
@@ -25,21 +26,21 @@
             <!-- Courses Input Fields (Generated Dynamically) -->
             <div id="courseFields">
                 <!-- Fields for courses will be added dynamically -->
-            </div><br><br>
+            </div>
 
 
             <div class="fieldsContainer">
                 <!-- Choose Number of Students (Initially Disabled) -->
                 <label for="numberOfStudents">Number of Students:</label>
                 <input type="number" id="numberOfStudents" name="numberOfStudents" min="1" required disabled>
-                <button type="button" onclick="addStudentFields()" id="setStudentsBtn" disabled>Set Students</button><br><br>
+                <button type="button" onclick="addStudentFields()">&#10004;</button>
             </div>
 
 
             <!-- Student Input Fields (Generated Dynamically) -->
             <div id="studentFields">
                 <!-- Fields for students will be added dynamically -->
-            </div><br><br>
+            </div>
 
             <div class="fieldsContainer">
                 <!-- Beta (β) Input Field -->
@@ -53,78 +54,10 @@
                 <input type="number" id="delta" name="delta" step="0.01" required><br><br>
             </div>
 
-            <input type="submit" value="Submit">
+            <input type="submit" value="Run The Algorithm">
         </form>
     </div>
 
-    <script>
-        // Function to add course input fields dynamically
-        function addCourseFields() {
-            var numberOfCourses = parseInt(document.getElementById('numberOfCourses').value);
-            var courseFieldsDiv = document.getElementById('courseFields');
-            courseFieldsDiv.innerHTML = ''; // Clear previous fields
-
-            for (var i = 1; i <= numberOfCourses; i++) {
-                var courseLabel = document.createElement('label');
-                courseLabel.textContent = 'Course ' + i + ' Capacity:';
-                courseFieldsDiv.appendChild(courseLabel);
-
-                var capacityInput = document.createElement('input');
-                capacityInput.type = 'number';
-                capacityInput.min = 1;
-                capacityInput.name = 'c' + i + 'Capacity';
-                capacityInput.required = true;
-                courseFieldsDiv.appendChild(capacityInput);
-
-                courseFieldsDiv.appendChild(document.createElement('br'));
-            }
-
-            // Enable the number of students input and set students button
-            document.getElementById('numberOfStudents').disabled = false;
-            document.getElementById('setStudentsBtn').disabled = false;
-        }
-
-        // Function to add student input fields dynamically
-        function addStudentFields() {
-            var numberOfStudents = parseInt(document.getElementById('numberOfStudents').value);
-            var studentFieldsDiv = document.getElementById('studentFields');
-            studentFieldsDiv.innerHTML = ''; // Clear previous fields
-
-            var numberOfCourses = parseInt(document.getElementById('numberOfCourses').value);
-
-            for (var i = 1; i <= numberOfStudents; i++) {
-                var studentLabel = document.createElement('label');
-                studentLabel.textContent = 'Student ' + i + ' (S' + i + '):';
-                studentFieldsDiv.appendChild(studentLabel);
-
-                var budgetLabel = document.createElement('label');
-                budgetLabel.textContent = ' Budget:';
-                studentFieldsDiv.appendChild(budgetLabel);
-
-                var budgetInput = document.createElement('input');
-                budgetInput.type = 'number';
-                budgetInput.name = 's' + i + 'Budget';
-                budgetInput.min = 1;
-                budgetInput.required = true;
-                studentFieldsDiv.appendChild(budgetInput);
-
-                for (var j = 1; j <= numberOfCourses; j++) {
-                    var courseLabel = document.createElement('label');
-                    courseLabel.textContent = ' c' + j + ' Rating:';
-                    studentFieldsDiv.appendChild(courseLabel);
-
-                    var ratingInput = document.createElement('input');
-                    ratingInput.type = 'number';
-                    ratingInput.name = 's' + i + 'c' + j + 'Rating';
-                    ratingInput.min = 1;
-                    ratingInput.step = 1;
-                    ratingInput.required = true;
-                    studentFieldsDiv.appendChild(ratingInput);
-                }
-
-                studentFieldsDiv.appendChild(document.createElement('br'));
-            }
-        }
-    </script>
+    <script src="{{ url_for('static', filename='form-functions.js') }}"></script>
 </body>
 </html>
