@@ -50,14 +50,15 @@ def handle_tabusearch_form(form_data):
 
     number_of_students = int(request.form.get('numberOfStudents'))
     print("Number of students is: ", number_of_students)
-    # valuations = {}
-    # for i in range(1, number_of_students + 1):
-    #     # student_name = request.form.get(f'studentName_{i}')
-    #     student_name = f's{i}'
-    #     student_preferences = {}
-    #     for course_name in courses_capacites.keys():
-    #         student_preferences[course_name] = int(request.form.get(f'{student_name}[{course_name}]'))
-    #     valuations[student_name] = student_preferences
+    valuations = {}
+    for i in range(1, number_of_students + 1):
+        # student_name = request.form.get(f'studentName_{i}')
+        student_name = f's{i}'
+        student_preferences = {}
+        for course_name in courses_capacites.keys():
+            student_preferences[course_name] = int(request.form.get(f'{student_name}{course_name}Rating'))
+        valuations[student_name] = student_preferences
+    print(f"valuations {valuations}")
 
     # todo: handle agent capacity
     # instance = Instance(valuations,2, courses_capacites)
