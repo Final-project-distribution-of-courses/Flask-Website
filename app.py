@@ -41,13 +41,16 @@ def handle_manipulation_form(form_data):
 
 def handle_tabusearch_form(form_data):
     number_of_courses = int(request.form.get('numberOfCourses'))
+    print("Number of courses is: ", number_of_courses)
     courses_capacites = {}
     for i in range(1, number_of_courses + 1):
         course_capacity = int(request.form.get(f'c{i}Capacity'))
         courses_capacites[f'c{i}'] = course_capacity
+    print("courses_capacites is: ", courses_capacites)
 
     number_of_students = int(request.form.get('numberOfStudents'))
-    valuations = {}
+    print("Number of students is: ", number_of_students)
+    # valuations = {}
     # for i in range(1, number_of_students + 1):
     #     # student_name = request.form.get(f'studentName_{i}')
     #     student_name = f's{i}'
@@ -57,19 +60,15 @@ def handle_tabusearch_form(form_data):
     #     valuations[student_name] = student_preferences
 
     # todo: handle agent capacity
-    instance = Instance(valuations,2, courses_capacites)
+    # instance = Instance(valuations,2, courses_capacites)
 
     beta = float(request.form.get('beta'))
     delta = float(request.form.get('delta'))
-    print(instance)
+    print("beta is: ", beta)
+    print("delta is: ", delta)
     # Format HTML response with instance, beta, and delta values
-    response = "hi"
-    # response = f"<p>Instance: {instance}</p>\n"
-    # response += f"<p>Beta: {beta}</p>\n"
-    # response += f"<p>Delta: {delta}</p>\n"
-    # response += "<p>Form processed successfully</p>"
 
-    return response
+    return "Form processed successfully"
 @app.route('/process', methods=['POST'])
 def process_form():
     response = handle_tabusearch_form(request.form)  # Call handle_tabusearch_form to get the response
