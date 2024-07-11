@@ -1,43 +1,61 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+<header>
     <meta charset="UTF-8">
-    <title>Tabu Search Algorithm Form</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='tabusearch.css') }}">
-</head>
+    <link rel="stylesheet" href="{{ url_for('static', filename='header.css') }}">
+    <div class="backgroundHeader">
+        <h1>Tabu Search Algorithm</h1>
+    </div>
+</header>
 <body>
-    <h1>Tabu Search Algorithm Form</h1>
-    <form action="/process" method="POST" id="tabuSearchForm">
-        <!-- Choose Number of Courses -->
-        <label for="numberOfCourses">Number of Courses:</label>
-        <input type="number" id="numberOfCourses" name="numberOfCourses" min="1" required>
-        <button type="button" onclick="addCourseFields()">Set Courses</button><br><br>
+    <div class="tabusearchFormContainer">
+        <h2>Insert the parameters and run the algorithm &#128512;</h2>
+        <form action="/process" method="POST" id="tabuSearchForm">
 
-        <!-- Courses Input Fields (Generated Dynamically) -->
-        <div id="courseFields">
-            <!-- Fields for courses will be added dynamically -->
-        </div><br><br>
+            <div class="fieldsContainer">
+                <!-- Choose Number of Courses -->
+                <label for="numberOfCourses">Number of Courses:</label>
+                <input type="number" id="numberOfCourses" name="numberOfCourses" min="1" required>
+                <button type="button" onclick="addCourseFields()">Set Courses</button><br><br>
+            </div>
 
-        <!-- Choose Number of Students (Initially Disabled) -->
-        <label for="numberOfStudents">Number of Students:</label>
-        <input type="number" id="numberOfStudents" name="numberOfStudents" min="1" required disabled>
-        <button type="button" onclick="addStudentFields()" id="setStudentsBtn" disabled>Set Students</button><br><br>
 
-        <!-- Student Input Fields (Generated Dynamically) -->
-        <div id="studentFields">
-            <!-- Fields for students will be added dynamically -->
-        </div><br><br>
 
-        <!-- Beta (β) Input Field -->
-        <label for="beta">Beta (β):</label>
-        <input type="number" id="beta" name="beta" step="0.01" required><br><br>
+            <!-- Courses Input Fields (Generated Dynamically) -->
+            <div id="courseFields">
+                <!-- Fields for courses will be added dynamically -->
+            </div><br><br>
 
-        <!-- Delta (δ) Input Field -->
-        <label for="delta">Delta (δ):</label>
-        <input type="number" id="delta" name="delta" step="0.01" required><br><br>
 
-        <input type="submit" value="Submit">
-    </form>
+            <div class="fieldsContainer">
+                <!-- Choose Number of Students (Initially Disabled) -->
+                <label for="numberOfStudents">Number of Students:</label>
+                <input type="number" id="numberOfStudents" name="numberOfStudents" min="1" required disabled>
+                <button type="button" onclick="addStudentFields()" id="setStudentsBtn" disabled>Set Students</button><br><br>
+            </div>
+
+
+            <!-- Student Input Fields (Generated Dynamically) -->
+            <div id="studentFields">
+                <!-- Fields for students will be added dynamically -->
+            </div><br><br>
+
+            <div class="fieldsContainer">
+                <!-- Beta (β) Input Field -->
+                <label for="beta">Beta (β):</label>
+                <input type="number" id="beta" name="beta" step="0.01" required><br><br>
+            </div>
+
+            <div class="fieldsContainer">
+                <!-- Delta (δ) Input Field -->
+                <label for="delta">Delta (δ):</label>
+                <input type="number" id="delta" name="delta" step="0.01" required><br><br>
+            </div>
+
+            <input type="submit" value="Submit">
+        </form>
+    </div>
 
     <script>
         // Function to add course input fields dynamically
