@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request, redirect, url_for
-from fairpyx import Instance
-
+from fairpyx import Instance, AllocationBuilder
+# from fairpyx.algorithms.ACEEI.tabu_search import tabu_search
+# todo: issue with the import of tabu search
 app = Flask(__name__)
 
 @app.route('/')
@@ -61,14 +62,24 @@ def handle_tabusearch_form(form_data):
     print(f"valuations {valuations}")
 
     # todo: handle agent capacity
-    # instance = Instance(valuations,2, courses_capacites)
-
+    instance = Instance(valuations,2, courses_capacites)
+    print("instance is ", instance)
     beta = float(request.form.get('beta'))
     delta = float(request.form.get('delta'))
     print("beta is: ", beta)
     print("delta is: ", delta)
-    # Format HTML response with instance, beta, and delta values
 
+    # 's' + i + 'Budget'
+    initial_budget = {}
+    for i in range(1, number_of_students + 1):
+        # student_name = request.form.get(f'studentName_{i}')
+        student_name = f's{i}'
+        initial_budget[student_name] = float(request.form.get(f'{student_name}Budget'))
+    print(f"initial budgets {initial_budget}")
+
+    # todo issue with the import of tabu search
+    # answer = tabu_search(instance, initial_budget, beta, delta)
+    # print("answer is ", answer)
     return "Form processed successfully"
 @app.route('/process', methods=['POST'])
 def process_form():
