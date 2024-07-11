@@ -25,7 +25,7 @@
         <div class="fieldsContainer">
             <!-- Choose Number of Students -->
             <label for="numberOfStudents">Number of Students:</label>
-            <input type="number" id="numberOfStudents" name="numberOfStudents" min="1" required>
+            <input type="number" id="numberOfStudents" name="numberOfStudents" min="1" required disabled>
             <button type="button" onclick="addStudentFields()">&#10004;</button><br><br>
         </div>
         <!-- Student Input Fields (Generated Dynamically) -->
@@ -78,10 +78,14 @@
             capacityInput.min = 1;
             capacityInput.name = 'c' + i + 'Capacity';
             capacityInput.required = true;
+            capacityInput.addEventListener('input', checkAllCapacitiesFilled);
             courseField.appendChild(capacityInput);
 
             courseFieldsDiv.appendChild(courseField);
         }
+
+        // Enable the number of students input field
+        document.getElementById('numberOfStudents').disabled = true;
     }
 
     // Function to add student input fields dynamically
@@ -158,6 +162,32 @@
 
         }
     }
+
+    // Function to check if all capacity fields are filled
+    function checkAllCapacitiesFilled() {
+        var numberOfCourses = parseInt(document.getElementById('numberOfCourses').value);
+        var allFilled = true;
+
+        for (var i = 1; i <= numberOfCourses; i++) {
+            var capacityInput = document.querySelector('input[name="c' + i + 'Capacity"]');
+            if (!capacityInput || capacityInput.value === '') {
+                allFilled = false;
+                break;
+            }
+        }
+
+        document.getElementById('numberOfStudents').disabled = !allFilled;
+    }
+
+    // Enable the number of students input field when number of courses is selected
+    document.getElementById('numberOfCourses').addEventListener('input', function() {
+        var numberOfCourses = parseInt(document.getElementById('numberOfCourses').value);
+        if (numberOfCourses > 0) {
+            document.getElementById('numberOfStudents').disabled = true;
+        } else {
+            document.getElementById('numberOfStudents').disabled = true;
+        }
+    });
 </script>
 </body>
 </html>

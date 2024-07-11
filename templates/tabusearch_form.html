@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Tabu Search Algorithm Form</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='tabusearch.css') }}">
 </head>
 <body>
     <h1>Tabu Search Algorithm Form</h1>
@@ -17,10 +18,10 @@
             <!-- Fields for courses will be added dynamically -->
         </div><br><br>
 
-        <!-- Choose Number of Students -->
+        <!-- Choose Number of Students (Initially Disabled) -->
         <label for="numberOfStudents">Number of Students:</label>
-        <input type="number" id="numberOfStudents" name="numberOfStudents" min="1" required>
-        <button type="button" onclick="addStudentFields()">Set Students</button><br><br>
+        <input type="number" id="numberOfStudents" name="numberOfStudents" min="1" required disabled>
+        <button type="button" onclick="addStudentFields()" id="setStudentsBtn" disabled>Set Students</button><br><br>
 
         <!-- Student Input Fields (Generated Dynamically) -->
         <div id="studentFields">
@@ -59,6 +60,10 @@
 
                 courseFieldsDiv.appendChild(document.createElement('br'));
             }
+
+            // Enable the number of students input and set students button
+            document.getElementById('numberOfStudents').disabled = false;
+            document.getElementById('setStudentsBtn').disabled = false;
         }
 
         // Function to add student input fields dynamically
