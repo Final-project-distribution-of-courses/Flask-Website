@@ -33,8 +33,48 @@ def algorithm_form():
         return "Invalid algorithm selection"
 
 def handle_aceei_form(form_data):
-    pass
-    return "ACEEI form processed successfully"
+    number_of_courses = int(request.form.get('numberOfCourses'))
+    print("Number of courses is: ", number_of_courses)
+    courses_capacites = {}
+    for i in range(1, number_of_courses + 1):
+        course_capacity = int(request.form.get(f'c{i}Capacity'))
+        courses_capacites[f'c{i}'] = course_capacity
+    print("courses_capacites is: ", courses_capacites)
+
+    number_of_students = int(request.form.get('numberOfStudents'))
+    print("Number of students is: ", number_of_students)
+    valuations = {}
+    for i in range(1, number_of_students + 1):
+        # student_name = request.form.get(f'studentName_{i}')
+        student_name = f's{i}'
+        student_preferences = {}
+        for course_name in courses_capacites.keys():
+            student_preferences[course_name] = int(request.form.get(f'{student_name}{course_name}Rating'))
+        valuations[student_name] = student_preferences
+    print(f"valuations {valuations}")
+
+    # todo: handle agent capacity
+    instance = Instance(valuations, 2, courses_capacites)
+    print("instance is ", instance)
+    epsilon = float(request.form.get('epsilon'))
+    delta = float(request.form.get('delta'))
+    eftb = str(request.form.get('ef-tb'))
+    print("epsilon is: ", epsilon)
+    print("delta is: ", delta)
+    print("ef-tb is: ", eftb)
+
+    # 's' + i + 'Budget'
+    initial_budget = {}
+    for i in range(1, number_of_students + 1):
+        # student_name = request.form.get(f'studentName_{i}')
+        student_name = f's{i}'
+        initial_budget[student_name] = float(request.form.get(f'{student_name}Budget'))
+    print(f"initial budgets {initial_budget}")
+
+    # todo issue with the import of tabu search
+    # answer = tabu_search(instance, initial_budget, beta, delta)
+    # print("answer is ", answer)
+    return "Form processed successfully"
 
 def handle_manipulation_form(form_data):
     pass
@@ -83,7 +123,8 @@ def handle_tabusearch_form(form_data):
     return "Form processed successfully"
 @app.route('/process', methods=['POST'])
 def process_form():
-    response = handle_tabusearch_form(request.form)  # Call handle_tabusearch_form to get the response
+    # response = handle_tabusearch_form(request.form)  # Call handle_tabusearch_form to get the response
+    response = handle_aceei_form(request.form)  # Call handle_tabusearch_form to get the response
     print(response)  # Print the response to the console
     # Handle the form processing logic here
     return "Form processed successfully"
