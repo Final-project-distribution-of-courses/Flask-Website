@@ -53,8 +53,15 @@ def handle_aceei_form(form_data):
         valuations[student_name] = student_preferences
     print(f"valuations {valuations}")
 
-    # todo: handle agent capacity
-    instance = Instance(valuations, 2, courses_capacites)
+    # 's' + i + 'CoursesToTake'
+    agent_capacity = {}
+    for i in range(1, number_of_students + 1):
+        # student_name = request.form.get(f'studentName_{i}')
+        student_name = f's{i}'
+        agent_capacity[student_name] = float(request.form.get(f'{student_name}CoursesToTake'))
+    print(f"CoursesToTake {agent_capacity}")
+
+    instance = Instance(valuations, agent_capacity, courses_capacites)
     print("instance is ", instance)
     epsilon = float(request.form.get('epsilon'))
     delta = float(request.form.get('delta'))
@@ -101,8 +108,14 @@ def handle_tabusearch_form(form_data):
         valuations[student_name] = student_preferences
     print(f"valuations {valuations}")
 
-    # todo: handle agent capacity
-    instance = Instance(valuations,2, courses_capacites)
+    # 's' + i + 'CoursesToTake'
+    agent_capacity = {}
+    for i in range(1, number_of_students + 1):
+        # student_name = request.form.get(f'studentName_{i}')
+        student_name = f's{i}'
+        agent_capacity[student_name] = float(request.form.get(f'{student_name}CoursesToTake'))
+
+    instance = Instance(valuations,agent_capacity, courses_capacites)
     print("instance is ", instance)
     beta = float(request.form.get('beta'))
     delta = float(request.form.get('delta'))
