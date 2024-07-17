@@ -208,13 +208,19 @@ def handle_tabusearch_form(form_data):
 
 @app.route('/process', methods=['POST'])
 def process_form():
-    # response = handle_tabusearch_form(request.form)  # Call handle_tabusearch_form to get the response
-    # response = handle_aceei_form(request.form)
-    response = handle_manipulation_form(request.form)
-    print(response)  # Print the response to the console
-    # Handle the form processing logic here
-    return "Form processed successfully"
+    algorithm = request.form.get('algorithm')  # Get the algorithm name from the form data
 
+    if algorithm == 'tabusearch':
+        response = handle_tabusearch_form(request.form)
+    elif algorithm == 'aceei':
+        response = handle_aceei_form(request.form)
+    elif algorithm == 'manipulation':
+        response = handle_manipulation_form(request.form)
+    else:
+        response = "Unknown algorithm"
+
+    print(response)  # Print the response to the console
+    return "Form processed successfully"
 
 if __name__ == '__main__':
     app.run(debug=True)
