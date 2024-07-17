@@ -218,7 +218,7 @@ def process_form():
     elif algorithm == 'manipulation':
         response = handle_manipulation_form(request.form)
     else:
-        response = "Unknown algorithm"
+        response = {"Unknown algorithm": []}
 
     print(response)  # Print the response to the console
     return render_template('result.html', response=response)

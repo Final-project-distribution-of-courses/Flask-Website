@@ -8,8 +8,22 @@
 <body>
     <div class="container">
         <h1>תוצאות חלוקת קורסים</h1>
-        {# <p>שלום {{ name }},</p> #}
-        <p>{{ response }}</p>
+        <table>
+            <thead>
+                <tr>
+                    <th>סטודנט</th>
+                    <th>קורסים</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for key, value in response.items() %}
+                <tr>
+                    <td>{{ key }}</td>
+                    <td>{{ value | join(', ') }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
         <br>
         <a href="/">חזור לעמוד הראשי</a>
     </div>
