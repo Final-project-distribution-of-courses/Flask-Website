@@ -217,6 +217,7 @@ def process_form():
         response = handle_aceei_form(request.form)
     elif algorithm == 'manipulation':
         response = handle_manipulation_form(request.form)
+        # todo: check how to display if there manipulation or not and final budget b* and  final prices p*
     else:
         response = {"Unknown algorithm": []}
 

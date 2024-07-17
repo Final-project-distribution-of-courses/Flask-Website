@@ -149,6 +149,38 @@ function addDeltaInput() {
     document.getElementById('deltaFieldsContainer').appendChild(newDiv);
 }
 
+// todo : check why the random not fill all the fields
+function getRandomInt(min, max) {
+    min = Math.ceil(min);
+    max = Math.floor(max);
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
+function fillRandom() {
+    document.getElementById('numberOfCourses').value = getRandomInt(1, 10);
+    addCourseFields(); // Add course fields dynamically based on the random number
+
+    const numberOfCourses = document.getElementById('numberOfCourses').value;
+    for (let i = 0; i < numberOfCourses; i++) {
+        document.getElementById(`course${i + 1}`).value = `Course ${i + 1}`;
+    }
+
+    document.getElementById('numberOfStudents').value = getRandomInt(1, 10);
+    addStudentFields(); // Add student fields dynamically based on the random number
+
+    const numberOfStudents = document.getElementById('numberOfStudents').value;
+    for (let i = 0; i < numberOfStudents; i++) {
+        document.getElementById(`student${i + 1}`).value = `Student ${i + 1}`;
+    }
+
+    document.getElementById('epsilon').value = (Math.random()).toFixed(2);
+    document.getElementById('delta').value = (Math.random()).toFixed(2);
+
+    const efTbOptions = document.getElementById('ef-tb').options;
+    document.getElementById('ef-tb').selectedIndex = getRandomInt(0, efTbOptions.length - 1);
+}
+
+
 // Enable the number of students input field when number of courses is selected
 document.getElementById('numberOfCourses').addEventListener('input', function () {
     var numberOfCourses = parseInt(document.getElementById('numberOfCourses').value);

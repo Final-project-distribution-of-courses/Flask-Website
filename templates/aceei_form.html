@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
-<header>
+<head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="{{ url_for('static', filename='header.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='AlgosForm.css') }}">
     <div class="backgroundHeader">
         <h1>ACEEI Algorithm</h1>
     </div>
-</header>
+</head>
 <body>
 <div class="formContainer">
     <h2>Insert the parameters and run the algorithm &#128512;</h2>
@@ -58,6 +58,7 @@
         </div>
 
         <input type="submit" value="Run The Algorithm">
+        <button type="button" onclick="fillRandom()">Random</button>
     </form>
 </div>
 <script src="{{ url_for('static', filename='form-functions.js') }}"></script>
