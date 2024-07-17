@@ -3,12 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <title>תוצאות חלוקת קורסים</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='result.css') }}">
 </head>
 <body>
-    <h1>תוצאות חלוקת קורסים</h1>
-    <p>שלום {{ name }},</p>
-    <p>{{ output }}</p>
-    <br>
-    <a href="/">חזור לעמוד הראשי</a>
+    <div class="container">
+        <h1>תוצאות חלוקת קורסים</h1>
+        {# <p>שלום {{ name }},</p> #}
+        <p>{{ response }}</p>
+        <br>
+        <a href="/">חזור לעמוד הראשי</a>
+    </div>
 </body>
 </html>

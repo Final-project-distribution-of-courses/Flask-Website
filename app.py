@@ -85,7 +85,7 @@ def handle_aceei_form(form_data):
     answer = divide(find_ACEEI_with_EFTB, instance=instance, initial_budgets=initial_budgets, delta=delta,
                     epsilon=epsilon, t=eftb)
     print("answer is ", answer)
-    return "Form processed successfully"
+    return answer
 
 
 def handle_manipulation_form(form_data):
@@ -154,7 +154,7 @@ def handle_manipulation_form(form_data):
                     true_student_utility=valuations["s1"], criteria=criteria_for_profitable_manipulation, eta=eta,
                     instance=instance, initial_budgets=initial_budget, beta=beta, delta=delta, epsilon=epsilon, t=eftb)
     print("answer is ", answer)
-    return "Form processed successfully"
+    return answer
 
 
 def handle_tabusearch_form(form_data):
@@ -205,8 +205,7 @@ def handle_tabusearch_form(form_data):
 
     answer = divide(tabu_search, instance=instance, initial_budgets=initial_budgets, beta=beta, delta=delta)
     print("answer is ", answer)
-    return "Form processed successfully"
-
+    return answer
 
 @app.route('/process', methods=['POST'])
 def process_form():
@@ -222,7 +221,7 @@ def process_form():
         response = "Unknown algorithm"
 
     print(response)  # Print the response to the console
-    return "Form processed successfully"
+    return render_template('result.html', response=response)
 
 if __name__ == '__main__':
     app.run(debug=True)
