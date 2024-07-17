@@ -4,11 +4,63 @@
     <meta charset="UTF-8">
     <link rel="stylesheet" href="{{ url_for('static', filename='findmanipulation.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='header.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='AlgosForm.css') }}">
     <div class="backgroundHeader">
         <h1>Find Manipulation Algorithm</h1>
     </div>
 </header>
 <body>
-<!--    todo  implement this page-->
+<div class="formContainer">
+    <h2>Insert the parameters and run the algorithm &#128512;</h2>
+    <form action="/process" method="POST" id="aceeiForm">
+        <input type="hidden" name="algorithm" value="aceei">
+        <!-- Choose Number of Courses -->
+        <div class="fieldsContainer">
+            <label for="numberOfCourses">Number of Courses:</label>
+            <input type="number" id="numberOfCourses" name="numberOfCourses" min="1" required>
+            <button type="button" onclick="addCourseFields()">&#10004;</button>
+        </div>
+        <!-- Courses Input Fields (Generated Dynamically) -->
+        <div id="courseFields">
+            <!-- Fields for courses will be added dynamically -->
+        </div>
+
+        <div class="fieldsContainer">
+            <!-- Choose Number of Students -->
+            <label for="numberOfStudents">Number of Students:</label>
+            <input type="number" id="numberOfStudents" name="numberOfStudents" min="1" required disabled>
+            <button type="button" onclick="addStudentFields()">&#10004;</button>
+        </div>
+        <!-- Student Input Fields (Generated Dynamically) -->
+        <div id="studentFields">
+            <!-- Fields for students will be added dynamically -->
+        </div>
+
+        <div class="fieldsContainer">
+            <!-- Epsilon (ε) Input Field -->
+            <label for="epsilon">Epsilon (ε):</label>
+            <input type="number" id="epsilon" name="epsilon" step="0.01" min="0" required><br><br>
+        </div>
+
+        <div class="fieldsContainer">
+            <!-- Delta (δ) Input Field -->
+            <label for="delta">Delta (δ):</label>
+            <input type="number" id="delta" name="delta" step="0.01" min="0" required><br><br>
+        </div>
+
+        <div class="fieldsContainer">
+            <!-- t Input Field with Options -->
+            <label for="ef-tb">EF-TB status:</label>
+            <select id="ef-tb" name="ef-tb" required>
+                <option value="no EFTB">No EFTB</option>
+                <option value="EFTB">EFTB</option>
+                <option value="contested EFTB">Contested EFTB</option>
+            </select><br><br>
+        </div>
+
+        <input type="submit" value="Run The Algorithm">
+    </form>
+</div>
+<script src="{{ url_for('static', filename='form-functions.js') }}"></script>
 </body>
 </html>
