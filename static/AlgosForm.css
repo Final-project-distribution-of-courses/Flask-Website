@@ -195,4 +195,30 @@ input[type="submit"]:hover {
     font-family: 'Dancing Script', cursive;
 }
 
+.delta-input-container {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    width: 100%;
+}
+
+.delta-input-container label {
+    margin-right: 10px;
+    font-size: 16px;
+}
+
+.delta-input-container input {
+    flex: 1;
+    margin-right: 10px;
+}
+
+.delta-input-container button {
+    background-color: #e74c3c;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
 

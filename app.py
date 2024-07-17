@@ -188,9 +188,12 @@ def handle_tabusearch_form(form_data):
     instance = Instance(valuations, agent_capacity, courses_capacites)
     print("instance is ", instance)
     beta = int(request.form.get('beta'))
-    delta = float(request.form.get('delta'))
     print("beta is: ", beta)
+
+    delta_list = request.form.getlist('delta[]')
+    delta = {float(delta) for delta in delta_list}
     print("delta is: ", delta)
+    # todo: To fix the fact that the delta news exceeds what is written on the site
 
     # 's' + i + 'Budget'
     initial_budgets = {}
@@ -200,8 +203,7 @@ def handle_tabusearch_form(form_data):
         initial_budgets[student_name] = float(request.form.get(f'{student_name}Budget'))
     print(f"initial budgets {initial_budgets}")
 
-    # todo: give option to chose more than 1 delta
-    answer = divide(tabu_search, instance=instance, initial_budgets=initial_budgets, beta=beta, delta={delta})
+    answer = divide(tabu_search, instance=instance, initial_budgets=initial_budgets, beta=beta, delta=delta)
     print("answer is ", answer)
     return "Form processed successfully"
 

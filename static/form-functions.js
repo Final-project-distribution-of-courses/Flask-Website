@@ -117,6 +117,38 @@ function checkAllCapacitiesFilled() {
     document.getElementById('numberOfStudents').disabled = !allFilled;
 }
 
+function addDeltaInput() {
+    // Create a new div element to contain the delta input field and remove button
+    const newDiv = document.createElement('div');
+    newDiv.classList.add('delta-input-container');
+
+    // Create the label element
+    const newLabel = document.createElement('label');
+    newLabel.innerText = 'Delta (δ):';
+    newDiv.appendChild(newLabel);
+
+    // Create the input element
+    const newInput = document.createElement('input');
+    newInput.type = 'number';
+    newInput.name = 'delta[]';
+    newInput.step = '0.01';
+    newInput.min = '0';
+    newInput.required = true;
+    newDiv.appendChild(newInput);
+
+    // Create the remove button
+    const removeButton = document.createElement('button');
+    removeButton.type = 'button';
+    removeButton.innerText = 'Remove';
+    removeButton.onclick = function() {
+        newDiv.remove();
+    };
+    newDiv.appendChild(removeButton);
+
+    // Append the new div to the delta fields container
+    document.getElementById('deltaFieldsContainer').appendChild(newDiv);
+}
+
 // Enable the number of students input field when number of courses is selected
 document.getElementById('numberOfCourses').addEventListener('input', function () {
     var numberOfCourses = parseInt(document.getElementById('numberOfCourses').value);
