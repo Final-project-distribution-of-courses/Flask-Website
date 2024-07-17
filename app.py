@@ -174,31 +174,32 @@ def handle_tabusearch_form(form_data):
     for i in range(1, number_of_students + 1):
         # student_name = request.form.get(f'studentName_{i}')
         student_name = f's{i}'
-        agent_capacity[student_name] = float(request.form.get(f'{student_name}CoursesToTake'))
+        agent_capacity[student_name] = int(request.form.get(f'{student_name}CoursesToTake'))
 
     instance = Instance(valuations,agent_capacity, courses_capacites)
     print("instance is ", instance)
-    beta = float(request.form.get('beta'))
+    beta = int(request.form.get('beta'))
     delta = float(request.form.get('delta'))
     print("beta is: ", beta)
     print("delta is: ", delta)
 
     # 's' + i + 'Budget'
-    initial_budget = {}
+    initial_budgets = {}
     for i in range(1, number_of_students + 1):
         # student_name = request.form.get(f'studentName_{i}')
         student_name = f's{i}'
-        initial_budget[student_name] = float(request.form.get(f'{student_name}Budget'))
-    print(f"initial budgets {initial_budget}")
+        initial_budgets[student_name] = float(request.form.get(f'{student_name}Budget'))
+    print(f"initial budgets {initial_budgets}")
 
-    # todo issue with the import of tabu search
-    # answer = tabu_search(instance, initial_budget, beta, delta)
-    # print("answer is ", answer)
+    # todo: give option to chose more than 1 delta
+    answer = divide(tabu_search, instance=instance, initial_budgets=initial_budgets, beta=beta, delta={delta})
+    print("answer is ", answer)
     return "Form processed successfully"
+
 @app.route('/process', methods=['POST'])
 def process_form():
-    # response = handle_tabusearch_form(request.form)  # Call handle_tabusearch_form to get the response
-    response = handle_aceei_form(request.form)  # Call handle_tabusearch_form to get the response
+    response = handle_tabusearch_form(request.form)  # Call handle_tabusearch_form to get the response
+    # response = handle_aceei_form(request.form)  # Call handle_tabusearch_form to get the response
     print(response)  # Print the response to the console
     # Handle the form processing logic here
     return "Form processed successfully"
