@@ -56,6 +56,18 @@
             <input type="number" id="delta" name="delta" step="0.01" min="0" required><br><br>
         </div>
 
+         <div class="fieldsContainer">
+            <!-- Eta Input Field -->
+            <label for="eta">Eta (η):</label>
+            <input type="number" id="eta" name="eta" step="0.01" min="0" required><br><br>
+        </div>
+
+        <div class="fieldsContainer">
+            <!-- Beta Input Field -->
+            <label for="beta">Beta (β):</label>
+            <input type="number" id="beta" name="beta" step="0.01" min="0" required><br><br>
+        </div>
+
         <div class="fieldsContainer">
             <!-- t Input Field with Options -->
             <label for="ef-tb">EF-TB status:</label>
@@ -80,25 +92,6 @@
 </div>
 <script src="{{ url_for('static', filename='form-functions.js') }}"></script>
 <script>
-    function addStudentFields() {
-        const numStudents = document.getElementById('numberOfStudents').value;
-        const studentSelection = document.getElementById('studentSelection');
-        studentSelection.innerHTML = ''; // Clear any existing options
-
-        for (let i = 1; i <= numStudents; i++) {
-            const option = document.createElement('option');
-            option.value = 'Student ' + i;
-            option.text = 'Student ' + i;
-            studentSelection.add(option);
-        }
-        studentSelection.disabled = false;
-    }
-
-    // Enable the number of students field when course capacities are chosen
-    function addCourseFields() {
-        // Logic for adding course fields
-        document.getElementById('numberOfStudents').disabled = false;
-    }
 </script>
 </body>
 </html>
