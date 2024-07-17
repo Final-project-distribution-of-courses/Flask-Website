@@ -2,11 +2,14 @@ from flask import Flask, render_template, request, redirect, url_for
 from fairpyx import Instance, AllocationBuilder
 from fairpyx.algorithms import find_ACEEI_with_EFTB, tabu_search, find_profitable_manipulation
 from fairpyx.adaptors import divide
+
 app = Flask(__name__)
+
 
 @app.route('/')
 def index():
     return render_template('index.html')
+
 
 @app.route('/form', methods=['GET', 'POST'])
 def algorithm_form():
@@ -31,6 +34,7 @@ def algorithm_form():
         return render_template('tabusearch_form.html')
     else:
         return "Invalid algorithm selection"
+
 
 def handle_aceei_form(form_data):
     number_of_courses = int(request.form.get('numberOfCourses'))
@@ -78,9 +82,11 @@ def handle_aceei_form(form_data):
         initial_budgets[student_name] = float(request.form.get(f'{student_name}Budget'))
     print(f"initial budgets {initial_budgets}")
 
-    answer = divide(find_ACEEI_with_EFTB, instance=instance, initial_budgets=initial_budgets, delta=delta, epsilon=epsilon, t=eftb)
+    answer = divide(find_ACEEI_with_EFTB, instance=instance, initial_budgets=initial_budgets, delta=delta,
+                    epsilon=epsilon, t=eftb)
     print("answer is ", answer)
     return "Form processed successfully"
+
 
 def handle_manipulation_form(form_data):
     number_of_courses = int(request.form.get('numberOfCourses'))
@@ -120,7 +126,7 @@ def handle_manipulation_form(form_data):
     delta = float(request.form.get('delta'))
     print("delta is: ", delta)
 
-    beta = float(request.form.get('beta'))
+    beta = int(request.form.get('beta'))
     print("beta is: ", beta)
 
     eta = float(request.form.get('eta'))
@@ -143,10 +149,13 @@ def handle_manipulation_form(form_data):
         initial_budget[student_name] = float(request.form.get(f'{student_name}Budget'))
     print(f"initial budgets {initial_budget}")
 
-    # todo issue with the import of tabu search
-    # answer = tabu_search(instance, initial_budget, beta, delta)
-    # print("answer is ", answer)
+    # todo: handle student
+    answer = divide(find_profitable_manipulation, mechanism=find_ACEEI_with_EFTB, student="s1",
+                    true_student_utility=valuations["s1"], criteria=criteria_for_profitable_manipulation, eta=eta,
+                    instance=instance, initial_budgets=initial_budget, beta=beta, delta=delta, epsilon=epsilon, t=eftb)
+    print("answer is ", answer)
     return "Form processed successfully"
+
 
 def handle_tabusearch_form(form_data):
     number_of_courses = int(request.form.get('numberOfCourses'))
@@ -176,7 +185,7 @@ def handle_tabusearch_form(form_data):
         student_name = f's{i}'
         agent_capacity[student_name] = int(request.form.get(f'{student_name}CoursesToTake'))
 
-    instance = Instance(valuations,agent_capacity, courses_capacites)
+    instance = Instance(valuations, agent_capacity, courses_capacites)
     print("instance is ", instance)
     beta = int(request.form.get('beta'))
     delta = float(request.form.get('delta'))
@@ -196,13 +205,16 @@ def handle_tabusearch_form(form_data):
     print("answer is ", answer)
     return "Form processed successfully"
 
+
 @app.route('/process', methods=['POST'])
 def process_form():
-    response = handle_tabusearch_form(request.form)  # Call handle_tabusearch_form to get the response
-    # response = handle_aceei_form(request.form)  # Call handle_tabusearch_form to get the response
+    # response = handle_tabusearch_form(request.form)  # Call handle_tabusearch_form to get the response
+    # response = handle_aceei_form(request.form)
+    response = handle_manipulation_form(request.form)
     print(response)  # Print the response to the console
     # Handle the form processing logic here
     return "Form processed successfully"
+
 
 if __name__ == '__main__':
     app.run(debug=True)
