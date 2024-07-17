@@ -1,7 +1,7 @@
 from flask import Flask, render_template, request, redirect, url_for
 from fairpyx import Instance, AllocationBuilder
-# from fairpyx.algorithms.ACEEI.tabu_search import tabu_search
-# todo: issue with the import of tabu search
+from fairpyx.algorithms import find_ACEEI_with_EFTB, tabu_search, find_profitable_manipulation
+from fairpyx.adaptors import divide
 app = Flask(__name__)
 
 @app.route('/')
@@ -58,7 +58,7 @@ def handle_aceei_form(form_data):
     for i in range(1, number_of_students + 1):
         # student_name = request.form.get(f'studentName_{i}')
         student_name = f's{i}'
-        agent_capacity[student_name] = float(request.form.get(f'{student_name}CoursesToTake'))
+        agent_capacity[student_name] = int(request.form.get(f'{student_name}CoursesToTake'))
     print(f"CoursesToTake {agent_capacity}")
 
     instance = Instance(valuations, agent_capacity, courses_capacites)
@@ -71,16 +71,15 @@ def handle_aceei_form(form_data):
     print("ef-tb is: ", eftb)
 
     # 's' + i + 'Budget'
-    initial_budget = {}
+    initial_budgets = {}
     for i in range(1, number_of_students + 1):
         # student_name = request.form.get(f'studentName_{i}')
         student_name = f's{i}'
-        initial_budget[student_name] = float(request.form.get(f'{student_name}Budget'))
-    print(f"initial budgets {initial_budget}")
+        initial_budgets[student_name] = float(request.form.get(f'{student_name}Budget'))
+    print(f"initial budgets {initial_budgets}")
 
-    # todo issue with the import of tabu search
-    # answer = tabu_search(instance, initial_budget, beta, delta)
-    # print("answer is ", answer)
+    answer = divide(find_ACEEI_with_EFTB, instance=instance, initial_budgets=initial_budgets, delta=delta, epsilon=epsilon, t=eftb)
+    print("answer is ", answer)
     return "Form processed successfully"
 
 def handle_manipulation_form(form_data):
