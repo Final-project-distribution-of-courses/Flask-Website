@@ -84,8 +84,70 @@ def handle_aceei_form(form_data):
     return "Form processed successfully"
 
 def handle_manipulation_form(form_data):
-    pass
-    return "Manipulation form processed successfully"
+    number_of_courses = int(request.form.get('numberOfCourses'))
+    print("Number of courses is: ", number_of_courses)
+    courses_capacites = {}
+    for i in range(1, number_of_courses + 1):
+        course_capacity = int(request.form.get(f'c{i}Capacity'))
+        courses_capacites[f'c{i}'] = course_capacity
+    print("courses_capacites is: ", courses_capacites)
+
+    number_of_students = int(request.form.get('numberOfStudents'))
+    print("Number of students is: ", number_of_students)
+    valuations = {}
+    for i in range(1, number_of_students + 1):
+        # student_name = request.form.get(f'studentName_{i}')
+        student_name = f's{i}'
+        student_preferences = {}
+        for course_name in courses_capacites.keys():
+            student_preferences[course_name] = int(request.form.get(f'{student_name}{course_name}Rating'))
+        valuations[student_name] = student_preferences
+    print(f"valuations {valuations}")
+
+    # 's' + i + 'CoursesToTake'
+    agent_capacity = {}
+    for i in range(1, number_of_students + 1):
+        # student_name = request.form.get(f'studentName_{i}')
+        student_name = f's{i}'
+        agent_capacity[student_name] = float(request.form.get(f'{student_name}CoursesToTake'))
+    print(f"CoursesToTake {agent_capacity}")
+
+    instance = Instance(valuations, agent_capacity, courses_capacites)
+    print("instance is ", instance)
+
+    epsilon = float(request.form.get('epsilon'))
+    print("epsilon is: ", epsilon)
+
+    delta = float(request.form.get('delta'))
+    print("delta is: ", delta)
+
+    beta = float(request.form.get('beta'))
+    print("beta is: ", beta)
+
+    eta = float(request.form.get('eta'))
+    print("eta is: ", eta)
+
+    eftb = str(request.form.get('ef-tb'))
+    print("ef-tb is: ", eftb)
+
+    student = str(request.form.get('studentSelection'))
+    print("student is: ", student)
+
+    criteria_for_profitable_manipulation = str(request.form.get('criteria_for_profitable_manipulation'))
+    print("criteria is: ", criteria_for_profitable_manipulation)
+
+    # 's' + i + 'Budget'
+    initial_budget = {}
+    for i in range(1, number_of_students + 1):
+        # student_name = request.form.get(f'studentName_{i}')
+        student_name = f's{i}'
+        initial_budget[student_name] = float(request.form.get(f'{student_name}Budget'))
+    print(f"initial budgets {initial_budget}")
+
+    # todo issue with the import of tabu search
+    # answer = tabu_search(instance, initial_budget, beta, delta)
+    # print("answer is ", answer)
+    return "Form processed successfully"
 
 def handle_tabusearch_form(form_data):
     number_of_courses = int(request.form.get('numberOfCourses'))
