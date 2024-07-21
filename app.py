@@ -148,10 +148,9 @@ def handle_manipulation_form(form_data):
         student_name = f's{i}'
         initial_budget[student_name] = float(request.form.get(f'{student_name}Budget'))
     print(f"initial budgets {initial_budget}")
-
-    # TODO: let the user the option to choose the student that want to manipulate
-    answer = divide(find_profitable_manipulation, mechanism=find_ACEEI_with_EFTB, student="s1",
-                    true_student_utility=valuations["s1"], criteria=criteria_for_profitable_manipulation, eta=eta,
+    # TODO: find_profitable_manipulation not working
+    answer = find_profitable_manipulation(mechanism=find_ACEEI_with_EFTB, student=student,
+                    true_student_utility=valuations[student], criteria=criteria_for_profitable_manipulation, eta=eta,
                     instance=instance, initial_budgets=initial_budget, beta=beta, delta=delta, epsilon=epsilon, t=eftb)
     print("answer is ", answer)
     return answer
@@ -217,7 +216,7 @@ def process_form():
         response = handle_aceei_form(request.form)
     elif algorithm == 'manipulation':
         response = handle_manipulation_form(request.form)
-        # todo: check how to display if there manipulation or not and final budget b* and  final prices p*
+        # TODO: check how to display if there manipulation or not and final budget b* and  final prices p*
     else:
         response = {"Unknown algorithm": []}
 

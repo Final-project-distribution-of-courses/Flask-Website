@@ -2,7 +2,6 @@
 <html lang="en">
 <header>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="{{ url_for('static', filename='findmanipulation.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='header.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='AlgosForm.css') }}">
     <div class="backgroundHeader">
@@ -12,8 +11,8 @@
 <body>
 <div class="formContainer">
     <h2>Insert the parameters and run the algorithm &#128512;</h2>
-    <form action="/process" method="POST" id="aceeiForm">
-        <input type="hidden" name="algorithm" value="aceei">
+    <form action="/process" method="POST" id="manipulationForm">
+        <input type="hidden" name="algorithm" value="manipulation">
         <!-- Choose Number of Courses -->
         <div class="fieldsContainer">
             <label for="numberOfCourses">Number of Courses:</label>
@@ -72,9 +71,9 @@
             <!-- t Input Field with Options -->
             <label for="ef-tb">EF-TB status:</label>
             <select id="ef-tb" name="ef-tb" required>
-                <option value="no EFTB">No EFTB</option>
-                <option value="EFTB">EFTB</option>
-                <option value="contested EFTB">Contested EFTB</option>
+                <option value="EFTBStatus.NO_EF_TB">No EFTB</option>
+                <option value="EFTBStatus.EF_TB">EFTB</option>
+                <option value="EFTBStatus.CONTESTED_EF_TB">Contested EFTB</option>
             </select><br><br>
         </div>
 
@@ -82,16 +81,18 @@
             <!-- Criteria for Profitable Manipulation -->
             <label for="criteria_for_profitable_manipulation">Criteria for Profitable Manipulation:</label>
             <select id="criteria_for_profitable_manipulation" name="criteria_for_profitable_manipulation" required>
-                <option value="randomness">Randomness</option>
-                <option value="population">Population</option>
+                <option value="criteria_for_profitable_manipulation.randomness">Randomness</option>
+                <option value="criteria_for_profitable_manipulation.population">Population</option>
             </select><br><br>
         </div>
 
         <input type="submit" value="Run The Algorithm">
+        {#        TODO: add random to this form#}
+        {#        TODO: button to go back#}
+
     </form>
 </div>
 <script src="{{ url_for('static', filename='form-functions.js') }}"></script>
-<script>
-</script>
+
 </body>
 </html>

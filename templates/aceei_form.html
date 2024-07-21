@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+<header>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="{{ url_for('static', filename='header.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='AlgosForm.css') }}">
     <div class="backgroundHeader">
         <h1>ACEEI Algorithm</h1>
     </div>
-</head>
+</header>
 <body>
 <div class="formContainer">
     <h2>Insert the parameters and run the algorithm &#128512;</h2>
@@ -51,14 +51,16 @@
             <!-- t Input Field with Options -->
             <label for="ef-tb">EF-TB status:</label>
             <select id="ef-tb" name="ef-tb" required>
-                <option value="no EFTB">No EFTB</option>
-                <option value="EFTB">EFTB</option>
-                <option value="contested EFTB">Contested EFTB</option>
+                <option value="EFTBStatus.NO_EF_TB">No EFTB</option>
+                <option value="EFTBStatus.EF_TB">EFTB</option>
+                <option value="EFTBStatus.CONTESTED_EF_TB">Contested EFTB</option>
             </select><br><br>
         </div>
 
         <input type="submit" value="Run The Algorithm">
         <button type="button" onclick="fillRandom()">Random</button>
+{#        TODO: add random to this form#}
+        {#        TODO: button to go back#}
     </form>
 </div>
 <script src="{{ url_for('static', filename='form-functions.js') }}"></script>

@@ -132,6 +132,25 @@ function addStudentFields() {
         studentFieldsDiv.appendChild(studentField);
 
     }
+
+    // Check if the form belongs to "manipulation_form"
+    var form = document.getElementById('manipulationForm');
+    var algorithm = form.querySelector('input[name="algorithm"]').value;
+    console.log("algorithm is:", algorithm)
+    if (algorithm === 'manipulation') {
+        var studentSelection = document.getElementById('studentSelection');
+        studentSelection.innerHTML = '<option value="" disabled selected>Select a student</option>';
+
+        for (var i = 1; i <= numberOfStudents; i++) {
+            var studentOption = document.createElement('option');
+            studentOption.value = 's' + i;
+            studentOption.textContent = 'Student ' + i;
+            studentSelection.appendChild(studentOption);
+        }
+
+        // Enable the student selection dropdown
+        studentSelection.disabled = false;
+    }
 }
 
 // Function to check if all capacity fields are filled
