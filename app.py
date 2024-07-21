@@ -144,8 +144,6 @@ def handle_manipulation_form(form_data):
     print("criteria is: ", criteria)
 
     algorithm = find_ACEEI_with_EFTB
-    print("algorithm type is: ", type(algorithm))
-    print("true_student_utility=", valuations[student])
 
     # 's' + i + 'Budget'
     initial_budget = {}
@@ -154,12 +152,6 @@ def handle_manipulation_form(form_data):
         student_name = f's{i}'
         initial_budget[student_name] = float(request.form.get(f'{student_name}Budget'))
     print(f"initial budgets {initial_budget}")
-    # TODO: find_profitable_manipulation not working
-    # answer = find_profitable_manipulation(mechanism=find_ACEEI_with_EFTB, student=student,
-    #                                       true_student_utility=valuations[student],
-    #                                       criteria=criteria_for_profitable_manipulation, eta=eta,
-    #                                       instance=instance, initial_budgets=initial_budget, beta=beta, delta=delta,
-    #                                       epsilon=epsilon, t=eftb)
 
     answer = find_profitable_manipulation(mechanism=algorithm, student=student,
                                           true_student_utility=valuations[student],
