@@ -1,13 +1,16 @@
 <!DOCTYPE html>
 <html lang="he">
-<head>
+<header>
     <meta charset="UTF-8">
-    <title>Course Allocation Results</title>
+{#    <title>Course Allocation Results</title>#}
+    <link rel="stylesheet" href="{{ url_for('static', filename='header.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='result.css') }}">
-</head>
+    <div class="backgroundHeader">
+        <h1>Course Allocation Results</h1>
+    </div>
+</header>
 <body>
     <div class="container">
-        <h1>Course Allocation Results</h1>
         <table>
             <thead>
                 <tr>
@@ -25,7 +28,14 @@
             </tbody>
         </table>
         <br>
-        <a href="/">Back To Home Page</a>
+
+        <button onclick="goToHomePage()">Back To Home Page</button>
     </div>
+
+    <script>
+        function goToHomePage() {
+            window.location.href = "/";
+        }
+    </script>
 </body>
 </html>
