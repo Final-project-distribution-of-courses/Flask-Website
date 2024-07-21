@@ -1,6 +1,8 @@
+import fairpyx
 from flask import Flask, render_template, request, redirect, url_for
 from fairpyx import Instance, AllocationBuilder
-from fairpyx.algorithms import find_ACEEI_with_EFTB, tabu_search, find_profitable_manipulation
+from fairpyx.algorithms import find_ACEEI_with_EFTB, tabu_search
+from fairpyx.algorithms.ACEEI_algorithms.find_profitable_manipulation import find_profitable_manipulation
 from fairpyx.adaptors import divide
 
 app = Flask(__name__)
@@ -114,7 +116,7 @@ def handle_manipulation_form(form_data):
     for i in range(1, number_of_students + 1):
         # student_name = request.form.get(f'studentName_{i}')
         student_name = f's{i}'
-        agent_capacity[student_name] = float(request.form.get(f'{student_name}CoursesToTake'))
+        agent_capacity[student_name] = int(request.form.get(f'{student_name}CoursesToTake'))
     print(f"CoursesToTake {agent_capacity}")
 
     instance = Instance(valuations, agent_capacity, courses_capacites)
@@ -138,8 +140,12 @@ def handle_manipulation_form(form_data):
     student = str(request.form.get('studentSelection'))
     print("student is: ", student)
 
-    criteria_for_profitable_manipulation = str(request.form.get('criteria_for_profitable_manipulation'))
-    print("criteria is: ", criteria_for_profitable_manipulation)
+    criteria = str(request.form.get('criteria_for_profitable_manipulation'))
+    print("criteria is: ", criteria)
+
+    algorithm = find_ACEEI_with_EFTB
+    print("algorithm type is: ", type(algorithm))
+    print("true_student_utility=", valuations[student])
 
     # 's' + i + 'Budget'
     initial_budget = {}
@@ -149,9 +155,17 @@ def handle_manipulation_form(form_data):
         initial_budget[student_name] = float(request.form.get(f'{student_name}Budget'))
     print(f"initial budgets {initial_budget}")
     # TODO: find_profitable_manipulation not working
-    answer = find_profitable_manipulation(mechanism=find_ACEEI_with_EFTB, student=student,
-                    true_student_utility=valuations[student], criteria=criteria_for_profitable_manipulation, eta=eta,
-                    instance=instance, initial_budgets=initial_budget, beta=beta, delta=delta, epsilon=epsilon, t=eftb)
+    # answer = find_profitable_manipulation(mechanism=find_ACEEI_with_EFTB, student=student,
+    #                                       true_student_utility=valuations[student],
+    #                                       criteria=criteria_for_profitable_manipulation, eta=eta,
+    #                                       instance=instance, initial_budgets=initial_budget, beta=beta, delta=delta,
+    #                                       epsilon=epsilon, t=eftb)
+
+    answer = find_profitable_manipulation(mechanism=algorithm, student=student,
+                                          true_student_utility=valuations[student],
+                                          criteria=criteria, eta=eta, instance=instance,
+                                          initial_budgets=initial_budget, beta=beta, delta=delta, epsilon=epsilon,
+                                          t=eftb)
     print("answer is ", answer)
     return answer
 
@@ -206,6 +220,7 @@ def handle_tabusearch_form(form_data):
     print("answer is ", answer)
     return answer
 
+
 @app.route('/process', methods=['POST'])
 def process_form():
     algorithm = request.form.get('algorithm')  # Get the algorithm name from the form data
@@ -222,6 +237,7 @@ def process_form():
 
     print(response)  # Print the response to the console
     return render_template('result.html', response=response)
+
 
 if __name__ == '__main__':
     app.run(debug=True)

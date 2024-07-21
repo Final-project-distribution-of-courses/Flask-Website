@@ -18,11 +18,25 @@
                     <th>Courses</th>
                 </tr>
             </thead>
+{#            <tbody>#}
+{#                {% for key, value in response.items() %}#}
+{#                <tr>#}
+{#                    <td>{{ key }}</td>#}
+{#                    <td>{{ value | join(', ') }}</td>#}
+{#                </tr>#}
+{#                {% endfor %}#}
+{#            </tbody>#}
             <tbody>
                 {% for key, value in response.items() %}
                 <tr>
                     <td>{{ key }}</td>
-                    <td>{{ value | join(', ') }}</td>
+                    <td>
+                        {% if value is iterable and not value is string %}
+                            {{ value | join(', ') }}
+                        {% else %}
+                            {{ value }}
+                        {% endif %}
+                    </td>
                 </tr>
                 {% endfor %}
             </tbody>
