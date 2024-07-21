@@ -27,6 +27,38 @@ function addCourseFields() {
     document.getElementById('numberOfStudents').disabled = true;
 }
 
+function addDeltaInput() {
+    var deltaFieldsDiv = document.getElementById('deltaFields');
+    var newDeltaContainer = document.createElement('div');
+    newDeltaContainer.className = 'fieldsContainer';
+
+    var newLabel = document.createElement('label');
+    newLabel.setAttribute('for', 'delta');
+    newLabel.textContent = 'Delta (δ):';
+
+    var newInput = document.createElement('input');
+    newInput.setAttribute('type', 'number');
+    newInput.setAttribute('name', 'delta[]');
+    newInput.setAttribute('step', '0.01');
+    newInput.setAttribute('min', '0');
+    newInput.setAttribute('required', 'required');
+
+    newDeltaContainer.appendChild(newLabel);
+    newDeltaContainer.appendChild(newInput);
+
+    var removeButton = document.createElement('button');
+    removeButton.type = 'button';
+    removeButton.textContent = 'Remove';
+    removeButton.onclick = function() {
+        deltaFieldsDiv.removeChild(newDeltaContainer);
+    };
+
+    newDeltaContainer.appendChild(removeButton);
+
+    deltaFieldsDiv.appendChild(newDeltaContainer);
+}
+
+
 // Function to add student input fields dynamically
 function addStudentFields() {
     var numberOfStudents = parseInt(document.getElementById('numberOfStudents').value);
@@ -115,38 +147,6 @@ function checkAllCapacitiesFilled() {
     }
 
     document.getElementById('numberOfStudents').disabled = !allFilled;
-}
-
-function addDeltaInput() {
-    // Create a new div element to contain the delta input field and remove button
-    const newDiv = document.createElement('div');
-    newDiv.classList.add('delta-input-container');
-
-    // Create the label element
-    const newLabel = document.createElement('label');
-    newLabel.innerText = 'Delta (δ):';
-    newDiv.appendChild(newLabel);
-
-    // Create the input element
-    const newInput = document.createElement('input');
-    newInput.type = 'number';
-    newInput.name = 'delta[]';
-    newInput.step = '0.01';
-    newInput.min = '0';
-    newInput.required = true;
-    newDiv.appendChild(newInput);
-
-    // Create the remove button
-    const removeButton = document.createElement('button');
-    removeButton.type = 'button';
-    removeButton.innerText = 'Remove';
-    removeButton.onclick = function() {
-        newDiv.remove();
-    };
-    newDiv.appendChild(removeButton);
-
-    // Append the new div to the delta fields container
-    document.getElementById('deltaFieldsContainer').appendChild(newDiv);
 }
 
 // todo : check why the random not fill all the fields

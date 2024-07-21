@@ -193,7 +193,6 @@ def handle_tabusearch_form(form_data):
     delta_list = request.form.getlist('delta[]')
     delta = {float(delta) for delta in delta_list}
     print("delta is: ", delta)
-    # todo: To fix the fact that the delta news exceeds what is written on the site
 
     # 's' + i + 'Budget'
     initial_budgets = {}
