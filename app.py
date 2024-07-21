@@ -158,6 +158,7 @@ def handle_manipulation_form(form_data):
 
 
 def handle_tabusearch_form(form_data):
+    print("Form data received:", request.form)
     number_of_courses = int(request.form.get('numberOfCourses'))
     print("Number of courses is: ", number_of_courses)
     courses_capacites = {}

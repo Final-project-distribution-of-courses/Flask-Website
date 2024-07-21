@@ -62,6 +62,7 @@ function addDeltaInput() {
 // Function to add student input fields dynamically
 function addStudentFields() {
     var numberOfStudents = parseInt(document.getElementById('numberOfStudents').value);
+    console.log("numberOfStudents: ", numberOfStudents);
     var studentFieldsDiv = document.getElementById('studentFields');
     studentFieldsDiv.innerHTML = ''; // Clear previous fields
     var numberOfCourses = parseInt(document.getElementById('numberOfCourses').value);
@@ -150,43 +151,87 @@ function checkAllCapacitiesFilled() {
 }
 
 // todo : check why the random not fill all the fields
+
+
 function getRandomInt(min, max) {
     min = Math.ceil(min);
     max = Math.floor(max);
     return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
-function fillRandom() {
-    document.getElementById('numberOfCourses').value = getRandomInt(1, 10);
-    addCourseFields(); // Add course fields dynamically based on the random number
 
-    const numberOfCourses = document.getElementById('numberOfCourses').value;
-    for (let i = 0; i < numberOfCourses; i++) {
-        document.getElementById(`course${i + 1}`).value = `Course ${i + 1}`;
-    }
-
-    document.getElementById('numberOfStudents').value = getRandomInt(1, 10);
-    addStudentFields(); // Add student fields dynamically based on the random number
-
-    const numberOfStudents = document.getElementById('numberOfStudents').value;
-    for (let i = 0; i < numberOfStudents; i++) {
-        document.getElementById(`student${i + 1}`).value = `Student ${i + 1}`;
-    }
-
-    document.getElementById('epsilon').value = (Math.random()).toFixed(2);
-    document.getElementById('delta').value = (Math.random()).toFixed(2);
-
-    const efTbOptions = document.getElementById('ef-tb').options;
-    document.getElementById('ef-tb').selectedIndex = getRandomInt(0, efTbOptions.length - 1);
+function getRandomFloat(min, max) {
+    return (Math.random() * (max - min)) + min;
 }
 
+// Function to add random data
+function addRandomData() {
+    var numberOfCourses = getRandomInt(1, 11); // Random number of courses between 1 and 10
+    document.getElementById('numberOfCourses').value = numberOfCourses;
+    addCourseFields(); // Add course fields dynamically based on the random number
 
-// Enable the number of students input field when number of courses is selected
-document.getElementById('numberOfCourses').addEventListener('input', function () {
-    var numberOfCourses = parseInt(document.getElementById('numberOfCourses').value);
-    if (numberOfCourses > 0) {
-        document.getElementById('numberOfStudents').disabled = true;
-    } else {
-        document.getElementById('numberOfStudents').disabled = true;
+    for (var i = 1; i <= numberOfCourses; i++) {
+        document.querySelector(`input[name='c${i}Capacity']`).value = getRandomInt(1, 11); // Random capacity between 1 and 10
     }
-})
+
+    var numberOfStudents = getRandomInt(1, 16); // Random number of students between 1 and 15
+    // console.log("number of studetns: ", numberOfStudents)
+    document.getElementById('numberOfStudents').value = numberOfStudents;
+    addStudentFields(); // Add student fields dynamically based on the random number
+
+    for (var i = 1; i <= numberOfStudents; i++) {
+        document.querySelector(`input[name='s${i}Budget']`).value = getRandomInt(1, 101); // Random budget between 1 and 100
+        document.querySelector(`input[name='s${i}CoursesToTake']`).value = getRandomInt(1, numberOfCourses); // Random number of courses to take
+
+        for (var j = 1; j <= numberOfCourses; j++) {
+            document.querySelector(`input[name='s${i}c${j}Rating']`).value = getRandomInt(1, 101); // Random rating between 1 and 100
+        }
+    }
+
+
+}
+// TODO: make sure for every files that the minimum is more than 0
+
+
+
+
+function addRandomDataInTabuSearch() {
+
+    addRandomData()
+
+    document.getElementById('beta').value = getRandomInt(1, 10); // Random beta value between 1 and 10
+
+    document.getElementById('delta').value = getRandomFloat(0.01, 3).toFixed(2);  // Random delete value between 0.01 and 3
+
+    // Handle delta fields
+    var deltaFieldsContainer = document.getElementById('deltaFields');
+    var numberOfDeltas = getRandomInt(1, 5); // Assuming you want to generate a random number of delta fields between 1 and 4
+
+    // Clear previous delta fields and add new ones
+    deltaFieldsContainer.innerHTML = ''; // Clear previous delta fields
+
+    for (var i = 0; i < numberOfDeltas; i++) {
+        addDeltaInput(); // Function to add new delta input fields
+    }
+
+    // After adding delta fields, set random values
+    var deltaInputs = deltaFieldsContainer.querySelectorAll('input[name="delta[]"]');
+
+    deltaInputs.forEach((input) => {
+        input.value = getRandomFloat(0.01, 3).toFixed(2); // Random float value for each delta field between 0.01 and 100 with 2 decimal places
+    });
+
+    // Enable the number of students input field when number of courses is selected
+    document.getElementById('numberOfCourses').addEventListener('input', function () {
+        var numberOfCourses = parseInt(document.getElementById('numberOfCourses').value);
+        if (numberOfCourses > 0) {
+            document.getElementById('numberOfStudents').disabled = false;
+        } else {
+            document.getElementById('numberOfStudents').disabled = true;
+        }
+    });
+
+    console.log(document.getElementById('numberOfStudents').value)
+
+}
+
