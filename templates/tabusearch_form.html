@@ -44,13 +44,13 @@
             <div class="fieldsContainer">
                 <!-- Beta (β) Input Field -->
                 <label for="beta">Beta (β):</label>
-                <input type="number" id="beta" name="beta" step="1" min="0" required><br><br>
+                <input type="number" id="beta" name="beta" step="1" min="1" required><br><br>
             </div>
 
             <!-- Delta Fields Container -->
             <div id="deltaFieldsContainer" class="fieldsContainer">
                 <label for="delta">Delta (δ):</label>
-                <input type="number" id="delta" name="delta[]" step="0.01" min="0" required>
+                <input type="number" id="delta" name="delta[]" step="0.001" min="0.001" required>
             </div>
 
             <div id="deltaFields">
@@ -59,9 +59,10 @@
             <!-- Button to add more delta input fields -->
             <button type="button" onclick="addDeltaInput()">Add Delta</button><br><br>`
 
+            <button type="button" onclick="addRandomDataInTabuSearch()">Random</button><br><br>`
+
             <input type="submit" value="Run The Algorithm">
 
-            <button type="button" onclick="addRandomDataInTabuSearch()">Random</button><br><br>`
 
         </form>
     </div>

@@ -149,7 +149,7 @@ def handle_manipulation_form(form_data):
         initial_budget[student_name] = float(request.form.get(f'{student_name}Budget'))
     print(f"initial budgets {initial_budget}")
 
-    # todo: handle student
+    # TODO: let the user the option to choose the student that want to manipulate
     answer = divide(find_profitable_manipulation, mechanism=find_ACEEI_with_EFTB, student="s1",
                     true_student_utility=valuations["s1"], criteria=criteria_for_profitable_manipulation, eta=eta,
                     instance=instance, initial_budgets=initial_budget, beta=beta, delta=delta, epsilon=epsilon, t=eftb)

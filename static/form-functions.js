@@ -39,8 +39,8 @@ function addDeltaInput() {
     var newInput = document.createElement('input');
     newInput.setAttribute('type', 'number');
     newInput.setAttribute('name', 'delta[]');
-    newInput.setAttribute('step', '0.01');
-    newInput.setAttribute('min', '0');
+    newInput.setAttribute('step', '0.001');
+    newInput.setAttribute('min', '0.001');
     newInput.setAttribute('required', 'required');
 
     newDeltaContainer.appendChild(newLabel);
@@ -150,7 +150,7 @@ function checkAllCapacitiesFilled() {
     document.getElementById('numberOfStudents').disabled = !allFilled;
 }
 
-// todo : check why the random not fill all the fields
+// TODO: add auto fill to aceei and manipulation
 
 
 function getRandomInt(min, max) {
@@ -165,7 +165,7 @@ function getRandomFloat(min, max) {
 }
 
 // Function to add random data
-function addRandomData() {
+function addRandomDataForStudentsAndCourses() {
     var numberOfCourses = getRandomInt(1, 11); // Random number of courses between 1 and 10
     document.getElementById('numberOfCourses').value = numberOfCourses;
     addCourseFields(); // Add course fields dynamically based on the random number
@@ -190,14 +190,10 @@ function addRandomData() {
 
 
 }
-// TODO: make sure for every files that the minimum is more than 0
-
-
-
 
 function addRandomDataInTabuSearch() {
 
-    addRandomData()
+    addRandomDataForStudentsAndCourses()
 
     document.getElementById('beta').value = getRandomInt(1, 10); // Random beta value between 1 and 10
 
@@ -221,16 +217,8 @@ function addRandomDataInTabuSearch() {
         input.value = getRandomFloat(0.01, 3).toFixed(2); // Random float value for each delta field between 0.01 and 100 with 2 decimal places
     });
 
-    // Enable the number of students input field when number of courses is selected
-    document.getElementById('numberOfCourses').addEventListener('input', function () {
-        var numberOfCourses = parseInt(document.getElementById('numberOfCourses').value);
-        if (numberOfCourses > 0) {
-            document.getElementById('numberOfStudents').disabled = false;
-        } else {
-            document.getElementById('numberOfStudents').disabled = true;
-        }
-    });
 
+    document.getElementById('numberOfStudents').disabled = false;
     console.log(document.getElementById('numberOfStudents').value)
 
 }
