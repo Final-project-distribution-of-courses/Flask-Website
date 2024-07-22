@@ -54,7 +54,7 @@ label {
     font-size: 20px;
 }
 
-/* The select and option of EF-TB */
+/* The select and option elements */
 option, select {
     font-family: 'Dancing Script', cursive;
 }
@@ -115,18 +115,6 @@ input[type="submit"]:hover {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-#courseFields .courseField label{
-    margin-right: 10px;
-    font-size: 18px;
-}
-
-#courseFields .courseField input{
-    padding: 8px;
-    margin-bottom: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    box-sizing: border-box;
-}
 
 
 .studentField .studentLabel {
@@ -155,7 +143,6 @@ input[type="submit"]:hover {
     align-items: center;
     justify-content: space-between;
     margin-bottom: 10px;
-    width: 100%;
 }
 
 .ratingRow label, .ratingRow input {
@@ -165,7 +152,6 @@ input[type="submit"]:hover {
 .ratingRow input {
     flex: 1; /* Make inputs take up equal space */
 }
-
 
 
 .studentField .fieldGroup label {
@@ -189,7 +175,7 @@ input[type="submit"]:hover {
     margin-top: 10px;
 }
 
-.studentField .ratingsGroup .ratingRow {
+.studentField .ratingsGroup {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -217,10 +203,10 @@ input[type="submit"]:hover {
     width: 250px;
 }
 
-
 .studentLabel {
     font-family: 'Dancing Script', cursive;
 }
+
 
 .delta-input-container {
     display: flex;

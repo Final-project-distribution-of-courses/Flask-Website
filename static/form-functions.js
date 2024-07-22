@@ -16,6 +16,7 @@ function addCourseFields() {
         capacityInput.type = 'number';
         capacityInput.min = 1;
         capacityInput.name = 'c' + i + 'Capacity';
+        capacityInput.className = 'capacityInput';
         capacityInput.required = true;
         capacityInput.addEventListener('input', checkAllCapacitiesFilled);
         courseField.appendChild(capacityInput);
