@@ -58,7 +58,6 @@ function addDeltaInput() {
     deltaFieldsDiv.appendChild(newDeltaContainer);
 }
 
-
 // Function to add student input fields dynamically
 function addStudentFields() {
     var numberOfStudents = parseInt(document.getElementById('numberOfStudents').value);
@@ -112,10 +111,13 @@ function addStudentFields() {
         var ratingsGroup = document.createElement('div');
         ratingsGroup.className = 'ratingsGroup';
         for (var j = 1; j <= numberOfCourses; j++) {
-            var ratingRow = document.createElement('div');
-            ratingRow.className = 'ratingRow';
+            if ((j - 1) % 3 === 0) {
+                var ratingRow = document.createElement('div');
+                ratingRow.className = 'ratingRow';
+                ratingsGroup.appendChild(ratingRow);
+            }
             var ratingLabel = document.createElement('label');
-            ratingsLabel.className = 'inputLabel';
+            ratingLabel.className = 'inputLabel';
             ratingLabel.textContent = 'c' + j + ': ';
             ratingRow.appendChild(ratingLabel);
             var ratingInput = document.createElement('input');
@@ -125,12 +127,10 @@ function addStudentFields() {
             ratingInput.step = 1;
             ratingInput.required = true;
             ratingRow.appendChild(ratingInput);
-            ratingsGroup.appendChild(ratingRow);
         }
         studentField.appendChild(ratingsGroup);
 
         studentFieldsDiv.appendChild(studentField);
-
     }
 
     // Check if the form belongs to "manipulationForm"

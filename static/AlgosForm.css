@@ -128,10 +128,6 @@ input[type="submit"]:hover {
     box-sizing: border-box;
 }
 
-.studentField {
-    display: flex;
-    flex-direction: column;
-}
 
 .studentField .studentLabel {
     font-size: 20px;
@@ -139,17 +135,43 @@ input[type="submit"]:hover {
     margin-bottom: 10px;
 }
 
-.studentField .fieldGroup {
+.studentField {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+.fieldGroup {
     display: flex;
     align-items: center;
     justify-content: space-between;
     margin-bottom: 10px;
 }
 
+.ratingRow {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    width: 100%;
+}
+
+.ratingRow label, .ratingRow input {
+    margin-right: 10px; /* Add space between each element */
+}
+
+.ratingRow input {
+    flex: 1; /* Make inputs take up equal space */
+}
+
+
+
 .studentField .fieldGroup label {
     margin-right: 10px;
-    font-size: 16px;
-    width: 50%;
+    font-size: 17px;
+    width: 150px;
 }
 
 .studentField .fieldGroup input {
@@ -157,7 +179,7 @@ input[type="submit"]:hover {
     font-size: 14px;
     border: 1px solid #ccc;
     border-radius: 4px;
-    width: 50%;
+    width: 50px;
 }
 
 .studentField .ratingsGroup {
@@ -189,6 +211,11 @@ input[type="submit"]:hover {
     flex: 1;
 }
 
+/*The label "Ratings for courses*/
+.inputLabel {
+    font-size: 17px;
+    width: 250px;
+}
 
 
 .studentLabel {
