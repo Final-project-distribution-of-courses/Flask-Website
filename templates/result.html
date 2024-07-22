@@ -10,21 +10,34 @@
     </div>
 </header>
 <body>
-    <div class="container">
+<div class="resultsContainer">
+    <div class="tableContainer">
         <table>
             <thead>
                 <tr>
-                    <th>Student</th>
-                    <th>Courses</th>
+                    <th>Student Name</th>
+                    <th>Courses The Student Gets</th>
                 </tr>
             </thead>
             <tbody>
                 {% for key, value in response.items() %}
                 <tr>
-                    <td>{{ key }}</td>
+                    <td>{% if key.startswith('s') %}
+                             Student {{ key[1:] }}
+                        {% else %}
+                            {{ key }}
+                        {% endif %}
+                    </td>
                     <td>
                         {% if value is iterable and not value is string %}
-                            {{ value | join(', ') }}
+                            {% for item in value %}
+                                {% if item.startswith('c') %}
+                                    Course {{ item[1:] }}
+                                {% else %}
+                                    {{ item }}
+                                {% endif %}
+                                {% if not loop.last %}, {% endif %}
+                            {% endfor %}
                         {% else %}
                             {{ value }}
                         {% endif %}
@@ -34,13 +47,21 @@
             </tbody>
         </table>
         <br>
+        <div class="buttonsContainer">
+            <button onclick="goToHomePage()">Back To Home Page</button >
+            <button onclick="goBackToAlgorithmPage()">Try The Algorithm Again</button>
+        </div>
 
-        <button onclick="goToHomePage()">Back To Home Page</button>
     </div>
+</div>
 
     <script>
         function goToHomePage() {
             window.location.href = "/";
+        }
+
+        function goBackToAlgorithmPage() {
+            window.history.back();
         }
     </script>
 </body>
