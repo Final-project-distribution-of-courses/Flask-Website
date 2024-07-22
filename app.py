@@ -216,18 +216,18 @@ def handle_tabusearch_form(form_data):
 @app.route('/process', methods=['POST'])
 def process_form():
     algorithm = request.form.get('algorithm')  # Get the algorithm name from the form data
-
+    response = {"algorithm": algorithm}
     if algorithm == 'tabusearch':
-        response = handle_tabusearch_form(request.form)
+        response.update(handle_tabusearch_form(request.form))
     elif algorithm == 'aceei':
-        response = handle_aceei_form(request.form)
+        response.update(handle_aceei_form(request.form))
     elif algorithm == 'manipulation':
-        response = handle_manipulation_form(request.form)
+        response.update(handle_manipulation_form(request.form))
         # TODO: check how to display if there manipulation or not and final budget b* and  final prices p*
     else:
-        response = {"Unknown algorithm": []}
+        response["Unknown algorithm"] = []
 
-    print(response)  # Print the response to the console
+    print("response: ", response)  # Print the response to the console
     return render_template('result.html', response=response)
 
 

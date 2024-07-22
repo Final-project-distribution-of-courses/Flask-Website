@@ -3,6 +3,9 @@ body {
 
 }
 
+h2 {
+    font-family: 'Dancing Script', cursive;
+}
 
 .resultsContainer {
     display: flex;
@@ -40,6 +43,8 @@ th {
     width: 1500px;
 
 }
+
+
 .buttonsContainer {
     display: flex;
     flex-direction: column;

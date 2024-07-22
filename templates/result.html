@@ -1,17 +1,22 @@
 <!DOCTYPE html>
 <html lang="he">
-<header>
+<head>
     <meta charset="UTF-8">
-{#    <title>Course Allocation Results</title>#}
+    <title>Course Allocation Results</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='header.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='result.css') }}">
+</head>
+<body>
+<header>
     <div class="backgroundHeader">
         <h1>Course Allocation Results</h1>
     </div>
 </header>
-<body>
 <div class="resultsContainer">
     <div class="tableContainer">
+        {% if response.algorithm %}
+            <h2>Results Of {{ response.algorithm }}</h2>
+        {% endif %}
         <table>
             <thead>
                 <tr>
@@ -20,30 +25,33 @@
                 </tr>
             </thead>
             <tbody>
-                {% for key, value in response.items() %}
-                <tr>
-                    <td>{% if key.startswith('s') %}
-                             Student {{ key[1:] }}
-                        {% else %}
-                            {{ key }}
-                        {% endif %}
-                    </td>
-                    <td>
-                        {% if value is iterable and not value is string %}
-                            {% for item in value %}
-                                {% if item.startswith('c') %}
-                                    Course {{ item[1:] }}
-                                {% else %}
-                                    {{ item }}
-                                {% endif %}
-                                {% if not loop.last %}, {% endif %}
-                            {% endfor %}
-                        {% else %}
-                            {{ value }}
-                        {% endif %}
-                    </td>
-                </tr>
-                {% endfor %}
+            {% for key, value in response.items() %}
+                {% if key != 'algorithm' %} <!-- Skip the 'algorithm' key -->
+                    <tr>
+                        <td>
+                            {% if key.startswith('s') %}
+                                Student {{ key[1:] }}
+                            {% else %}
+                                {{ key }}
+                            {% endif %}
+                        </td>
+                        <td>
+                            {% if value is iterable and not value is string %}
+                                {% for item in value %}
+                                    {% if item.startswith('c') %}
+                                        Course {{ item[1:] }}
+                                    {% else %}
+                                        {{ item }}
+                                    {% endif %}
+                                    {% if not loop.last %}, {% endif %}
+                                {% endfor %}
+                            {% else %}
+                                {{ value }}
+                            {% endif %}
+                        </td>
+                    </tr>
+                {% endif %}
+            {% endfor %}
             </tbody>
         </table>
         <br>
@@ -57,6 +65,7 @@
 
     <script>
         function goToHomePage() {
+
             window.location.href = "/";
         }
 
