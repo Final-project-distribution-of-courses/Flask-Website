@@ -10,6 +10,7 @@
 <header>
     <div class="backgroundHeader">
         <h1>Course Allocation Results</h1>
+        <button class="homeBtn" onclick="goToHomePage()">Home</button>
     </div>
 </header>
 <div class="resultsContainer">
@@ -55,23 +56,12 @@
             </tbody>
         </table>
         <br>
-        <div class="buttonsContainer">
-            <button onclick="goToHomePage()">Back To Home Page</button >
-            <button onclick="goBackToAlgorithmPage()">Try The Algorithm Again</button>
-        </div>
+        <button class="tryAgainBtn" onclick="goBackToAlgorithmPage()">Try The Algorithm Again</button>
 
     </div>
 </div>
 
-    <script>
-        function goToHomePage() {
+<script src="{{ url_for('static', filename='form-functions.js') }}"></script>
 
-            window.location.href = "/";
-        }
-
-        function goBackToAlgorithmPage() {
-            window.history.back();
-        }
-    </script>
 </body>
 </html>

@@ -1,17 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
-<header>
+<head>
     <meta charset="UTF-8">
-{#    <link rel="stylesheet" href="{{ url_for('static', filename='tabusear/ch.css') }}">#}
+    <title>Tabu Search Algorithm Form</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='header.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='AlgosForm.css') }}">
+
+</head>
+<body>
+<header>
     <div class="backgroundHeader">
         <h1>Tabu Search Algorithm</h1>
+        <button class="homeBtn" onclick="goToHomePage()">Home</button>
     </div>
 </header>
-<body>
     <div class="formContainer">
-        <h2>Insert the parameters and run the algorithm &#128512;</h2>
+        <h2>Insert the parameters and run the algorithm</h2>
         <form action="/process" method="POST" id="tabuSearchForm">
             <input type="hidden" name="algorithm" value="tabusearch">
             <div class="fieldsContainer">

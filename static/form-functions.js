@@ -244,3 +244,13 @@ function addRandomDataInTabuSearch() {
     console.log(document.getElementById('numberOfStudents').value)
 
 }
+
+
+function goToHomePage() {
+
+    window.location.href = "/";
+}
+
+function goBackToAlgorithmPage() {
+    window.history.back();
+}

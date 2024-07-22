@@ -1,35 +1,18 @@
 <!DOCTYPE html>
 <html lang="he">
-<header>
+<head>
     <meta charset="UTF-8">
     <title>Course Allocation Algorithms</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='header.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='index.css') }}">
-    <div class="backgroundHeader">
-        <h1>Course Allocation Algorithms</h1>
-    </div>
 
-    <script>
-        function showAlgorithmFields() {
-            var selectedAlgorithm = document.getElementById("algorithm").value;
-            var aceeiFields = document.getElementById("aceei-fields");
-            var manipulationFields = document.getElementById("manipulation-fields");
-            var tabusearchFields = document.getElementById("tabusearch-fields");
-
-            aceeiFields.style.display = "none";
-            manipulationFields.style.display = "none";
-            tabusearchFields.style.display = "none";
-
-            if (selectedAlgorithm === "ACEEI") {
-                aceeiFields.style.display = "block";
-            } else if (selectedAlgorithm === "Find a profitable manipulation for a student") {
-                manipulationFields.style.display = "block";
-            } else if (selectedAlgorithm === "Tabu Search") {
-                tabusearchFields.style.display = "block";
-            }
-        }
-    </script>
-</header>
+</head>
 <body>
+    <header>
+        <div class="backgroundHeader">
+            <h1>Course Allocation Algorithms</h1>
+        </div>
+    </header>
     <div class="indexContainer">
 {#        <h1>Course Allocation Algorithms</h1>#}
 
@@ -62,5 +45,25 @@
             <input type="submit" value="Try">
         </form>
     </div>
+    <script>
+        function showAlgorithmFields() {
+            var selectedAlgorithm = document.getElementById("algorithm").value;
+            var aceeiFields = document.getElementById("aceei-fields");
+            var manipulationFields = document.getElementById("manipulation-fields");
+            var tabusearchFields = document.getElementById("tabusearch-fields");
+
+            aceeiFields.style.display = "none";
+            manipulationFields.style.display = "none";
+            tabusearchFields.style.display = "none";
+
+            if (selectedAlgorithm === "ACEEI") {
+                aceeiFields.style.display = "block";
+            } else if (selectedAlgorithm === "Find a profitable manipulation for a student") {
+                manipulationFields.style.display = "block";
+            } else if (selectedAlgorithm === "Tabu Search") {
+                tabusearchFields.style.display = "block";
+            }
+        }
+    </script>
 </body>
 </html>
