@@ -20,18 +20,23 @@
             <div class="aceeiContainer">
                 <h3>ACEEI (Approximate Competitive Equilibrium from Equal Incomes)</h3>
                 <p>The goal of this algorithm is to find a fair and competitive allocation of courses to students.</p>
+                <button class="learnMoreBtn" onclick="openPopup('aceeiPopup')">Learn More</button>
             </div>
 
             <div class="manipulationContainer">
                 <h3>Find a profitable manipulation for a student Algorithm</h3>
                 <p>This algorithm is designed to validate the allocations to ensure they meet predefined conditions.</p>
+                <button class="learnMoreBtn" onclick="openPopup('manipulationPopup')">Learn More</button>
             </div>
 
             <div class="tabusearchContainer">
                 <h3>Tabu Search</h3>
                 <p>This advanced algorithm focuses on personalized allocation according to specific needs and preferences of students.</p>
+                <button class="learnMoreBtn" onclick="openPopup('tabusearchPopup')">Learn More</button>
             </div>
         </div>
+
+
 
         <h2>Try Our Algorithms Yourself</h2>
         <form action="/form" method="GET">
@@ -45,7 +50,58 @@
             <input type="submit" value="Try">
         </form>
     </div>
+
+    <!-- Modals -->
+    <div id="aceeiPopup" class="popup">
+        <div class="popup-content">
+            <span class="close" onclick="closePopup('aceeiPopup')">&times;</span>
+            <!-- Content will be loaded here -->
+        </div>
+    </div>
+    <div id="manipulationPopup" class="popup">
+        <div class="popup-content">
+            <span class="close" onclick="closePopup('manipulationPopup')">&times;</span>
+            <!-- Content will be loaded here -->
+        </div>
+    </div>
+    <div id="tabusearchPopup" class="popup">
+        <div class="popup-content">
+            <span class="close" onclick="closePopup('tabusearchPopup')">&times;</span>
+            <!-- Content will be loaded here -->
+        </div>
+    </div>
+
+
+
     <script>
+        function openPopup(popupId) {
+            var popup = document.getElementById(popupId);
+            var xhr = new XMLHttpRequest();
+            console.log(`${popupId}.html`)
+            xhr.open('GET', `/templates/${popupId}.html`, true); // Adjust the path as needed
+            xhr.onload = function() {
+                if (xhr.status === 200) {
+                    popup.querySelector('.popup-content').innerHTML += xhr.responseText;
+                    popup.style.display = "block";
+                } else {
+                    console.error('Failed to load popup content:', xhr.status, xhr.statusText);
+                }
+            };
+            xhr.send();
+        }
+
+        function closePopup(popupId) {
+            var popup = document.getElementById(popupId);
+            popup.style.display = "none";
+            popup.querySelector('.popup-content').innerHTML = '<span class="close" onclick="closePopup(\'' + popupId + '\')">&times;</span>'; // Reset content
+        }
+
+        // Close the popup if the user clicks outside of it
+        window.onclick = function(event) {
+            if (event.target.classList.contains('popup')) {
+                closePopup(event.target.id);
+            }
+        }
         function showAlgorithmFields() {
             var selectedAlgorithm = document.getElementById("algorithm").value;
             var aceeiFields = document.getElementById("aceei-fields");
@@ -64,6 +120,8 @@
                 tabusearchFields.style.display = "block";
             }
         }
+
+
     </script>
 </body>
 </html>

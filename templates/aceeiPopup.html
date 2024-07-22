@@ -1,0 +1,44 @@
+<div class="popupContent">
+    <h1 id="algoName">ACEEI</h1>
+    <div class="h3Container">
+        <h3>Approximate Competitive Equilibrium from Equal Incomes</h3>
+        <h3>The goal of this algorithm is to determine a fair distribution of courses</h3>
+        <h3>for students that meets the Envy-Free constraints (EF-TB). </h3>
+    </div>
+
+    <h2 id="h2Popup">Iteration Process:</h2>
+    <ul>
+        <li><h3>Optimal Budget Perturbation:</h3> In each iteration, the algorithm searches for the best adjustment in students' budgets based on the current course prices. This adjustment is determined using a linear programming approach.</li>
+        <li><h3>Market Clearing Error:</h3> The algorithm then measures how well this budget adjustment clears the market, i.e., how closely the supply and demand match.</li>
+        <li><h3>Price Update:</h3> Based on the market clearing error, the algorithm updates the course prices.</li>
+    </ul>
+
+    <h2>Termination:</h2>
+    <p>The algorithm iterates until the market clearing error is minimized to zero, indicating that supply perfectly matches demand.</p>
+
+    <h2>Linear Programming:</h2>
+    <p>The linear program aims to minimize the market clearing error while meeting the following constraints:</p>
+    <ul>
+        <li><strong>Positive Prices:</strong> The demand for each course should match its capacity plus any excess demand.</li>
+        <li><strong>Zero Prices:</strong> The demand for a course should be at least equal to its capacity plus any excess demand.</li>
+    </ul>
+
+    <h2>Fairness Constraint:</h2>
+    <ul>
+        <li>Each student should receive exactly one set of courses.</li>
+        <li>To ensure fairness and prevent envy, additional constraints are applied. If a student with a higher initial budget receives a specific course bundle, no student with a lower budget should receive the same bundle. This prevents jealousy among students.</li>
+    </ul>
+
+    <h2>Pseudocode Overview:</h2>
+    <ul>
+        <li><strong>Initialize:</strong> Set initial prices and budgets.</li>
+        <li><strong>Repeat:</strong> Until the market clearing error is zero:
+            <ul>
+                <li>Compute the optimal budget adjustment using linear programming.</li>
+                <li>Calculate the market clearing error for this adjustment.</li>
+                <li>Update the prices based on the calculated error.</li>
+            </ul>
+        </li>
+        <li><strong>Ensure:</strong> Each student receives one bundle of courses and enforce fairness constraints to avoid envy.</li>
+    </ul>
+</div>

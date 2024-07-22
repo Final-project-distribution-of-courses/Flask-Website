@@ -26,13 +26,35 @@ body {
 .aceeiContainer:hover, .manipulationContainer:hover, .tabusearchContainer:hover {
     transform: translateY(-10px);
 }
+#algoName {
+    text-align: center;
+    font-family: 'Dancing Script', cursive;
+    color: #86b9e8;
 
+}
 h2 {
     text-align: center;
     font-size: 1.8em;
     color: #333;
     font-family: 'Dancing Script', cursive;
 
+}
+
+.h3Container {
+    border: 2px solid #86b9e8; /* Adjust the border color and width as needed */
+    padding: 20px; /* Space between the border and the text */
+    margin: 20px 0; /* Space outside the border */
+    border-radius: 8px; /* Optional: rounded corners */
+}
+
+.h3Container h3 {
+    margin: 10px 0; /* Space between the headings */
+    font-family: 'Dancing Script', cursive;
+    text-align: center;
+}
+
+#h2Popup{
+    color: #86b9e8;
 }
 
 p {
@@ -79,4 +101,63 @@ input[type="submit"]:hover {
     background-color: #72653f;
 }
 
+/* Popup container */
 
+
+.popup {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgba(0,0,0,0.4); /* Black background with opacity */
+}
+
+/* Popup content */
+.popup-content {
+    background-color: #fefefe;
+    margin: 15% auto; /* 15% from the top and centered */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%; /* Could be more or less, depending on screen size */
+}
+
+/* Close button */
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+
+.learnMoreBtn {
+    /*background: #b28fd5;*/
+    background: #86b9e8;
+    color:  #333;;
+    cursor: pointer;
+    width: 8em;
+    height: 2.5em;
+    padding: 10px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    font-size: 14px;
+    font-family: 'Dancing Script', cursive;
+    font-weight: bold;
+
+}
+
+
+.learnMoreBtn:hover {
+    background-color: #075985;
+}

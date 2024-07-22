@@ -1,0 +1,47 @@
+<!-- ManipulationPopup.html -->
+<div class="popupContent">
+    <h1 id="algoName">Find Manipulation Algorithm</h1>
+    <div class="h3Container">
+        <h3>The goal of this algorithm is to determine if a course distribution algorithm is strategy-proof.</h3>
+        <h3>An algorithm is strategy-proof if students cannot gain any advantage by lying about their true preferences. </h3>
+        <h3>This ensures fairness and integrity in the course allocation process.</h3>
+    </div>
+
+
+    <h2 id="h2Popup">Parameters:</h2>
+    <ul>
+        <li><strong>Mechanism:</strong> The method used for allocating courses.</li>
+        <li><strong>True Utility:</strong> The actual utility of the student.</li>
+        <li><strong>Criteria for Profitable Manipulation:</strong>
+            <ul>
+                <li><strong>Randomness:</strong> Sample only the initial budgets.</li>
+                <li><strong>Population:</strong> Sample the initial budgets and the utilities of other students.</li>
+                <li><strong>Eta:</strong> A parameter used to adjust the student's preferences.</li>
+            </ul>
+        </li>
+    </ul>
+
+    <h2 id="h2Popup">Algorithm Steps:</h2>
+    <ol>
+        <li>Define <code>v0</code> as the student's original utility from the input.</li>
+        <li>Create a list of false utilities:
+            <ul>
+                <li>For each course, create two utility vectors:
+                    <ul>
+                        <li>In the first vector, the value of the current course is set to <code>utility * eta</code>.</li>
+                        <li>In the second vector, the value is set to <code>utility / eta</code>.</li>
+                    </ul>
+                </li>
+            </ul>
+        </li>
+        <li>Find <code>v*</code>:
+            <ul>
+                <li>Choose a criterion for manipulation and run the mechanism multiple times for each false report and the true report.</li>
+                <li>Calculate the expected utility for each bundle from the reports.</li>
+                <li>Select the report that yields the maximum utility, which is <code>v*</code>.</li>
+            </ul>
+        </li>
+        <li>If <code>v*</code> is the same as the original utility <code>v0</code>, then the algorithm finishes.</li>
+        <li>Otherwise, update <code>v0</code> to the new utility <code>v*</code> and continue to find a better manipulation.</li>
+    </ol>
+</div>

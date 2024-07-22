@@ -1,0 +1,33 @@
+<div class="popupContent">
+    <h1 id="algoName">TABU SEARCH</h1>
+    <h2>Purpose</h2>
+    <p>The TABU SEARCH algorithm aims to find a fair allocation of courses for students. It adjusts course prices based on demand to reach a fair distribution.</p>
+
+    <h2>Algorithm Overview</h2>
+    <p>The main idea of the algorithm is to adjust course prices based on demand:</p>
+    <ul>
+        <li><strong>Increase Prices:</strong> For courses with excess demand (where too many students want the course).</li>
+        <li><strong>Decrease Prices:</strong> For courses with a lack of demand (where too few students want the course).</li>
+    </ul>
+
+    <h2>Iteration Process</h2>
+    <p>The algorithm operates in a loop and stops when the clearing error is zero. Here’s how it works:</p>
+    <ol>
+        <li>Add the current prices to a history of similar prices. Similar prices are those that result in the same allocation and the same excess demand.</li>
+        <li>Evaluate two types of neighbors:</li>
+        <ul>
+            <li><strong>Gradient Neighbors:</strong> These are obtained by multiplying the current prices by a delta and adding the error vector.</li>
+            <li><strong>Individual Price Adjustments:</strong>
+                <ul>
+                    <li>Increase prices for courses with excess demand in such a way that only one student can no longer afford the course.</li>
+                    <li>Set prices for courses with a lack of demand to zero.</li>
+                </ul>
+            </li>
+        </ul>
+        <li>For each neighbor, calculate the allocation and determine the error.</li>
+        <li>Select the neighbor that results in the minimum error and update the current prices.</li>
+    </ol>
+
+    <h2>Termination</h2>
+    <p>The algorithm terminates when it finds a price vector that results in a zero error. At this point, it returns the final prices and the resulting course distribution.</p>
+</div>

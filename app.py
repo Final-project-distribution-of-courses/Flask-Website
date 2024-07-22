@@ -1,5 +1,5 @@
 import fairpyx
-from flask import Flask, render_template, request, redirect, url_for
+from flask import Flask, render_template, request, redirect, url_for, send_from_directory
 from fairpyx import Instance, AllocationBuilder
 from fairpyx.algorithms import find_ACEEI_with_EFTB, tabu_search
 from fairpyx.algorithms.ACEEI_algorithms.find_profitable_manipulation import find_profitable_manipulation
@@ -12,6 +12,9 @@ app = Flask(__name__)
 def index():
     return render_template('index.html')
 
+@app.route('/templates/<filename>')
+def serve_templates(filename):
+    return send_from_directory('templates', filename)
 
 @app.route('/form', methods=['GET', 'POST'])
 def algorithm_form():
