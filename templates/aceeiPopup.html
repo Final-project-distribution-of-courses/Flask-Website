@@ -1,44 +1,31 @@
 <div class="popupContent">
-    <h1 id="algoName">ACEEI</h1>
-    <div class="h3Container">
-        <h3>Approximate Competitive Equilibrium from Equal Incomes</h3>
-        <h3>The goal of this algorithm is to determine a fair distribution of courses</h3>
-        <h3>for students that meets the Envy-Free constraints (EF-TB). </h3>
-    </div>
+    <h2 id="h2Popup">ACEEI - Approximate Competitive Equilibrium from Equal Incomes</h2>
+    <h3 id="h3Popup">The ACEEI algorithm aims to find a fair distribution of courses that satisfies the Envy-Free-but-for-Tie-Breaking (EF-TB) condition. </h3>
+    <h3 id="h3Popup">The goal is to achieve a distribution where the number of available spots in each course matches the number of students wanting that course, </h3>
+    <h3 id="h3Popup">making the excess demand of the courses to be zero.</h3>
 
-    <h2 id="h2Popup">Iteration Process:</h2>
+    <h4>Algorithms parameters: </h4>
     <ul>
-        <li><h3>Optimal Budget Perturbation:</h3> In each iteration, the algorithm searches for the best adjustment in students' budgets based on the current course prices. This adjustment is determined using a linear programming approach.</li>
-        <li><h3>Market Clearing Error:</h3> The algorithm then measures how well this budget adjustment clears the market, i.e., how closely the supply and demand match.</li>
-        <li><h3>Price Update:</h3> Based on the market clearing error, the algorithm updates the course prices.</li>
+        <li>Number of courses and its capacities</li>
+        <li>Number of students, the number of courses each student needs to take, course ratings from each student and their initial budgets</li>
+        <li>Delta parameter related to prices courses updates</li>
+        <li>Epsilon related to the budget range being tested for each student</li>
+        <li>Type of EF-TB constraint</li>
     </ul>
 
-    <h2>Termination:</h2>
-    <p>The algorithm iterates until the market clearing error is minimized to zero, indicating that supply perfectly matches demand.</p>
-
-    <h2>Linear Programming:</h2>
-    <p>The linear program aims to minimize the market clearing error while meeting the following constraints:</p>
+    <h4>EF-TB condition: </h4>
     <ul>
-        <li><strong>Positive Prices:</strong> The demand for each course should match its capacity plus any excess demand.</li>
-        <li><strong>Zero Prices:</strong> The demand for a course should be at least equal to its capacity plus any excess demand.</li>
+        <li>Envy-Free-but-for-Tie-Breaking (EF-TB) means that no student should envy another student's allocation when considering their initial budget.</li>
+        <li>If a student with a higher initial budget does not envy a student with a lower initial budget in the final allocation, it meets the EF-TB condition.</li>
+        <li>The Contested EF-TB constraint also considers courses with a price of zero.</li>
     </ul>
 
-    <h2>Fairness Constraint:</h2>
+    <h4>How the algorithm works: </h4>
     <ul>
-        <li>Each student should receive exactly one set of courses.</li>
-        <li>To ensure fairness and prevent envy, additional constraints are applied. If a student with a higher initial budget receives a specific course bundle, no student with a lower budget should receive the same bundle. This prevents jealousy among students.</li>
+        <li>During its run, the algorithm adjusts course prices and student budgets to make the demand excess zero. </li>
+        <li>It examines the range of budgets each student has, checking which courses they can afford within their budget plus or minus epsilon. </li>
+        <li>If the demand excess is zero, the algorithm terminates and returns the allocation found with the prices and budgets. </li>
+        <li>If not, it updates the prices using delta and repeats the process.</li>
     </ul>
 
-    <h2>Pseudocode Overview:</h2>
-    <ul>
-        <li><strong>Initialize:</strong> Set initial prices and budgets.</li>
-        <li><strong>Repeat:</strong> Until the market clearing error is zero:
-            <ul>
-                <li>Compute the optimal budget adjustment using linear programming.</li>
-                <li>Calculate the market clearing error for this adjustment.</li>
-                <li>Update the prices based on the calculated error.</li>
-            </ul>
-        </li>
-        <li><strong>Ensure:</strong> Each student receives one bundle of courses and enforce fairness constraints to avoid envy.</li>
-    </ul>
 </div>
