@@ -22,7 +22,7 @@
                 <!-- Choose Number of Courses -->
                 <label for="numberOfCourses">Number of Courses:</label>
                 <input type="number" id="numberOfCourses" name="numberOfCourses" min="1" required>
-                <button type="button" onclick="addCourseFields()">&#10004;</button>
+                <button type="button" onclick="addCourseFields()" class="vBtn">&#10004;</button>
             </div>
 
 
@@ -36,7 +36,7 @@
                 <!-- Choose Number of Students (Initially Disabled) -->
                 <label for="numberOfStudents">Number of Students:</label>
                 <input type="number" id="numberOfStudents" name="numberOfStudents" min="1" required disabled>
-                <button type="button" onclick="addStudentFields()">&#10004;</button>
+                <button type="button" onclick="addStudentFields()" class="vBtn">&#10004;</button>
             </div>
 
 
@@ -55,17 +55,19 @@
             <div id="deltaFieldsContainer" class="fieldsContainer">
                 <label for="delta">Delta (δ):</label>
                 <input type="number" id="delta" name="delta[]" step="0.001" min="0.001" required>
+                <!-- Button to add more delta input fields -->
+                <button type="button" onclick="addDeltaInput()" class="addDeltaBtn">Add Delta</button><br><br>`
             </div>
 
             <div id="deltaFields">
                 <!-- Fields for delta will be added dynamically -->
             </div>
-            <!-- Button to add more delta input fields -->
-            <button type="button" onclick="addDeltaInput()">Add Delta</button><br><br>`
 
-            <button type="button" onclick="addRandomDataInTabuSearch()">Random</button><br><br>`
 
-            <input type="submit" value="Run The Algorithm">
+            <div class="btnsContiner">
+                <input type="submit" value="Run">
+                <button type="button" onclick="addRandomDataInTabuSearch()">Random</button>
+            </div>
 
 
         </form>

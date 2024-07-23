@@ -39,9 +39,9 @@
 
 
         <h2>Try Our Algorithms Yourself</h2>
-        <form action="/form" method="GET">
+        <form action="/form" method="GET" id="algorithmForm">
             <label for="algorithm">Select an Algorithm:</label>
-            <select id="algorithm" name="algorithm">
+            <select id="algorithmSelect" name="algorithm">
                 <option value="">Select</option>
                 <option value="aceei">ACEEI</option>
                 <option value="manipulation">Find Manipulation</option>
@@ -68,6 +68,14 @@
         <div class="popup-content">
             <span class="close" onclick="closePopup('tabusearchPopup')">&times;</span>
             <!-- Content will be loaded here -->
+        </div>
+    </div>
+
+    <!-- Modal Structure -->
+    <div id="errorModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn">&times;</span>
+            <h5>Please select an algorithm before submitting the form.</h5>
         </div>
     </div>
 
@@ -121,7 +129,33 @@
             }
         }
 
+        // Get the modal
+        var modal = document.getElementById("errorModal");
 
+        // Get the close button
+        var closeBtn = document.getElementsByClassName("close-btn")[0];
+
+        // When the user clicks on the submit button
+        document.getElementById('algorithmForm').addEventListener('submit', function(event) {
+            var selectedAlgorithm = document.getElementById('algorithmSelect').value;
+
+            if (!selectedAlgorithm) {
+                event.preventDefault();
+                modal.style.display = "block"; // Show the modal
+            }
+        });
+
+        // When the user clicks on the close button, close the modal
+        closeBtn.onclick = function() {
+            modal.style.display = "none";
+        }
+
+        // When the user clicks anywhere outside of the modal, close it
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
     </script>
 </body>
 </html>

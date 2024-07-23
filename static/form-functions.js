@@ -50,6 +50,7 @@ function addDeltaInput() {
     var removeButton = document.createElement('button');
     removeButton.type = 'button';
     removeButton.textContent = 'Remove';
+    removeButton.className = "removeDeltaBtn"
     removeButton.onclick = function() {
         deltaFieldsDiv.removeChild(newDeltaContainer);
     };

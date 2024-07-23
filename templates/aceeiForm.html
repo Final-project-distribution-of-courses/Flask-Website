@@ -22,7 +22,7 @@
         <div class="fieldsContainer">
             <label for="numberOfCourses">Number of Courses:</label>
             <input type="number" id="numberOfCourses" name="numberOfCourses" min="1" required>
-            <button type="button" onclick="addCourseFields()">&#10004;</button>
+            <button type="button" onclick="addCourseFields()" class="vBtn">&#10004;</button>
         </div>
         <!-- Courses Input Fields (Generated Dynamically) -->
         <div id="courseFields">
@@ -33,7 +33,7 @@
             <!-- Choose Number of Students -->
             <label for="numberOfStudents">Number of Students:</label>
             <input type="number" id="numberOfStudents" name="numberOfStudents" min="1" required disabled>
-            <button type="button" onclick="addStudentFields()">&#10004;</button>
+            <button type="button" onclick="addStudentFields()" class="vBtn">&#10004;</button>
         </div>
         <!-- Student Input Fields (Generated Dynamically) -->
         <div id="studentFields">
@@ -62,12 +62,16 @@
             </select><br><br>
         </div>
 
-        <input type="submit" value="Run The Algorithm">
-        <button type="button" onclick="fillRandom()">Random</button>
+        <div class="btnsContiner">
+            <input type="submit" value="Run">
+            <button type="button" onclick="fillRandom()">Random</button>
+        </div>
+
 {#        TODO: add random to this form#}
-        {#        TODO: button to go back#}
     </form>
 </div>
-<script src="{{ url_for('static', filename='form-functions.js') }}"></script>
+<script src="{{ url_for('static', filename='form-functions.js') }}">
+
+</script>
 </body>
 </html>

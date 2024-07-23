@@ -32,11 +32,11 @@ def algorithm_form():
             return "Invalid algorithm selection"
 
     if algorithm == 'aceei':
-        return render_template('aceei_form.html')
+        return render_template('aceeiForm.html')
     elif algorithm == 'manipulation':
-        return render_template('manipulation_form.html')
+        return render_template('manipulationForm.html')
     elif algorithm == 'tabusearch':
-        return render_template('tabusearch_form.html')
+        return render_template('tabusearchForm.html')
     else:
         return "Invalid algorithm selection"
 
@@ -231,7 +231,7 @@ def process_form():
         response["Unknown algorithm"] = []
 
     print("response: ", response)  # Print the response to the console
-    return render_template('result.html', response=response)
+    return render_template('results.html', response=response)
 
 
 if __name__ == '__main__':
