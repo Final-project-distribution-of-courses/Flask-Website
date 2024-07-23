@@ -26,6 +26,7 @@ body {
 .aceeiContainer:hover, .manipulationContainer:hover, .tabusearchContainer:hover {
     transform: translateY(-10px);
 }
+
 #algoName {
     text-align: center;
     font-family: 'Dancing Script', cursive;
@@ -40,7 +41,10 @@ h2 {
 
 }
 
-
+#title {
+    font-size: 25px;
+    font-family: 'Dancing Script', cursive;
+}
 
 p {
     font-size: 1em;

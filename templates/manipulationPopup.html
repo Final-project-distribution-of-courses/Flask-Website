@@ -1,47 +1,26 @@
 <!-- ManipulationPopup.html -->
 <div class="popupContent">
-    <h1 id="algoName">Find Manipulation Algorithm</h1>
-    <div class="h3Container">
-        <h3>The goal of this algorithm is to determine if a course distribution algorithm is strategy-proof.</h3>
-        <h3>An algorithm is strategy-proof if students cannot gain any advantage by lying about their true preferences. </h3>
-        <h3>This ensures fairness and integrity in the course allocation process.</h3>
-    </div>
+    <h2 id="h2Popup">Find a profitable manipulation for a student</h2>
+    <h3 id="h3Popup">This algorithm is used to determine if a course allocation algorithm is strategy-proof.</h3>
+    <h3 id="h3Popup">A strategy-proof algorithm ensures that it is always better for participants to be truthful rather than lie.</h3>
+    <h3 id="h3Popup">In other words, if a participant lies, they will get less benefit than if they were honest.</h3>
 
-
-    <h2 id="h2Popup">Parameters:</h2>
+    <h4>Algorithms parameters: </h4>
     <ul>
-        <li><strong>Mechanism:</strong> The method used for allocating courses.</li>
-        <li><strong>True Utility:</strong> The actual utility of the student.</li>
-        <li><strong>Criteria for Profitable Manipulation:</strong>
-            <ul>
-                <li><strong>Randomness:</strong> Sample only the initial budgets.</li>
-                <li><strong>Population:</strong> Sample the initial budgets and the utilities of other students.</li>
-                <li><strong>Eta:</strong> A parameter used to adjust the student's preferences.</li>
-            </ul>
-        </li>
+        <li>Course allocation algorithm to be tested and its parameters</li>
+        <li>Student name to be checked for possible profitable manipulation and his course ratings</li>
+        <li>Criterion for manipulation which tells how to sample the budgets for the allocation algorithm</li>
+        <li>Eta parameter related to changes in the student's preferences.</li>
     </ul>
 
-    <h2 id="h2Popup">Algorithm Steps:</h2>
-    <ol>
-        <li>Define <code>v0</code> as the student's original utility from the input.</li>
-        <li>Create a list of false utilities:
-            <ul>
-                <li>For each course, create two utility vectors:
-                    <ul>
-                        <li>In the first vector, the value of the current course is set to <code>utility * eta</code>.</li>
-                        <li>In the second vector, the value is set to <code>utility / eta</code>.</li>
-                    </ul>
-                </li>
-            </ul>
-        </li>
-        <li>Find <code>v*</code>:
-            <ul>
-                <li>Choose a criterion for manipulation and run the mechanism multiple times for each false report and the true report.</li>
-                <li>Calculate the expected utility for each bundle from the reports.</li>
-                <li>Select the report that yields the maximum utility, which is <code>v*</code>.</li>
-            </ul>
-        </li>
-        <li>If <code>v*</code> is the same as the original utility <code>v0</code>, then the algorithm finishes.</li>
-        <li>Otherwise, update <code>v0</code> to the new utility <code>v*</code> and continue to find a better manipulation.</li>
-    </ol>
+    <h4>How the algorithm works: </h4>
+    <ul>
+        <li>It starts with the student's true preferences and creates new false preferences using the eta parameter.</li>
+        <li>For both the true and false preferences, it runs the course allocation algorithm and calculates the student's utility for each report. </li>
+        <li>It then selects the preference that provided the highest utility. </li>
+        <li>If this preference matches the student's true preferences exactly, the algorithm is strategy-proof. </li>
+        <li>If not, the algorithm repeats the process using the preference that yielded the highest utility and returns that the algorithm is not strategy-proof. </li>
+    </ul>
+
+</div>
 </div>

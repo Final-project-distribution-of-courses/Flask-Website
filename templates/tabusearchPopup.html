@@ -1,33 +1,31 @@
 <div class="popupContent">
-    <h1 id="algoName">TABU SEARCH</h1>
-    <h2>Purpose</h2>
-    <p>The TABU SEARCH algorithm aims to find a fair allocation of courses for students. It adjusts course prices based on demand to reach a fair distribution.</p>
 
-    <h2>Algorithm Overview</h2>
-    <p>The main idea of the algorithm is to adjust course prices based on demand:</p>
+    <h2 id="h2Popup">Tabu Search</h2>
+    <h3 id="h3Popup">The goal of the TABU SEARCH algorithm is to find a course allocation where the demand excess is zero, </h3>
+    <h3 id="h3Popup">meaning the number of students wanting a course matches the number of available spots in that course.</h3>
+
+
+    <h4>Algorithms parameters: </h4>
     <ul>
-        <li><strong>Increase Prices:</strong> For courses with excess demand (where too many students want the course).</li>
-        <li><strong>Decrease Prices:</strong> For courses with a lack of demand (where too few students want the course).</li>
+        <li>Number of courses and its capacities</li>
+        <li>Number of students, the number of courses each student needs to take and course ratings from each student</li>
+        <li>Delta parameter related to prices courses updates, it can be more than one delta</li>
+        <li>Beta parameter related to the distribution of student budgets and course prices</li>
     </ul>
 
-    <h2>Iteration Process</h2>
-    <p>The algorithm operates in a loop and stops when the clearing error is zero. Here’s how it works:</p>
-    <ol>
-        <li>Add the current prices to a history of similar prices. Similar prices are those that result in the same allocation and the same excess demand.</li>
-        <li>Evaluate two types of neighbors:</li>
-        <ul>
-            <li><strong>Gradient Neighbors:</strong> These are obtained by multiplying the current prices by a delta and adding the error vector.</li>
-            <li><strong>Individual Price Adjustments:</strong>
-                <ul>
-                    <li>Increase prices for courses with excess demand in such a way that only one student can no longer afford the course.</li>
-                    <li>Set prices for courses with a lack of demand to zero.</li>
-                </ul>
-            </li>
-        </ul>
-        <li>For each neighbor, calculate the allocation and determine the error.</li>
-        <li>Select the neighbor that results in the minimum error and update the current prices.</li>
-    </ol>
+    <h4>How the algorithm works: </h4>
+    <ul>
+        <li>It starts with initial course prices generated using the beta parameter. </li>
+        <li>It then computes the allocation and the demand excess is zero, the algorithm ends. </li>
+        <li>If not, it searches for all price vectors similar to the current vector that yield the same allocation and demand excess. </li>
+        <li>The algorithm then updates the prices in two ways:</li>
+        <ol style="list-style-type:circle;">
+            <li> Using the delta parameter</li>
+            <li>Increasing the prices of highly demanded courses to reduce their total demand by one, while setting prices of less demanded courses to zero.</li>
+        </ol>
+        <li>With the new set of prices, the algorithm checks if any of these results in a demand excess of zero. </li>
+        <li>If one does, it returns the allocation associated with that price set.  </li>
+        <li>If not, it takes the prices that resulted in the minimum demand excess and repeats the process.</li>
 
-    <h2>Termination</h2>
-    <p>The algorithm terminates when it finds a price vector that results in a zero error. At this point, it returns the final prices and the resulting course distribution.</p>
+    </ul>
 </div>
