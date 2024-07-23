@@ -219,7 +219,8 @@ def handle_tabusearch_form(form_data):
 @app.route('/process', methods=['POST'])
 def process_form():
     algorithm = request.form.get('algorithm')  # Get the algorithm name from the form data
-    response = {"algorithm": algorithm}
+    algorithms_full_names = {"aceei" : "ACEEI", "manipulation" : "Find Profitable Manipulation", "tabusearch" : "Tabu Search"}
+    response = {"algorithm": algorithms_full_names.get(algorithm)}
     if algorithm == 'tabusearch':
         response.update(handle_tabusearch_form(request.form))
     elif algorithm == 'aceei':
