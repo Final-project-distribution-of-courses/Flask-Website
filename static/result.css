@@ -78,7 +78,7 @@ th {
     --c: #1095c1; /* the color */
     --b: .1em;    /* border length*/
     --d: 20px;    /* the cube depth */
-    --h: 5em;   /* the height */
+    --h: 3em;   /* the height */
 
     --_s: calc(var(--d) + var(--b));
 
