@@ -79,6 +79,26 @@ select {
     border: 1px solid #ccc;
 }
 
+
+.learnMoreBtn {
+    background: #86b9e8;
+    color:  white;
+    cursor: pointer;
+    width: 8em;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    font-size: 14px;
+    font-family: 'Dancing Script', cursive;
+    font-weight: bold;
+    padding: 6px;
+
+}
+
+
+.learnMoreBtn:hover {
+    background-color: #075985;
+}
+
 /* Styles for the submit button */
 
 /* Container for the button and icon */
@@ -191,23 +211,6 @@ button#submitButton:hover ~ .icon {
 }
 
 
-.learnMoreBtn {
-    background: #86b9e8;
-    color:  white;
-    cursor: pointer;
-    width: 8em;
-    border-radius: 4px;
-    border: 1px solid #ccc;
-    font-size: 14px;
-    font-family: 'Dancing Script', cursive;
-    font-weight: bold;
-
-}
-
-
-.learnMoreBtn:hover {
-    background-color: #075985;
-}
 
 #h3Popup {
     margin: 10px 0;

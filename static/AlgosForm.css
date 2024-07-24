@@ -53,8 +53,8 @@ button, input[type="submit"] {
     font-family: 'Dancing Script', cursive;
     box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
     background: #86b9e8;
-    width: 150px;
-    height: 60px;
+    width: 130px;
+    height: 40px;
 }
 
 /* Btn of run the algorithm when clicked on it */
