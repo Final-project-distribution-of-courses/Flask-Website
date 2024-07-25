@@ -51,25 +51,35 @@
         <div class="fieldsContainer">
             <!-- Epsilon (ε) Input Field -->
             <label for="epsilon">Epsilon (ε):</label>
-            <input type="number" id="epsilon" name="epsilon" step="0.001" min="0.001" required><br><br>
+            <input type="number" id="epsilon" name="epsilon" step="0.001" min="0.001" required>
+            <p id="epsilonQuestion">What is Epsilon ?</p>
+
+            <!-- Popup -->
+            <div id="popup-epsilon" class="popup-epsilon">
+                <div class="popup-epsilon-content">
+                    <span class="popup-epsilon-close">&times;</span>
+                    <p>Epsilon (ε) determines the budget range of the students.</p>
+                </div>
+            </div>
         </div>
 
         <div class="fieldsContainer">
             <!-- Delta (δ) Input Field -->
             <label for="delta">Delta (δ):</label>
-            <input type="number" id="delta" name="delta" step="0.001" min="0.001" required><br><br>
+            <input type="number" id="delta" name="delta" step="0.001" min="0.001" required>
         </div>
 
          <div class="fieldsContainer">
             <!-- Eta Input Field -->
             <label for="eta">Eta (η):</label>
-            <input type="number" id="eta" name="eta" step="0.001" min="0.001" required><br><br>
+            <input type="number" id="eta" name="eta" step="0.001" min="0.001" required>
+            <p>Determines the size of the change of the selected student's preferences</p><br><br>
         </div>
 
         <div class="fieldsContainer">
             <!-- Beta Input Field -->
             <label for="beta">Beta (β):</label>
-            <input type="number" id="beta" name="beta" step="1" min="1" required><br><br>
+            <input type="number" id="beta" name="beta" step="1" min="1" required>
         </div>
 
         <div class="fieldsContainer">
@@ -79,7 +89,7 @@
                 <option value="EFTBStatus.NO_EF_TB">No EFTB</option>
                 <option value="EFTBStatus.EF_TB">EFTB</option>
                 <option value="EFTBStatus.CONTESTED_EF_TB">Contested EFTB</option>
-            </select><br><br>
+            </select>
         </div>
 
         <div class="fieldsContainer">
@@ -88,7 +98,7 @@
             <select id="criteria_for_profitable_manipulation" name="criteria_for_profitable_manipulation" required>
                 <option value="criteria_for_profitable_manipulation.randomness">Randomness</option>
                 <option value="criteria_for_profitable_manipulation.population">Population</option>
-            </select><br><br>
+            </select>
         </div>
 
         <div class="btnsContiner">
@@ -99,7 +109,10 @@
 
     </form>
 </div>
-<script src="{{ url_for('static', filename='form-functions.js') }}"></script>
+<script src="{{ url_for('static', filename='form-functions.js') }}">
+
+
+</script>
 
 </body>
 </html>

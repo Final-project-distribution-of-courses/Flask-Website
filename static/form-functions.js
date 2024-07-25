@@ -72,11 +72,13 @@ function addStudentFields() {
         var studentField = document.createElement('div');
         studentField.className = 'studentField';
 
+        // Student name
         var studentLabel = document.createElement('div');
         studentLabel.className = 'studentLabel';
         studentLabel.textContent = 'Student ' + i;
         studentField.appendChild(studentLabel);
 
+        // Student budget
         var budgetGroup = document.createElement('div');
         budgetGroup.className = 'fieldGroup';
         var budgetLabel = document.createElement('label');
@@ -91,6 +93,7 @@ function addStudentFields() {
         budgetGroup.appendChild(budgetInput);
         studentField.appendChild(budgetGroup);
 
+        // Student courses to take
         var coursesGroup = document.createElement('div');
         coursesGroup.className = 'fieldGroup';
         var coursesLabel = document.createElement('label');
@@ -105,6 +108,7 @@ function addStudentFields() {
         coursesGroup.appendChild(coursesInput);
         studentField.appendChild(coursesGroup);
 
+        // Student ratings for courses
         var ratingsLabel = document.createElement('label');
         ratingsLabel.className = 'inputLabel';
         ratingsLabel.textContent = 'Ratings for Courses: ';
@@ -254,4 +258,19 @@ function goToHomePage() {
 
 function goBackToAlgorithmPage() {
     window.history.back();
+}
+
+
+document.getElementById('epsilonQuestion').onclick = function() {
+    document.getElementById('popup-epsilon').style.display = 'block';
+}
+
+document.querySelector('.popup-epsilon-close').onclick = function() {
+    document.getElementById('popup-epsilon').style.display = 'none';
+}
+
+window.onclick = function(event) {
+    if (event.target == document.getElementById('popup-epsilon')) {
+        document.getElementById('popup-epsilon').style.display = 'none';
+    }
 }
