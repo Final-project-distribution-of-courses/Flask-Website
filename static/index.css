@@ -260,13 +260,13 @@ li {
     margin: 15% auto; /* 15% from the top and centered */
     padding: 20px;
     border: 1px solid #888;
-    width: 50%; /* Could be more or less, depending on screen size */
+    width: 60%; /* Could be more or less, depending on screen size */
 
 }
 
 h5 {
     font-size: 30px;
-    color: #e74c3c;
+    color: #7e297e;
     font-family: 'Dancing Script', cursive;
     font-weight: bold;
     text-align: center;
@@ -286,3 +286,4 @@ h5 {
     text-decoration: none;
     cursor: pointer;
 }
+
