@@ -4,6 +4,7 @@ from fairpyx import Instance, AllocationBuilder
 from fairpyx.algorithms import find_ACEEI_with_EFTB, tabu_search
 from fairpyx.algorithms.ACEEI_algorithms.find_profitable_manipulation import find_profitable_manipulation
 from fairpyx.adaptors import divide
+from utils import *
 
 app = Flask(__name__)
 
@@ -70,40 +71,32 @@ def process_form():
 
 
 def handle_aceei_form(form_data):
-    number_of_courses = int(form_data.get('numberOfCourses'))
+    number_of_courses = get_number_of_courses(form_data)
     print("Number of courses is: ", number_of_courses)
 
-    courses_capacities = {f'c{i}': int(form_data.get(f'c{i}Capacity')) for i in range(1, number_of_courses + 1)}
+    courses_capacities = get_courses_capacities(form_data, number_of_courses)
     print("courses_capacities  is: ", courses_capacities)
 
-    number_of_students = int(form_data.get('numberOfStudents'))
+    number_of_students = get_number_of_students(form_data)
     print("Number of students is: ", number_of_students)
 
-    valuations = {}
-    for i in range(1, number_of_students + 1):
-        student_name = f's{i}'
-        student_preferences = {}
-        for course_name in courses_capacities.keys():
-            student_preferences[course_name] = int(form_data.get(f'{student_name}{course_name}Rating'))
-        valuations[student_name] = student_preferences
+    valuations = get_student_preferences(form_data, number_of_students, courses_capacities)
     print(f"valuations {valuations}")
 
     # 's' + i + 'CoursesToTake'
-    agent_capacity = {f's{i}': int(form_data.get(f's{i}CoursesToTake')) for i in range(1, number_of_students + 1)}
+    agent_capacity = get_agent_capacity(form_data, number_of_students)
     print(f"CoursesToTake {agent_capacity}")
+
+    # 's' + i + 'Budget'
+    initial_budgets = get_initial_budgets(form_data, number_of_students)
+    print(f"initial budgets {initial_budgets}")
 
     instance = Instance(valuations, agent_capacity, courses_capacities)
     print("Instance is: ", instance)
-    epsilon = float(form_data.get('epsilon'))
-    delta = float(form_data.get('delta'))
-    eftb = str(form_data.get('ef-tb'))
+    epsilon, delta, eftb = get_aceei_other_parameters(form_data)
     print("Epsilon is: ", epsilon)
     print("Delta is: ", delta)
     print("EF-TB is: ", eftb)
-
-    # 's' + i + 'Budget'
-    initial_budgets = {f's{i}': int(form_data.get(f's{i}Budget')) for i in range(1, number_of_students + 1)}
-    print(f"initial budgets {initial_budgets}")
 
     answer = divide(find_ACEEI_with_EFTB, instance=instance, initial_budgets=initial_budgets, delta=delta,
                     epsilon=epsilon, t=eftb)
@@ -112,122 +105,75 @@ def handle_aceei_form(form_data):
 
 
 def handle_manipulation_form(form_data):
-    number_of_courses = int(request.form.get('numberOfCourses'))
+    number_of_courses = get_number_of_courses(form_data)
     print("Number of courses is: ", number_of_courses)
-    courses_capacites = {}
-    for i in range(1, number_of_courses + 1):
-        course_capacity = int(request.form.get(f'c{i}Capacity'))
-        courses_capacites[f'c{i}'] = course_capacity
-    print("courses_capacites is: ", courses_capacites)
 
-    number_of_students = int(request.form.get('numberOfStudents'))
+    courses_capacities = get_courses_capacities(form_data, number_of_courses)
+    print("courses_capacities  is: ", courses_capacities)
+
+    number_of_students = get_number_of_students(form_data)
     print("Number of students is: ", number_of_students)
-    valuations = {}
-    for i in range(1, number_of_students + 1):
-        # student_name = request.form.get(f'studentName_{i}')
-        student_name = f's{i}'
-        student_preferences = {}
-        for course_name in courses_capacites.keys():
-            student_preferences[course_name] = int(request.form.get(f'{student_name}{course_name}Rating'))
-        valuations[student_name] = student_preferences
+
+    valuations = get_student_preferences(form_data, number_of_students, courses_capacities)
     print(f"valuations {valuations}")
 
     # 's' + i + 'CoursesToTake'
-    agent_capacity = {}
-    for i in range(1, number_of_students + 1):
-        # student_name = request.form.get(f'studentName_{i}')
-        student_name = f's{i}'
-        agent_capacity[student_name] = int(request.form.get(f'{student_name}CoursesToTake'))
+    agent_capacity = get_agent_capacity(form_data, number_of_students)
     print(f"CoursesToTake {agent_capacity}")
 
-    instance = Instance(valuations, agent_capacity, courses_capacites)
-    print("instance is ", instance)
+    # 's' + i + 'Budget'
+    initial_budgets = get_initial_budgets(form_data, number_of_students)
+    print(f"initial budgets {initial_budgets}")
 
-    epsilon = float(request.form.get('epsilon'))
+    epsilon, delta, beta, eta, eftb, student, criteria = get_manipulation_other_parameters(form_data)
     print("epsilon is: ", epsilon)
-
-    delta = float(request.form.get('delta'))
     print("delta is: ", delta)
-
-    beta = int(request.form.get('beta'))
     print("beta is: ", beta)
-
-    eta = float(request.form.get('eta'))
     print("eta is: ", eta)
-
-    eftb = str(request.form.get('ef-tb'))
     print("ef-tb is: ", eftb)
-
-    student = str(request.form.get('studentSelection'))
     print("student is: ", student)
-
-    criteria = str(request.form.get('criteria_for_profitable_manipulation'))
     print("criteria is: ", criteria)
 
     algorithm = find_ACEEI_with_EFTB
-
-    # 's' + i + 'Budget'
-    initial_budget = {}
-    for i in range(1, number_of_students + 1):
-        # student_name = request.form.get(f'studentName_{i}')
-        student_name = f's{i}'
-        initial_budget[student_name] = float(request.form.get(f'{student_name}Budget'))
-    print(f"initial budgets {initial_budget}")
+    instance = Instance(valuations, agent_capacity, courses_capacities)
+    print("instance is ", instance)
 
     answer = find_profitable_manipulation(mechanism=algorithm, student=student,
                                           true_student_utility=valuations[student],
                                           criteria=criteria, eta=eta, instance=instance,
-                                          initial_budgets=initial_budget, beta=beta, delta=delta, epsilon=epsilon,
+                                          initial_budgets=initial_budgets, beta=beta, delta=delta, epsilon=epsilon,
                                           t=eftb)
     print("answer is ", answer)
     return answer
 
 
 def handle_tabusearch_form(form_data):
-    print("Form data received:", request.form)
-    number_of_courses = int(request.form.get('numberOfCourses'))
+    number_of_courses = get_number_of_courses(form_data)
     print("Number of courses is: ", number_of_courses)
-    courses_capacites = {}
-    for i in range(1, number_of_courses + 1):
-        course_capacity = int(request.form.get(f'c{i}Capacity'))
-        courses_capacites[f'c{i}'] = course_capacity
-    print("courses_capacites is: ", courses_capacites)
 
-    number_of_students = int(request.form.get('numberOfStudents'))
+    courses_capacities = get_courses_capacities(form_data, number_of_courses)
+    print("courses_capacities  is: ", courses_capacities)
+
+    number_of_students = get_number_of_students(form_data)
     print("Number of students is: ", number_of_students)
-    valuations = {}
-    for i in range(1, number_of_students + 1):
-        # student_name = request.form.get(f'studentName_{i}')
-        student_name = f's{i}'
-        student_preferences = {}
-        for course_name in courses_capacites.keys():
-            student_preferences[course_name] = int(request.form.get(f'{student_name}{course_name}Rating'))
-        valuations[student_name] = student_preferences
-    print(f"valuations {valuations}")
+
+    valuations = get_student_preferences(form_data, number_of_students, courses_capacities)
+    print(f"Valuations are: {valuations}")
 
     # 's' + i + 'CoursesToTake'
-    agent_capacity = {}
-    for i in range(1, number_of_students + 1):
-        # student_name = request.form.get(f'studentName_{i}')
-        student_name = f's{i}'
-        agent_capacity[student_name] = int(request.form.get(f'{student_name}CoursesToTake'))
-
-    instance = Instance(valuations, agent_capacity, courses_capacites)
-    print("instance is ", instance)
-    beta = int(request.form.get('beta'))
-    print("beta is: ", beta)
-
-    delta_list = request.form.getlist('delta[]')
-    delta = {float(delta) for delta in delta_list}
-    print("delta is: ", delta)
+    agent_capacity = get_agent_capacity(form_data, number_of_students)
+    print(f"CoursesToTake: {agent_capacity}")
 
     # 's' + i + 'Budget'
-    initial_budgets = {}
-    for i in range(1, number_of_students + 1):
-        # student_name = request.form.get(f'studentName_{i}')
-        student_name = f's{i}'
-        initial_budgets[student_name] = float(request.form.get(f'{student_name}Budget'))
-    print(f"initial budgets {initial_budgets}")
+    initial_budgets = get_initial_budgets(form_data, number_of_students)
+    print(f"Initial Budgets: {initial_budgets}")
+
+    beta, delta = get_tabusaerch_other_parameters(form_data)
+    print("beta is: ", beta)
+    print("delta is: ", delta)
+
+    instance = Instance(valuations, agent_capacity, courses_capacities)
+    print("Instance is: ", instance)
 
     answer = divide(tabu_search, instance=instance, initial_budgets=initial_budgets, beta=beta, delta=delta)
     print("answer is ", answer)
