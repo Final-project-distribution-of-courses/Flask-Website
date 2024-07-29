@@ -28,6 +28,158 @@ function addCourseFields() {
     document.getElementById('numberOfStudents').disabled = true;
 }
 
+// Function to handle adding student fields
+function addStudentFields() {
+    var numberOfStudents = parseInt(document.getElementById('numberOfStudents').value);
+    console.log("numberOfStudents: ", numberOfStudents);
+    var studentFieldsDiv = document.getElementById('studentFields');
+    studentFieldsDiv.innerHTML = ''; // Clear previous fields
+    var numberOfCourses = parseInt(document.getElementById('numberOfCourses').value);
+
+    for (var i = 1; i <= numberOfStudents; i++) {
+        var studentField = createStudentField(i, numberOfCourses);
+        studentFieldsDiv.appendChild(studentField);
+    }
+
+    updateStudentSelectionDropdown();
+}
+
+// Function to create a student field
+function createStudentField(studentIndex, numberOfCourses) {
+    var studentField = document.createElement('div');
+    studentField.className = 'studentField';
+
+    studentField.appendChild(createStudentLabel(studentIndex));
+    studentField.appendChild(createBudgetGroup(studentIndex));
+    studentField.appendChild(createCoursesGroup(studentIndex));
+    studentField.appendChild(createRatingsGroup(studentIndex, numberOfCourses));
+
+    return studentField;
+}
+
+// Function to create the student label
+function createStudentLabel(studentIndex) {
+    var studentLabel = document.createElement('div');
+    studentLabel.className = 'studentLabel';
+    studentLabel.textContent = 'Student ' + studentIndex;
+    return studentLabel;
+}
+
+// Function to create the budget input group
+function createBudgetGroup(studentIndex) {
+    var budgetGroup = document.createElement('div');
+    budgetGroup.className = 'fieldGroup';
+
+    var budgetLabel = document.createElement('label');
+    budgetLabel.className = 'inputLabel';
+    budgetLabel.textContent = 'Budget: ';
+    budgetGroup.appendChild(budgetLabel);
+
+    var budgetInput = document.createElement('input');
+    budgetInput.type = 'number';
+    budgetInput.name = 's' + studentIndex + 'Budget';
+    budgetInput.min = 1;
+    budgetInput.required = true;
+    budgetGroup.appendChild(budgetInput);
+
+    return budgetGroup;
+}
+
+// Function to create the courses input group
+function createCoursesGroup(studentIndex) {
+    var coursesGroup = document.createElement('div');
+    coursesGroup.className = 'fieldGroup';
+
+    var coursesLabel = document.createElement('label');
+    coursesLabel.className = 'inputLabel';
+    coursesLabel.textContent = 'Courses to Take: ';
+    coursesGroup.appendChild(coursesLabel);
+
+    var coursesInput = document.createElement('input');
+    coursesInput.type = 'number';
+    coursesInput.min = 1;
+    coursesInput.name = 's' + studentIndex + 'CoursesToTake';
+    coursesInput.required = true;
+    coursesGroup.appendChild(coursesInput);
+
+    return coursesGroup;
+}
+
+// Function to create the ratings input group
+function createRatingsGroup(studentIndex, numberOfCourses) {
+    var ratingsGroup = document.createElement('div');
+    ratingsGroup.className = 'ratingsGroup';
+
+    var ratingsLabel = document.createElement('label');
+    ratingsLabel.className = 'inputLabel';
+    ratingsLabel.textContent = 'Ratings for Courses: ';
+    ratingsGroup.appendChild(ratingsLabel);
+
+    for (var j = 1; j <= numberOfCourses; j++) {
+        if ((j - 1) % 3 === 0) {
+            var ratingRow = document.createElement('div');
+            ratingRow.className = 'ratingRow';
+            ratingsGroup.appendChild(ratingRow);
+        }
+
+        var ratingLabel = document.createElement('label');
+        ratingLabel.className = 'inputLabel';
+        ratingLabel.textContent = 'c' + j + ': ';
+        ratingRow.appendChild(ratingLabel);
+
+        var ratingInput = document.createElement('input');
+        ratingInput.type = 'number';
+        ratingInput.name = 's' + studentIndex + 'c' + j + 'Rating';
+        ratingInput.min = 1;
+        ratingInput.step = 1;
+        ratingInput.required = true;
+        ratingRow.appendChild(ratingInput);
+    }
+
+    return ratingsGroup;
+}
+
+// Function to update the student selection dropdown
+function updateStudentSelectionDropdown() {
+    var form = document.getElementById('manipulationForm');
+    if (form) {
+        var algorithm = form.querySelector('input[name="algorithm"]').value;
+        console.log("algorithm is:", algorithm);
+        if (algorithm === 'manipulation') {
+            var studentSelection = document.getElementById('studentSelection');
+            studentSelection.innerHTML = '<option value="" disabled selected>Select a student</option>';
+
+            var numberOfStudents = parseInt(document.getElementById('numberOfStudents').value);
+            for (var i = 1; i <= numberOfStudents; i++) {
+                var studentOption = document.createElement('option');
+                studentOption.value = 's' + i;
+                studentOption.textContent = 'Student ' + i;
+                studentSelection.appendChild(studentOption);
+            }
+
+            // Enable the student selection dropdown
+            studentSelection.disabled = false;
+        }
+    }
+}
+
+// Function to check if all capacity fields are filled in order to enable the student fields
+function checkAllCapacitiesFilled() {
+    var numberOfCourses = parseInt(document.getElementById('numberOfCourses').value);
+    var allFilled = true;
+
+    for (var i = 1; i <= numberOfCourses; i++) {
+        var capacityInput = document.querySelector('input[name="c' + i + 'Capacity"]');
+        if (!capacityInput || capacityInput.value === '') {
+            allFilled = false;
+            break;
+        }
+    }
+
+    document.getElementById('numberOfStudents').disabled = !allFilled;
+}
+
+// Function to add more delta to tabu search
 function addDeltaInput() {
     var deltaFieldsDiv = document.getElementById('deltaFields');
     var newDeltaContainer = document.createElement('div');
@@ -58,123 +210,6 @@ function addDeltaInput() {
     newDeltaContainer.appendChild(removeButton);
 
     deltaFieldsDiv.appendChild(newDeltaContainer);
-}
-
-// Function to add student input fields dynamically
-function addStudentFields() {
-    var numberOfStudents = parseInt(document.getElementById('numberOfStudents').value);
-    console.log("numberOfStudents: ", numberOfStudents);
-    var studentFieldsDiv = document.getElementById('studentFields');
-    studentFieldsDiv.innerHTML = ''; // Clear previous fields
-    var numberOfCourses = parseInt(document.getElementById('numberOfCourses').value);
-
-    for (var i = 1; i <= numberOfStudents; i++) {
-        var studentField = document.createElement('div');
-        studentField.className = 'studentField';
-
-        // Student name
-        var studentLabel = document.createElement('div');
-        studentLabel.className = 'studentLabel';
-        studentLabel.textContent = 'Student ' + i;
-        studentField.appendChild(studentLabel);
-
-        // Student budget
-        var budgetGroup = document.createElement('div');
-        budgetGroup.className = 'fieldGroup';
-        var budgetLabel = document.createElement('label');
-        budgetLabel.className = 'inputLabel';
-        budgetLabel.textContent = 'Budget: ';
-        budgetGroup.appendChild(budgetLabel);
-        var budgetInput = document.createElement('input');
-        budgetInput.type = 'number';
-        budgetInput.name = 's' + i + 'Budget';
-        budgetInput.min = 1;
-        budgetInput.required = true;
-        budgetGroup.appendChild(budgetInput);
-        studentField.appendChild(budgetGroup);
-
-        // Student courses to take
-        var coursesGroup = document.createElement('div');
-        coursesGroup.className = 'fieldGroup';
-        var coursesLabel = document.createElement('label');
-        budgetLabel.className = 'inputLabel';
-        coursesLabel.textContent = 'Courses to Take: ';
-        coursesGroup.appendChild(coursesLabel);
-        var coursesInput = document.createElement('input');
-        coursesInput.type = 'number';
-        coursesInput.min = 1;
-        coursesInput.name = 's' + i + 'CoursesToTake';
-        coursesInput.required = true;
-        coursesGroup.appendChild(coursesInput);
-        studentField.appendChild(coursesGroup);
-
-        // Student ratings for courses
-        var ratingsLabel = document.createElement('label');
-        ratingsLabel.className = 'inputLabel';
-        ratingsLabel.textContent = 'Ratings for Courses: ';
-        studentField.appendChild(ratingsLabel);
-
-        var ratingsGroup = document.createElement('div');
-        ratingsGroup.className = 'ratingsGroup';
-        for (var j = 1; j <= numberOfCourses; j++) {
-            if ((j - 1) % 3 === 0) {
-                var ratingRow = document.createElement('div');
-                ratingRow.className = 'ratingRow';
-                ratingsGroup.appendChild(ratingRow);
-            }
-            var ratingLabel = document.createElement('label');
-            ratingLabel.className = 'inputLabel';
-            ratingLabel.textContent = 'c' + j + ': ';
-            ratingRow.appendChild(ratingLabel);
-            var ratingInput = document.createElement('input');
-            ratingInput.type = 'number';
-            ratingInput.name = 's' + i + 'c' + j + 'Rating';
-            ratingInput.min = 1;
-            ratingInput.step = 1;
-            ratingInput.required = true;
-            ratingRow.appendChild(ratingInput);
-        }
-        studentField.appendChild(ratingsGroup);
-
-        studentFieldsDiv.appendChild(studentField);
-    }
-
-    // Check if the form belongs to "manipulationForm"
-    var form = document.getElementById('manipulationForm');
-    if (form) {
-        var algorithm = form.querySelector('input[name="algorithm"]').value;
-        console.log("algorithm is:", algorithm);
-        if (algorithm === 'manipulation') {
-            var studentSelection = document.getElementById('studentSelection');
-            studentSelection.innerHTML = '<option value="" disabled selected>Select a student</option>';
-
-            for (var i = 1; i <= numberOfStudents; i++) {
-                var studentOption = document.createElement('option');
-                studentOption.value = 's' + i;
-                studentOption.textContent = 'Student ' + i;
-                studentSelection.appendChild(studentOption);
-            }
-
-            // Enable the student selection dropdown
-            studentSelection.disabled = false;
-        }
-    }
-}
-
-// Function to check if all capacity fields are filled
-function checkAllCapacitiesFilled() {
-    var numberOfCourses = parseInt(document.getElementById('numberOfCourses').value);
-    var allFilled = true;
-
-    for (var i = 1; i <= numberOfCourses; i++) {
-        var capacityInput = document.querySelector('input[name="c' + i + 'Capacity"]');
-        if (!capacityInput || capacityInput.value === '') {
-            allFilled = false;
-            break;
-        }
-    }
-
-    document.getElementById('numberOfStudents').disabled = !allFilled;
 }
 
 
@@ -259,11 +294,11 @@ function goBackToAlgorithmPage() {
 }
 
 
-document.getElementById('epsilonQuestion').onclick = function() {
+document.getElementById('epsilonLearnMore').onclick = function() {
     document.getElementById('popup-epsilon').style.display = 'block';
 }
 
-document.querySelector('.popup-epsilon-close').onclick = function() {
+document.querySelector('.popup-parameter-close').onclick = function() {
     document.getElementById('popup-epsilon').style.display = 'none';
 }
 
@@ -272,3 +307,4 @@ window.onclick = function(event) {
         document.getElementById('popup-epsilon').style.display = 'none';
     }
 }
+
