@@ -1,12 +1,23 @@
 body {
     background-color: #e6e7ec;
+    margin: 0;
+    padding: 0;
 }
+
+.indexContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 90vh;
+}
+
 
 /* Container for the algorithm cards */
 .algosContainer {
     display: flex;
     justify-content: space-around;
-    margin: 20px auto;
+    margin: 10px auto;
     width: 80%;
     gap: 20px;
 }
@@ -21,6 +32,7 @@ body {
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     transition: transform 0.2s;
     text-align: center;
+
 }
 
 .aceeiContainer:hover, .manipulationContainer:hover, .tabusearchContainer:hover {
@@ -39,6 +51,7 @@ h2 {
     font-size: 1.8em;
     color: #333;
     font-family: 'Dancing Script', cursive;
+    margin-bottom: 0;
 }
 
 #title {
@@ -55,10 +68,29 @@ p {
 }
 
 
+.learnMoreBtn {
+    background: #86b9e8;
+    color:  white;
+    cursor: pointer;
+    width: 8em;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    font-size: 14px;
+    font-family: 'Dancing Script', cursive;
+    font-weight: bold;
+    padding: 6px;
+    transition: background-color 0.3s;
+
+}
+
+
+.learnMoreBtn:hover {
+    background-color: #075985;
+}
+
 /* Style the form of choosing the algorithm to try*/
 form {
     text-align: center;
-    margin-top: 30px;
     color: #333;
 }
 
@@ -80,27 +112,8 @@ select {
 }
 
 
-.learnMoreBtn {
-    background: #86b9e8;
-    color:  white;
-    cursor: pointer;
-    width: 8em;
-    border-radius: 4px;
-    border: 1px solid #ccc;
-    font-size: 14px;
-    font-family: 'Dancing Script', cursive;
-    font-weight: bold;
-    padding: 6px;
-
-}
-
-
-.learnMoreBtn:hover {
-    background-color: #075985;
-}
-
-/* Styles for the submit button */
-button#submitButton {
+/* Styles for the try button */
+button#tryButton {
     position: relative;
     width: 200px;
     height: 50px;
@@ -117,7 +130,7 @@ button#submitButton {
     overflow: hidden; /* Ensure that the arrow animation does not overflow the button */
 }
 
-button#submitButton:hover {
+button#tryButton:hover {
     background: white;
     color: #86b9e8;
 }
@@ -166,120 +179,4 @@ button#submitButton:hover {
 
 
 
-
-
-/*Style the popups of Learn More*/
-/* Popup container */
-.popup {
-    display: none; /* Hidden by default */
-    position: fixed; /* Stay in place */
-    z-index: 1; /* Sit on top */
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    overflow: auto; /* Enable scroll if needed */
-    background-color: rgba(0,0,0,0.4); /* Black background with opacity */
-}
-
-/* Popup content */
-.popup-content {
-    background-color: #fefefe;
-    margin: 15% auto;
-    padding: 20px;
-    border: 1px solid #888;
-    width: 80%;
-}
-
-/* Close button */
-.close {
-    color: #aaa;
-    float: right;
-    font-size: 28px;
-    font-weight: bold;
-}
-
-.close:hover,
-.close:focus {
-    color: black;
-    text-decoration: none;
-    cursor: pointer;
-}
-
-
-
-#h3Popup {
-    margin: 10px 0;
-    font-family: 'Dancing Script', cursive;
-    text-align: center;
-}
-
-#h2Popup{
-    color: #86b9e8;
-}
-
-#pPopup{
-    font-size: 20px;
-    text-align: left;
-
-}
-
-h4 {
-    font-family: 'Dancing Script', cursive;
-    font-size: 23px;
-    color: #86b9e8;
-
-}
-
-li {
-    font-family: 'Dancing Script', cursive;
-    font-size: 18px;
-    color: #666;
-}
-
-/* Modal Background */
-.modal {
-    display: none; /* Hidden by default */
-    position: fixed; /* Stay in place */
-    z-index: 1; /* Sit on top */
-    left: 0;
-    top: 0;
-    width: 100%; /* Full width */
-    height: 100%; /* Full height */
-    overflow: auto; /* Enable scroll if needed */
-    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
-}
-
-/* Modal Content */
-.modal-content {
-    background-color: #fefefe;
-    margin: 15% auto; /* 15% from the top and centered */
-    padding: 20px;
-    border: 1px solid #888;
-    width: 60%; /* Could be more or less, depending on screen size */
-
-}
-
-h5 {
-    font-size: 30px;
-    color: #7e297e;
-    font-family: 'Dancing Script', cursive;
-    font-weight: bold;
-    text-align: center;
-}
-
-/* Close Button */
-.close-btn {
-    color: #aaa;
-    float: right;
-    font-size: 28px;
-    font-weight: bold;
-}
-
-.close-btn:hover,
-.close-btn:focus {
-    color: black;
-    text-decoration: none;
-    cursor: pointer;
-}
 

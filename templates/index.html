@@ -5,6 +5,7 @@
     <title>Course Allocation Algorithms</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='header.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='index.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='popups.css') }}">
 
 </head>
 <body>
@@ -14,8 +15,6 @@
         </div>
     </header>
     <div class="indexContainer">
-{#        <h1>Course Allocation Algorithms</h1>#}
-
         <div class="algosContainer">
             <div class="aceeiContainer">
                 <h3 id="title">ACEEI</h3>
@@ -36,8 +35,6 @@
             </div>
         </div>
 
-
-
         <h2>Try Our Algorithms Yourself</h2>
         <form action="/form" method="GET" id="algorithmForm">
             <label for="algorithm">Select an Algorithm:</label>
@@ -47,14 +44,13 @@
                 <option value="manipulation">Find Manipulation</option>
                 <option value="tabusearch">Tabu Search</option>
             </select>
-            <button type="submit" id="submitButton">
+            <button type="submit" id="tryButton">
                 Try
                 <div class="arrow">
                     <span></span>
                     <span></span>
                     <span></span>
                 </div></button>
-
         </form>
     </div>
 
@@ -82,87 +78,10 @@
     <div id="errorModal" class="modal">
         <div class="modal-content">
             <span class="close-btn">&times;</span>
-            <h5>Please select an algorithm before submitting the form.</h5>
+            <h5>Please select an algorithm before click on the Try button.</h5>
         </div>
     </div>
 
-
-
-    <script>
-        function openPopup(popupId) {
-            var popup = document.getElementById(popupId);
-            var xhr = new XMLHttpRequest();
-            console.log(`${popupId}.html`)
-            xhr.open('GET', `/templates/${popupId}.html`, true); // Adjust the path as needed
-            xhr.onload = function() {
-                if (xhr.status === 200) {
-                    popup.querySelector('.popup-content').innerHTML += xhr.responseText;
-                    popup.style.display = "block";
-                } else {
-                    console.error('Failed to load popup content:', xhr.status, xhr.statusText);
-                }
-            };
-            xhr.send();
-        }
-
-        function closePopup(popupId) {
-            var popup = document.getElementById(popupId);
-            popup.style.display = "none";
-            popup.querySelector('.popup-content').innerHTML = '<span class="close" onclick="closePopup(\'' + popupId + '\')">&times;</span>'; // Reset content
-        }
-
-        // Close the popup if the user clicks outside of it
-        window.onclick = function(event) {
-            if (event.target.classList.contains('popup')) {
-                closePopup(event.target.id);
-            }
-        }
-        function showAlgorithmFields() {
-            var selectedAlgorithm = document.getElementById("algorithm").value;
-            var aceeiFields = document.getElementById("aceei-fields");
-            var manipulationFields = document.getElementById("manipulation-fields");
-            var tabusearchFields = document.getElementById("tabusearch-fields");
-
-            aceeiFields.style.display = "none";
-            manipulationFields.style.display = "none";
-            tabusearchFields.style.display = "none";
-
-            if (selectedAlgorithm === "ACEEI") {
-                aceeiFields.style.display = "block";
-            } else if (selectedAlgorithm === "Find a profitable manipulation for a student") {
-                manipulationFields.style.display = "block";
-            } else if (selectedAlgorithm === "Tabu Search") {
-                tabusearchFields.style.display = "block";
-            }
-        }
-
-        // Get the modal
-        var modal = document.getElementById("errorModal");
-
-        // Get the close button
-        var closeBtn = document.getElementsByClassName("close-btn")[0];
-
-        // When the user clicks on the submit button
-        document.getElementById('algorithmForm').addEventListener('submit', function(event) {
-            var selectedAlgorithm = document.getElementById('algorithmSelect').value;
-
-            if (!selectedAlgorithm) {
-                event.preventDefault();
-                modal.style.display = "block"; // Show the modal
-            }
-        });
-
-        // When the user clicks on the close button, close the modal
-        closeBtn.onclick = function() {
-            modal.style.display = "none";
-        }
-
-        // When the user clicks anywhere outside of the modal, close it
-        window.onclick = function(event) {
-            if (event.target == modal) {
-                modal.style.display = "none";
-            }
-        }
-    </script>
+    <script src="{{ url_for('static', filename='index.js') }}"></script>
 </body>
 </html>

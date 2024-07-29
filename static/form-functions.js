@@ -177,8 +177,6 @@ function checkAllCapacitiesFilled() {
     document.getElementById('numberOfStudents').disabled = !allFilled;
 }
 
-// TODO: add auto fill to aceei and manipulation
-
 
 function getRandomInt(min, max) {
     min = Math.ceil(min);
