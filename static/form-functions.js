@@ -283,6 +283,31 @@ function addRandomDataInTabuSearch() {
 
 }
 
+function getRandomEFTBStatus() {
+    const options = [
+        'EFTBStatus.NO_EF_TB',
+        'EFTBStatus.EF_TB',
+        'EFTBStatus.CONTESTED_EF_TB'
+    ];
+    const randomIndex = Math.floor(Math.random() * options.length);
+    return options[randomIndex];
+}
+
+function addRandomDataInAceei() {
+
+    addRandomDataForStudentsAndCourses()
+
+    document.getElementById('epsilon').value = getRandomFloat(0.01, 3).toFixed(2);  // Random epsilon value between 0.01 and 3
+
+    document.getElementById('delta').value = getRandomFloat(0.01, 3).toFixed(2);  // Random delta value between 0.01 and 3
+
+    document.getElementById('ef-tb').value = getRandomEFTBStatus();
+
+    document.getElementById('numberOfStudents').disabled = false;
+    console.log(document.getElementById('numberOfStudents').value)
+
+}
+
 
 function goToHomePage() {
 
