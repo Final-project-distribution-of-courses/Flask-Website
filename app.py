@@ -2,7 +2,7 @@ import fairpyx
 from flask import Flask, render_template, request, redirect, url_for, send_from_directory
 from fairpyx import Instance, AllocationBuilder
 from fairpyx.algorithms import find_ACEEI_with_EFTB, tabu_search
-from fairpyx.algorithms.ACEEI_algorithms.find_profitable_manipulation import find_profitable_manipulation
+from fairpyx.algorithms.find_profitable_manipulation import find_profitable_manipulation
 from fairpyx.adaptors import divide
 from utils import *
 
