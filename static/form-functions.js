@@ -327,6 +327,8 @@ function selectRandomStudent() {
 
 function addRandomDataInManipulation() {
 
+    // TODO: PROBLEM - there is a random inputs that return an error.
+
     addRandomDataForStudentsAndCourses()
 
     document.getElementById('epsilon').value = getRandomFloat(0.01, 3).toFixed(2);  // Random epsilon value between 0.01 and 3
@@ -350,7 +352,7 @@ function addRandomDataInManipulation() {
 
     document.getElementById('criteria_for_profitable_manipulation').value = getRandomCriteria();
 
-    document.getElementById('studentSelection').value = selectRandomStudent();
+    selectRandomStudent();
 
     document.getElementById('numberOfStudents').disabled = false;
     console.log(document.getElementById('numberOfStudents').value)
