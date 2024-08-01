@@ -257,7 +257,7 @@ function addRandomDataInTabuSearch() {
 
     document.getElementById('beta').value = getRandomInt(1, 10); // Random beta value between 1 and 10
 
-    document.getElementById('delta').value = getRandomFloat(0.01, 3).toFixed(2);  // Random delete value between 0.01 and 3
+    document.getElementById('delta').value = getRandomFloat(0.01, 3).toFixed(2);  // Random delta value between 0.01 and 3
 
     // Handle delta fields
     var deltaFieldsContainer = document.getElementById('deltaFields');
@@ -304,6 +304,53 @@ function addRandomDataInAceei() {
     document.getElementById('delta').value = getRandomFloat(0.01, 3).toFixed(2);  // Random delta value between 0.01 and 3
 
     document.getElementById('ef-tb').value = getRandomEFTBStatus();
+
+    document.getElementById('numberOfStudents').disabled = false;
+    console.log(document.getElementById('numberOfStudents').value)
+
+}
+
+function selectRandomStudent() {
+    // Get the dropdown element
+    var select = document.getElementById('studentSelection');
+
+    // Get the number of options in the dropdown
+    var options = select.options;
+    var numOptions = options.length;
+
+    // Generate a random index between 1 and numOptions - 1 (excluding the first option)
+    var randomIndex = Math.floor(Math.random() * (numOptions - 1)) + 1;
+
+    // Set the value of the dropdown to the randomly selected option
+    select.selectedIndex = randomIndex;
+}
+
+function addRandomDataInManipulation() {
+
+    addRandomDataForStudentsAndCourses()
+
+    document.getElementById('epsilon').value = getRandomFloat(0.01, 3).toFixed(2);  // Random epsilon value between 0.01 and 3
+
+    document.getElementById('delta').value = getRandomFloat(0.01, 3).toFixed(2);  // Random delta value between 0.01 and 3
+
+    document.getElementById('eta').value = getRandomFloat(0.01, 3).toFixed(2);  // Random eta value between 0.01 and 3
+
+    document.getElementById('beta').value = getRandomInt(1, 10); // Random beta value between 1 and 10
+
+    document.getElementById('ef-tb').value = getRandomEFTBStatus();
+
+    function getRandomCriteria() {
+        const options = [
+        'criteria_for_profitable_manipulation.randomness',
+        'criteria_for_profitable_manipulation.population'
+        ];
+        const randomIndex = Math.floor(Math.random() * options.length);
+        return options[randomIndex];
+    }
+
+    document.getElementById('criteria_for_profitable_manipulation').value = getRandomCriteria();
+
+    document.getElementById('studentSelection').value = selectRandomStudent();
 
     document.getElementById('numberOfStudents').disabled = false;
     console.log(document.getElementById('numberOfStudents').value)
