@@ -295,6 +295,8 @@ function getRandomEFTBStatus() {
 
 function addRandomDataInAceei() {
 
+    // TODO: PROBLEM - there is a random inputs that return an error.
+
     addRandomDataForStudentsAndCourses()
 
     document.getElementById('epsilon').value = getRandomFloat(0.01, 3).toFixed(2);  // Random epsilon value between 0.01 and 3
