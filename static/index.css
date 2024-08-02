@@ -23,7 +23,7 @@ body {
 }
 
 /* Style individual algorithm cards */
-.aceeiContainer, .manipulationContainer, .tabusearchContainer {
+.algoContainer {
     background: aliceblue;
     border: 1px solid #ccc;
     border-radius: 8px;
@@ -35,7 +35,7 @@ body {
 
 }
 
-.aceeiContainer:hover, .manipulationContainer:hover, .tabusearchContainer:hover {
+.algoContainer:hover {
     transform: translateY(-10px);
 }
 
@@ -44,20 +44,17 @@ body {
     text-align: center;
     font-family: 'Dancing Script', cursive;
     color: #86b9e8;
-
-}
-h2 {
-    text-align: center;
-    font-size: 1.8em;
-    color: #333;
-    font-family: 'Dancing Script', cursive;
-    margin-bottom: 0;
 }
 
-#title {
+
+
+#titleOfAlgorCard {
     font-size: 25px;
     font-family: 'Dancing Script', cursive;
+    /*font-family: 'Alef', sans-serif;*/
 }
+
+
 
 p {
     font-size: 1em;
@@ -76,11 +73,11 @@ p {
     border-radius: 4px;
     border: 1px solid #ccc;
     font-size: 14px;
-    font-family: 'Dancing Script', cursive;
+    /*font-family: 'Dancing Script', cursive;*/
+    font-family: 'Alef', sans-serif;
     font-weight: bold;
     padding: 6px;
     transition: background-color 0.3s;
-
 }
 
 
@@ -89,6 +86,14 @@ p {
 }
 
 /* Style the form of choosing the algorithm to try*/
+h2 {
+    text-align: center;
+    font-size: 1.8em;
+    color: #333;
+    font-family: 'Dancing Script', cursive;
+    margin-bottom: 0;
+}
+
 form {
     text-align: center;
     color: #333;
