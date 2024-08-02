@@ -39,14 +39,15 @@ body {
     transform: translateY(-10px);
 }
 
-
 #algoName {
     text-align: center;
     font-family: 'Dancing Script', cursive;
     color: #86b9e8;
 }
 
-
+.algoContainer:hover #titleOfAlgorCard span {
+    animation: scatter 1.75s infinite;
+}
 
 #titleOfAlgorCard {
     font-size: 25px;
@@ -54,6 +55,46 @@ body {
     /*font-family: 'Alef', sans-serif;*/
 }
 
+#titleOfAlgorCard span {
+     display: inline-block;
+     position: relative;
+     /*animation: scatter 1.75s infinite;*/
+    animation: none;
+}
+
+
+.algoContainer:hover #titleOfAlgorCard span:nth-child(5n+1) {
+    animation-delay: 0.3s;
+}
+
+.algoContainer:hover #titleOfAlgorCard span:nth-child(5n+2) {
+    animation-delay: 0.4s;
+}
+
+.algoContainer:hover #titleOfAlgorCard span:nth-child(5n+3) {
+    animation-delay: 0.5s;
+}
+
+.algoContainer:hover #titleOfAlgorCard span:nth-child(5n+4) {
+    animation-delay: 0.6s;
+}
+
+.algoContainer:hover #titleOfAlgorCard span:nth-child(5n+0) {
+    animation-delay: 0.7s;
+}
+
+
+@keyframes scatter {
+    0% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+    100% {
+        transform: translateY(0);
+    }
+}
 
 
 p {
@@ -85,7 +126,8 @@ p {
     background-color: #075985;
 }
 
-/* Style the form of choosing the algorithm to try*/
+
+/* Style the form of choosing the algorithm and the Try button */
 h2 {
     text-align: center;
     font-size: 1.8em;
