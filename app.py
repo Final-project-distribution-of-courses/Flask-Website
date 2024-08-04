@@ -6,6 +6,26 @@ from fairpyx.algorithms.ACEEI_algorithms.find_profitable_manipulation import fin
 from fairpyx.adaptors import divide
 from utils import *
 
+import logging
+from io import StringIO
+
+
+class LogCaptureHandler(logging.Handler):
+    def __init__(self):
+        super().__init__()
+        self.log_capture_string = StringIO()
+        self.setFormatter(logging.Formatter('%(message)s'))
+
+    def emit(self, record):
+        self.log_capture_string.write(self.format(record) + '\n')
+
+    def get_logs(self):
+        return self.log_capture_string.getvalue()
+
+
+log_capture_handler = LogCaptureHandler()
+logging.getLogger().addHandler(log_capture_handler)
+
 app = Flask(__name__)
 
 
@@ -60,9 +80,9 @@ def process_form():
         response.update(handle_tabusearch_form(request.form))
     elif algorithm == 'aceei':
         response.update(handle_aceei_form(request.form))
+        # TODO: check how to display if there manipulation or not and final budget b* and  final prices p*
     elif algorithm == 'manipulation':
         response.update(handle_manipulation_form(request.form))
-        # TODO: check how to display if there manipulation or not and final budget b* and  final prices p*
     else:
         response["Unknown algorithm"] = []
 
@@ -98,10 +118,13 @@ def handle_aceei_form(form_data):
     print("Delta is: ", delta)
     print("EF-TB is: ", eftb)
 
+    logs = log_capture_handler.get_logs()
+
     answer = divide(find_ACEEI_with_EFTB, instance=instance, initial_budgets=initial_budgets, delta=delta,
                     epsilon=epsilon, t=eftb)
     print("The answer of the ACEEI is: ", answer)
-    return answer
+
+    return {"answer": answer, "logs": logs}
 
 
 def handle_manipulation_form(form_data):
