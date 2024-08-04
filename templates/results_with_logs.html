@@ -26,7 +26,7 @@
                 </tr>
             </thead>
             <tbody>
-            {% for key, value in response.items() %}
+            {% for key, value in response['answer'].items() %}
                 {% if key != 'algorithm' %} <!-- Skip the 'algorithm' key -->
                     <tr>
                         <td>
@@ -57,6 +57,8 @@
         </table>
         <br>
         <button class="tryAgainBtn" onclick="goBackToAlgorithmPage()">Try The Algorithm Again</button>
+        <h2>Logs</h2>
+            <pre>{{ response['logs'] }}</pre>
     </div>
 </div>
 

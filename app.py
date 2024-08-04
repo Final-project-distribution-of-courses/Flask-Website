@@ -82,6 +82,7 @@ def process_form():
         response.update(handle_tabusearch_form(request.form))
     elif algorithm == 'aceei':
         response.update(handle_aceei_form(request.form))
+        return render_template('results_with_logs.html', response=response)
         # TODO: check how to display if there manipulation or not and final budget b* and  final prices p*
     elif algorithm == 'manipulation':
         response.update(handle_manipulation_form(request.form))
