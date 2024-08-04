@@ -17,7 +17,9 @@ class LogCaptureHandler(logging.Handler):
         self.setFormatter(logging.Formatter('%(message)s'))
 
     def emit(self, record):
-        self.log_capture_string.write(self.format(record) + '\n')
+        message = self.format(record)
+        if "final budget b*" in message or "final prices p*" in message:
+            self.log_capture_string.write(message + '\n')
 
     def get_logs(self):
         return self.log_capture_string.getvalue()
