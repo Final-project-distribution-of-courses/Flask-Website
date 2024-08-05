@@ -71,7 +71,6 @@ def process_form():
     elif algorithm == 'aceei':
         response.update(handle_aceei_form(request.form))
         return render_template('results_with_logs.html', response=response)
-        # TODO: check how to display if there manipulation or not and final budget b* and  final prices p*
     elif algorithm == 'manipulation':
         response.update(handle_manipulation_form(request.form))
     else:
@@ -108,7 +107,7 @@ def handle_aceei_form(form_data):
     print("Epsilon is: ", epsilon)
     print("Delta is: ", delta)
     print("EF-TB is: ", eftb)
-    logger.info("Debug message")
+    # logger.info("Debug message")
     # logging.getLogger('your_module_name').addHandler(log_capture_handler)
 
     logs = log_capture_handler.get_logs()
@@ -116,8 +115,8 @@ def handle_aceei_form(form_data):
     answer = divide(find_ACEEI_with_EFTB, instance=instance, initial_budgets=initial_budgets, delta=delta,
                     epsilon=epsilon, t=eftb)
     print("The answer of the ACEEI is: ", answer)
-    print("The logs of the ACEEI is: ", logs)
-    print("end algo")
+    # print("The logs of the ACEEI is: ", logs)
+    # print("end algo")
 
     return {"answer": answer, "logs": logs}
 
