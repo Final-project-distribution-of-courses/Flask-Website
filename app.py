@@ -5,25 +5,7 @@ from fairpyx.algorithms import find_ACEEI_with_EFTB, tabu_search
 from fairpyx.algorithms.ACEEI_algorithms.find_profitable_manipulation import find_profitable_manipulation
 from fairpyx.adaptors import divide
 from utils import *
-
-import logging
-from io import StringIO
-
-
-class LogCaptureHandler(logging.Handler):
-    def __init__(self):
-        super().__init__()
-        self.log_capture_string = StringIO()
-        self.setFormatter(logging.Formatter('%(message)s'))
-
-    def emit(self, record):
-        message = self.format(record)
-        if "final budget b*" in message or "final prices p*" in message:
-            self.log_capture_string.write(message + '\n')
-
-    def get_logs(self):
-        return self.log_capture_string.getvalue()
-
+from LogCaptureHandler import *
 
 log_capture_handler = LogCaptureHandler()
 logging.getLogger().addHandler(log_capture_handler)
