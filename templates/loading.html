@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="he">
+<head>
+    <meta charset="UTF-8">
+    <title>Processing...</title>
+</head>
+<body>
+    <div style="text-align: center; margin-top: 50px;">
+        <h2>Processing your data, please wait...</h2>
+    </div>
+    <script>
+        // Function to redirect to the processing page with form data
+        function redirectToProcess() {
+            // Get the form data
+            const formData = new URLSearchParams(window.location.search);
+            const algorithm = formData.get('algorithm');
+            const queryString = `?algorithm=${algorithm}`;
+
+            // Redirect to the results page
+            window.location.href = `/process${queryString}`;
+        }
+
+        // Call the redirect function after the page loads
+        window.onload = redirectToProcess;
+    </script>
+</body>
+</html>
+{# TODO: finish to implement this page#}
