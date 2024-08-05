@@ -6,6 +6,8 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='header.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='AlgosForm.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='popups.css') }}">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Alef:wght@400;700&display=swap">
+
 
 </head>
 <body>
@@ -53,33 +55,40 @@
             <!-- Epsilon (ε) Input Field -->
             <label for="epsilon">Epsilon (ε):</label>
             <input type="number" id="epsilon" name="epsilon" step="0.001" min="0.001" required>
-            <h6 class="learnMoreParameter">Learn More</h6>
-            {#TODO: display the popup-epsilon from popupsParameters.html#}
-
+            <br />
+            <div class="tooltip">?
+                <span class="tooltiptext">Epsilon defines a range around the student's initial budget within which the algorithm checks for fairness. For example, if epsilon is set to 0.5 and a student's initial budget is 5, then the algorithm will consider budgets ranging from 4.5 to 6.5 for this particular student.</span>
+            </div>
         </div>
 
         <div class="fieldsContainer">
             <!-- Delta (δ) Input Field -->
             <label for="delta">Delta (δ):</label>
             <input type="number" id="delta" name="delta" step="0.001" min="0.001" required>
-            <h6 class="learnMoreParameter">Learn More</h6>
-            {#TODO: display the popup-delta from popupsParameters.html#}
+            <br />
+            <div class="tooltip">?
+                <span class="tooltiptext">Delta is used to update the courses prices in ACEEI algorithm. For example, if delta is set to 0.5 and the price of course x is 5 so the update will be x = 5 + 5 * 0.5 = 7.5.</span>
+            </div>
         </div>
 
         <div class="fieldsContainer">
             <!-- Eta Input Field -->
             <label for="eta">Eta (η):</label>
             <input type="number" id="eta" name="eta" step="1" min="1" required>
-            <h6 class="learnMoreParameter">Learn More</h6>
-            {#TODO: display the popup-eta from popupsParameters.html#}
+            <br />
+            <div class="tooltip">?
+                <span class="tooltiptext">Eta is used to adjust the true preferences of the selected student. For example, if eta = 2, each preference for every course will be modified so that one preference is multiplied by 2, while another is divided by 2.</span>
+            </div>
         </div>
 
         <div class="fieldsContainer">
             <!-- Beta Input Field -->
             <label for="beta">Beta (β):</label>
             <input type="number" id="beta" name="beta" step="1" min="1" required>
-            <h6 class="learnMoreParameter">Learn More</h6>
-            {#TODO: display the popup-beta from popupsParameters.html#}
+            <br />
+            <div class="tooltip">?
+                <span class="tooltiptext">Beta is used to define the range of the distribution from which the students' budgets are drawn. For example, if Beta = 4, the budgets will be randomly selected within the range from 1 + (beta/4) to 1 + (beta*3)/4.</span>
+            </div>
         </div>
 
         <div class="fieldsContainer">
@@ -90,8 +99,10 @@
                 <option value="EFTBStatus.EF_TB">EFTB</option>
                 <option value="EFTBStatus.CONTESTED_EF_TB">Contested EFTB</option>
             </select>
-            <h6 class="learnMoreParameter">Learn More</h6>
-            {#TODO: display the popup-beta from popupsParameters.html#}
+            <br />
+            <div class="tooltip">?
+                <span class="tooltiptext">EF-TB status is used to define the envy condition. EF-TB ensures that there is no envy between a student with a higher budget and a student with a lower budget. FEF-TB CONTESTED also addresses envy when course prices are zero.</span>
+            </div>
         </div>
 
         <div class="fieldsContainer">
@@ -101,8 +112,10 @@
                 <option value="criteria_for_profitable_manipulation.randomness">Randomness</option>
                 <option value="criteria_for_profitable_manipulation.population">Population</option>
             </select>
-            <h6 class="learnMoreParameter">Learn More</h6>
-            {#TODO: display the popup-beta from popupsParameters.html#}
+            <br />
+            <div class="tooltip">?
+                <span class="tooltiptext">Criteria for Profitable Manipulation determines whether only the budgets of the students are sampled, or if the preferences of other students are also included.</span>
+            </div>
         </div>
 
         <div class="btnsContiner">
@@ -112,6 +125,7 @@
     </form>
 </div>
 <script src="{{ url_for('static', filename='form-functions.js') }}">
+
 
 
 </script>

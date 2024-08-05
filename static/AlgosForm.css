@@ -88,7 +88,7 @@ button:hover, input[type="submit"]:hover {
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     max-width: 400px;
-    height: 50px;
+    height: auto;
     margin: 20px auto;
 }
 
@@ -246,5 +246,51 @@ button:hover, input[type="submit"]:hover {
     justify-content: center;
 }
 
+
+/*Style the ? with the circle to explain more about the parameters*/
+.tooltip {
+    display: inline-block;
+    color: #075985;
+    width: 20px;
+    height: 20px;
+    border: 1px solid  #075985;
+    border-radius: 50%;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.tooltip .tooltiptext {
+    visibility: hidden;
+    width: 300px;
+    background-color: #fffefe;
+    color: #444343;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 10px;
+    position: absolute;
+    z-index: 1;
+    top: 116%;
+    left: 50%;
+    /*margin-left: -160px;*/
+    transform: translateX(-50%);
+    font-family: 'Alef', sans-serif;
+
+}
+
+.tooltip .tooltiptext::after {
+    content: " ";
+    position: absolute;
+    bottom: 100%;  /* At the top of the tooltip */
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: transparent transparent #fffefe transparent;
+
+}
+
+.tooltip:hover .tooltiptext {
+    visibility: visible;
+}
 
 
