@@ -6,9 +6,15 @@ from fairpyx.algorithms.ACEEI_algorithms.find_profitable_manipulation import fin
 from fairpyx.adaptors import divide
 from utils import *
 from LogCaptureHandler import *
+import logging
 
+logging.basicConfig(level=logging.DEBUG)
 log_capture_handler = LogCaptureHandler()
 logging.getLogger().addHandler(log_capture_handler)
+
+logger = logging.getLogger(__name__)
+logger.setLevel(logging.DEBUG)
+
 
 app = Flask(__name__)
 
@@ -102,12 +108,16 @@ def handle_aceei_form(form_data):
     print("Epsilon is: ", epsilon)
     print("Delta is: ", delta)
     print("EF-TB is: ", eftb)
+    logger.info("Debug message")
+    # logging.getLogger('your_module_name').addHandler(log_capture_handler)
 
     logs = log_capture_handler.get_logs()
 
     answer = divide(find_ACEEI_with_EFTB, instance=instance, initial_budgets=initial_budgets, delta=delta,
                     epsilon=epsilon, t=eftb)
     print("The answer of the ACEEI is: ", answer)
+    print("The logs of the ACEEI is: ", logs)
+    print("end algo")
 
     return {"answer": answer, "logs": logs}
 
