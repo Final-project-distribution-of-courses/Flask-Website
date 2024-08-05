@@ -335,7 +335,7 @@ function addRandomDataInManipulation() {
 
     document.getElementById('delta').value = getRandomFloat(0.01, 3).toFixed(2);  // Random delta value between 0.01 and 3
 
-    document.getElementById('eta').value = getRandomFloat(0.01, 3).toFixed(2);  // Random eta value between 0.01 and 3
+    document.getElementById('eta').value = getRandomInt(1, 5);  // Random eta value between 1 and 5
 
     document.getElementById('beta').value = getRandomInt(1, 10); // Random beta value between 1 and 10
 
