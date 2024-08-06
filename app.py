@@ -8,12 +8,16 @@ from utils import *
 from LogCaptureHandler import *
 import logging
 
-logging.basicConfig(level=logging.DEBUG)
-log_capture_handler = LogCaptureHandler()
-logging.getLogger().addHandler(log_capture_handler)
 
-logger = logging.getLogger(__name__)
-logger.setLevel(logging.DEBUG)
+# Create and configure the logger
+log_capture_handler = LogCaptureHandler()
+log_capture_handler.setLevel(logging.INFO)
+formatter = logging.Formatter('%(message)s')
+log_capture_handler.setFormatter(formatter)
+
+logger = logging.getLogger()
+logger.addHandler(log_capture_handler)
+logger.setLevel(logging.INFO)
 
 
 app = Flask(__name__)
@@ -73,6 +77,8 @@ def process_form():
         return render_template('results_with_logs.html', response=response)
     elif algorithm == 'manipulation':
         response.update(handle_manipulation_form(request.form))
+        print("response: ", response)  # Print the response to the console
+        return render_template('results_of_manipulation.html', response=response)
     else:
         response["Unknown algorithm"] = []
 
@@ -132,36 +138,38 @@ def handle_manipulation_form(form_data):
     print("Number of students is: ", number_of_students)
 
     valuations = get_student_preferences(form_data, number_of_students, courses_capacities)
-    print(f"valuations {valuations}")
+    print(f"Valuations are: {valuations}")
 
     # 's' + i + 'CoursesToTake'
     agent_capacity = get_agent_capacity(form_data, number_of_students)
-    print(f"CoursesToTake {agent_capacity}")
+    print(f"CoursesToTake: {agent_capacity}")
 
-    # 's' + i + 'Budget'
     initial_budgets = get_initial_budgets(form_data, number_of_students)
-    print(f"initial budgets {initial_budgets}")
+    print(f"Initial Budgets: {initial_budgets}")
 
     epsilon, delta, beta, eta, eftb, student, criteria = get_manipulation_other_parameters(form_data)
-    print("epsilon is: ", epsilon)
+    print("beta is: ", beta)
     print("delta is: ", delta)
     print("beta is: ", beta)
     print("eta is: ", eta)
-    print("ef-tb is: ", eftb)
+    print("eftb is: ", eftb)
     print("student is: ", student)
     print("criteria is: ", criteria)
 
     algorithm = find_ACEEI_with_EFTB
     instance = Instance(valuations, agent_capacity, courses_capacities)
-    print("instance is ", instance)
 
     answer = find_profitable_manipulation(mechanism=algorithm, student=student,
                                           true_student_utility=valuations[student],
                                           criteria=criteria, eta=eta, instance=instance,
                                           initial_budgets=initial_budgets, beta=beta, delta=delta, epsilon=epsilon,
                                           t=eftb)
-    print("answer is ", answer)
-    return answer
+    log_messages = log_capture_handler.extract_manipulation_status()
+
+    print("Answer is:", answer)
+    print("Log messages:\n", log_messages)
+
+    return {"answer": answer, "logs": log_messages}
 
 
 def handle_tabusearch_form(form_data):

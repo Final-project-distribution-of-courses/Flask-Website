@@ -125,3 +125,11 @@ th {
     --_t: var(--h);
     --_p: 105%;
 }
+
+.resultsTextContainer {
+    border: 1px solid #3f6a72;
+}
+.resultsText {
+    font-size: 20px;
+    font-family: 'Alef', sans-serif;
+}

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="he">
+<head>
+    <meta charset="UTF-8">
+    <title>Course Allocation Results</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='header.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='results.css') }}">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Alef:wght@400;700&display=swap">
+
+</head>
+<body>
+<header>
+    <div class="backgroundHeader">
+        <h1>Course Allocation Results</h1>
+        <button class="homeBtn" onclick="goToHomePage()">Home</button>
+    </div>
+</header>
+<div class="resultsContainer">
+    <div class="tableContainer">
+        {% if response.algorithm %}
+            <h2>Results Of {{ response.algorithm }} Algorithm</h2>
+        {% endif %}
+        <div class="resultsTextContainer">
+            {% if response.logs == 'NO MENIPULATION' %}
+                <h3 class="resultsText">There is no manipulation. Which means the student want to tell his true preferences.</h3>
+            {% else %}
+                <h3 class="resultsText">There is manipulation. The new preference are: {{ response.answer }}</h3>
+            {% endif %}
+        </div>
+        <button class="tryAgainBtn" onclick="goBackToAlgorithmPage()">Try The Algorithm Again</button>
+    </div>
+</div>
+
+<script src="{{ url_for('static', filename='form-functions.js') }}"></script>
+
+</body>
+</html>
