@@ -46,8 +46,11 @@
             <label for="epsilon">Epsilon (ε):</label>
             <input type="number" id="epsilon" name="epsilon" step="0.001" min="0.001" required>
             <br />
-            <div class="tooltip">?
-                <span class="tooltiptext">Epsilon defines a range around the student's initial budget within which the algorithm checks for fairness. For example, if epsilon is set to 0.5 and a student's initial budget is 5, then the algorithm will consider budgets ranging from 4.5 to 6.5 for this particular student.</span>
+            <div class="moreInfo">?
+                <span class="moreInfoText">
+                    Epsilon defines the range of budgets that the algorithm checks for each student.<br><br>
+                    For example, if epsilon is set to 0.5 and a student's initial budget is 5, then the algorithm will consider budgets<br>
+                    ranging from 4.5 to 6.5 for this student.</span>
             </div>
         </div>
 
@@ -56,8 +59,10 @@
             <label for="delta">Delta (δ):</label>
             <input type="number" id="delta" name="delta" step="0.001" min="0.001" required>
             <br />
-            <div class="tooltip">?
-                <span class="tooltiptext">Delta is used to update the courses prices in ACEEI algorithm. For example, if delta is set to 0.5 and the price of course x is 5 so the update will be x = 5 + 5 * 0.5 = 7.5.</span>
+            <div class="moreInfo">?
+                <span class="moreInfoText">
+                    Delta is used to update the courses prices.<br><br>
+                    For example, if delta is set to 0.5 and the price of course x is 5 so the update price of course x will be: 5 + (5 * 0.5) = 7.5</span>
             </div>
         </div>
 
@@ -70,8 +75,11 @@
                 <option value="EFTBStatus.CONTESTED_EF_TB">Contested EFTB</option>
             </select>
             <br />
-            <div class="tooltip">?
-                <span class="tooltiptext">EF-TB status is used to define the envy condition. EF-TB ensures that there is no envy between a student with a higher budget and a student with a lower budget. FEF-TB CONTESTED also addresses envy when course prices are zero.</span>
+            <div class="moreInfo">?
+                <span class="moreInfoText">
+                   EF-TB status is used to define the envy condition.<br>
+                    EF-TB ensures that there is no envy between a student with a higher budget and a student with a lower budget.<br>
+                    EF-TB Contested also addresses envy when course prices are zero.</span>
             </div>
         </div>
 

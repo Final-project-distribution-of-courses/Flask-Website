@@ -51,8 +51,10 @@
                 <label for="beta">Beta (β):</label>
                 <input type="number" id="beta" name="beta" step="1" min="1" required>
                 <br />
-                <div class="tooltip">?
-                    <span class="tooltiptext">Beta is used to define the range of the distribution from which the students' budgets are drawn. For example, if Beta = 4, the budgets will be randomly selected within the range from 1 + (beta/4) to 1 + (beta*3)/4.</span>
+                <div class="moreInfo">?
+                    <span class="moreInfoText">
+                        Beta is used to define the range of the distribution from which the students' budgets and the courses prices are drawn.<br><br>
+                        For example, if Beta = 4, the budgets and prices will be randomly selected within the range from 1 to beta+1 = 5. </span>
                 </div>
             </div>
 
@@ -62,15 +64,19 @@
                 <label for="delta">Delta (δ):</label>
                 <input type="number" id="delta" name="delta" step="0.001" min="0.001" required>
                 <br />
-                <div class="tooltip">?
-                    <span class="tooltiptext">Delta is used to update the courses prices in ACEEI algorithm. For example, if delta is set to 0.5 and the price of course x is 5 so the update will be x = 5 + 5 * 0.5 = 7.5.</span>
+                <div class="moreInfo">?
+                    <span class="moreInfoText">
+                        Delta is used to update the courses prices.<br>
+                        You can choose more than one delta and update the prices more than once.<br><br>
+                        For example, if delta is set to 0.5 and the price of course x is 5 so the update<br>
+                        price will be 5 + (5 * 0.5) = 7.5
+                    </span>
                 </div>
             </div>
 
             <div id="deltaFields">
                 <!-- Fields for delta will be added dynamically -->
             </div>
-            {#TODO: add explanations on each parameter#}
 
             <div class="btnsContiner">
                 <input type="submit" value="Run">

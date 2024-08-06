@@ -83,6 +83,7 @@ button:hover, input[type="submit"]:hover {
 
 /* Container of each filed */
 .fieldsContainer {
+    position: relative;
     background-color: #cccccc;
     padding: 20px;
     border-radius: 10px;
@@ -244,11 +245,12 @@ button:hover, input[type="submit"]:hover {
     gap: 10px;
     margin: 20px auto;
     justify-content: center;
+    padding-bottom: 50px;
 }
 
 
 /*Style the ? with the circle to explain more about the parameters*/
-.tooltip {
+.moreInfo {
     display: inline-block;
     color: #075985;
     width: 20px;
@@ -257,11 +259,12 @@ button:hover, input[type="submit"]:hover {
     border-radius: 50%;
     cursor: pointer;
     margin-top: 10px;
+    position: relative;
 }
 
-.tooltip .tooltiptext {
+.moreInfo .moreInfoText {
     visibility: hidden;
-    width: 300px;
+    width: 320px;
     background-color: #fffefe;
     color: #444343;
     text-align: center;
@@ -271,13 +274,12 @@ button:hover, input[type="submit"]:hover {
     z-index: 1;
     top: 116%;
     left: 50%;
-    /*margin-left: -160px;*/
     transform: translateX(-50%);
-    font-family: 'Alef', sans-serif;
+    font-family: Arial, sans-serif;
 
 }
 
-.tooltip .tooltiptext::after {
+.moreInfo .moreInfoText::after {
     content: " ";
     position: absolute;
     bottom: 100%;  /* At the top of the tooltip */
@@ -289,9 +291,9 @@ button:hover, input[type="submit"]:hover {
 
 }
 
-.tooltip:hover .tooltiptext {
+.moreInfo:hover .moreInfoText {
     visibility: visible;
 }
 
-/*TODO: fix the position of the tooltiptext */
+/*TODO: fix the position of the moreInfo */
 

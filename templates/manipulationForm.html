@@ -48,14 +48,17 @@
                 <!-- Options will be added dynamically -->
             </select>
         </div>
-        {#TODO: add explanations on each parameter#}
+
         <div class="fieldsContainer">
             <!-- Epsilon (ε) Input Field -->
             <label for="epsilon">Epsilon (ε):</label>
             <input type="number" id="epsilon" name="epsilon" step="0.001" min="0.001" required>
             <br />
-            <div class="tooltip">?
-                <span class="tooltiptext">Epsilon defines a range around the student's initial budget within which the algorithm checks for fairness. For example, if epsilon is set to 0.5 and a student's initial budget is 5, then the algorithm will consider budgets ranging from 4.5 to 6.5 for this particular student.</span>
+            <div class="moreInfo">?
+                <span class="moreInfoText">
+                    Epsilon defines the range of budgets that the algorithm checks for each student.<br><br>
+                    For example, if epsilon is set to 0.5 and a student's initial budget is 5, then the algorithm will consider budgets<br>
+                    ranging from 4.5 to 6.5 for this student.</span>
             </div>
         </div>
 
@@ -64,8 +67,10 @@
             <label for="delta">Delta (δ):</label>
             <input type="number" id="delta" name="delta" step="0.001" min="0.001" required>
             <br />
-            <div class="tooltip">?
-                <span class="tooltiptext">Delta is used to update the courses prices in ACEEI algorithm. For example, if delta is set to 0.5 and the price of course x is 5 so the update will be x = 5 + 5 * 0.5 = 7.5.</span>
+            <div class="moreInfo">?
+                <span class="moreInfoText">
+                    Delta is used to update the courses prices.<br><br>
+                    For example, if delta is set to 0.5 and the price of course x is 5 so the update price of course x will be: 5 + (5 * 0.5) = 7.5</span>
             </div>
         </div>
 
@@ -74,8 +79,13 @@
             <label for="eta">Eta (η):</label>
             <input type="number" id="eta" name="eta" step="1" min="1" required>
             <br />
-            <div class="tooltip">?
-                <span class="tooltiptext">Eta is used to adjust the true preferences of the selected student. For example, if eta = 2, each preference for every course will be modified so that one preference is multiplied by 2, while another is divided by 2.</span>
+            <div class="moreInfo">?
+                <span class="moreInfoText">
+                    Eta is used to adjust the true preferences of the selected student.<br><br>
+                    For example, if eta is 2 and the preferences are: {x:2, y:4} the new preferences will<br>
+                    look like this: {x:1, y:4} {x:4, y:4} {x:2, y:2} {x:2, y:8}.<br>
+                    Which means the preference of each course modified so that one preference is multiplied by 2, and another is divided by 2.
+                </span>
             </div>
         </div>
 
@@ -84,8 +94,10 @@
             <label for="beta">Beta (β):</label>
             <input type="number" id="beta" name="beta" step="1" min="1" required>
             <br />
-            <div class="tooltip">?
-                <span class="tooltiptext">Beta is used to define the range of the distribution from which the students' budgets are drawn. For example, if Beta = 4, the budgets will be randomly selected within the range from 1 + (beta/4) to 1 + (beta*3)/4.</span>
+            <div class="moreInfo">?
+                <span class="moreInfoText">
+                    Beta is used to define the range of the distribution from which the students' budgets are drawn.<br><br>
+                    For example, if Beta = 4, the budgets will be randomly selected within the range<br> from 1 + (beta/4) to 1 + (beta*3)/4.</span>
             </div>
         </div>
 
@@ -98,8 +110,11 @@
                 <option value="EFTBStatus.CONTESTED_EF_TB">Contested EFTB</option>
             </select>
             <br />
-            <div class="tooltip">?
-                <span class="tooltiptext">EF-TB status is used to define the envy condition. EF-TB ensures that there is no envy between a student with a higher budget and a student with a lower budget. FEF-TB CONTESTED also addresses envy when course prices are zero.</span>
+            <div class="moreInfo">?
+                <span class="moreInfoText">
+                   EF-TB status is used to define the envy condition.<br>
+                    EF-TB ensures that there is no envy between a student with a higher budget and a student with a lower budget.<br>
+                    EF-TB Contested also addresses envy when course prices are zero.</span>
             </div>
         </div>
 
@@ -111,8 +126,10 @@
                 <option value="criteria_for_profitable_manipulation.population">Population</option>
             </select>
             <br />
-            <div class="tooltip">?
-                <span class="tooltiptext">Criteria for Profitable Manipulation determines whether only the budgets of the students are sampled, or if the preferences of other students are also included.</span>
+            <div class="moreInfo">?
+                <span class="moreInfoText">
+                    Criteria for Profitable Manipulation determines whether only the budgets of the students are sampled,<br>
+                    or if the preferences of other students are also sampled.</span>
             </div>
         </div>
 
