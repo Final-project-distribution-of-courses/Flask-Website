@@ -116,10 +116,11 @@ def handle_aceei_form(form_data):
     # logger.info("Debug message")
     # logging.getLogger('your_module_name').addHandler(log_capture_handler)
 
-    logs = log_capture_handler.extract_ACEEI_data()
 
     answer = divide(find_ACEEI_with_EFTB, instance=instance, initial_budgets=initial_budgets, delta=delta,
                     epsilon=epsilon, t=eftb)
+
+    logs = log_capture_handler.extract_ACEEI_data()
     print("The answer of the ACEEI is: ", answer)
     # print("The logs of the ACEEI is: ", logs)
     # print("end algo")

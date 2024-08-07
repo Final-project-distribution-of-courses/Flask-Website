@@ -24,9 +24,8 @@ class LogCaptureHandler(logging.Handler):
         else:
             return 'Unknown Status'
 
-
     def extract_ACEEI_data(self):
-        log_message = self.get_logs()
+        log_message = self.get_logs()  # Capture logs before resetting
         result_lines = []
 
         # Extract lines starting with "final budget b*" or "final prices p*"
@@ -34,7 +33,13 @@ class LogCaptureHandler(logging.Handler):
             if line.startswith("final budget b*") or line.startswith("final prices p*"):
                 result_lines.append(line)
 
-        # Join the extracted lines into a single string with newline separators
+        # After processing, reset the log stream to clear processed logs
+        self.log_stream.seek(0)
+        self.log_stream.truncate(0)
+
+        print("result_lines: ", result_lines)
+        print("_________________________________")
+
         return '\n'.join(result_lines)
 
     # def extract_tabu_search_data(self):
