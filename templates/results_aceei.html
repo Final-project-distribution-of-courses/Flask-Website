@@ -56,9 +56,50 @@
             </tbody>
         </table>
         <br>
-        <h2>Additional parameters:</h2>
-        <pre>{{ response['logs'] }}</pre>
-{#    TODO: designe the logs#}
+        <h2>Final Budget:</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Student Name</th>
+                    <th>Final Budget</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% set budgets_part = response.logs.split('final budget b* = ')[1].split('final prices p* =')[0] %}
+                {% for entry in budgets_part.split(', ') %}
+                    {% set student_name = entry.split(':')[0].strip() %}
+                    {% set budget_value = entry.split(':')[1].strip() %}
+                    <tr>
+                        <td>Student {{ student_name[1:] }}</td>
+                        <td>{{ budget_value }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <br>
+        <h2>Final Prices:</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Course Name</th>
+                    <th>Price</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% set prices_part = response.logs.split('final prices p* = ')[1].strip('{}').replace('\'', '') %}
+                {% for entry in prices_part.split(', ') %}
+                    {% set course_name = entry.split(':')[0].strip() %}
+                    {% set price_value = entry.split(':')[1].strip() %}
+                    <tr>
+                        <td>Course {{ course_name[1:] }}</td>
+                        <td>{{ price_value }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <br>
         <button class="tryAgainBtn" onclick="goBackToAlgorithmPage()">Try The Algorithm Again</button>
     </div>
 </div>
