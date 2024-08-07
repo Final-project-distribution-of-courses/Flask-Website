@@ -16,14 +16,15 @@ class LogCaptureHandler(logging.Handler):
 
     def extract_manipulation_status(self):
         log_message = self.get_logs()
-        if 'NO MENIPULATION' in log_message:
-            return 'NO MENIPULATION'
-        elif 'MENIPULATION!!!!!' in log_message:
-            return 'MENIPULATION!!!!!'
+        if 'NO MANIPULATION' in log_message:
+            return 'NO MANIPULATION'
+        elif 'MANIPULATION!!!!!' in log_message:
+            return 'MANIPULATION!!!!!'
         else:
             return 'Unknown Status'
 
-    def extract_aceei_data(self):
+
+    def extract_ACEEI_data(self):
         log_message = self.get_logs()
         result_lines = []
 
@@ -34,4 +35,3 @@ class LogCaptureHandler(logging.Handler):
 
         # Join the extracted lines into a single string with newline separators
         return '\n'.join(result_lines)
-
