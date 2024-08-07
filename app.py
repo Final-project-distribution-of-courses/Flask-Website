@@ -8,7 +8,6 @@ from utils import *
 from LogCaptureHandler import *
 import logging
 
-
 # Create and configure the logger
 log_capture_handler = LogCaptureHandler()
 log_capture_handler.setLevel(logging.INFO)
@@ -18,7 +17,6 @@ log_capture_handler.setFormatter(formatter)
 logger = logging.getLogger()
 logger.addHandler(log_capture_handler)
 logger.setLevel(logging.INFO)
-
 
 app = Flask(__name__)
 
@@ -72,6 +70,8 @@ def process_form():
     # Handle form processing based on the selected algorithm
     if algorithm == 'tabusearch':
         response.update(handle_tabusearch_form(request.form))
+        print("response: ", response)  # Print the response to the console
+        return render_template('results_tabu_search.html', response=response)
     elif algorithm == 'aceei':
         response.update(handle_aceei_form(request.form))
         print("response: ", response)  # Print the response to the console
@@ -79,12 +79,10 @@ def process_form():
     elif algorithm == 'manipulation':
         response.update(handle_manipulation_form(request.form))
         print("response: ", response)  # Print the response to the console
-        return render_template('results_of_manipulation.html', response=response)
+        return render_template('results_manipulation.html', response=response)
     else:
         response["Unknown algorithm"] = []
-
-    print("response: ", response)  # Print the response to the console
-    return render_template('results.html', response=response)
+        return response
 
 
 def handle_aceei_form(form_data):
@@ -116,7 +114,6 @@ def handle_aceei_form(form_data):
     print("EF-TB is: ", eftb)
     # logger.info("Debug message")
     # logging.getLogger('your_module_name').addHandler(log_capture_handler)
-
 
     answer = divide(find_ACEEI_with_EFTB, instance=instance, initial_budgets=initial_budgets, delta=delta,
                     epsilon=epsilon, t=eftb)
@@ -204,7 +201,9 @@ def handle_tabusearch_form(form_data):
 
     answer = divide(tabu_search, instance=instance, initial_budgets=initial_budgets, beta=beta, delta=delta)
     print("answer is ", answer)
-    return answer
+    # TODO: add the buttn of add delta
+    logs = log_capture_handler.extract_tabu_search_data()
+    return {"answer": answer, "logs": logs}
 
 
 if __name__ == '__main__':
