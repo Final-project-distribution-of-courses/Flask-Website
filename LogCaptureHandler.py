@@ -36,3 +36,5 @@ class LogCaptureHandler(logging.Handler):
 
         # Join the extracted lines into a single string with newline separators
         return '\n'.join(result_lines)
+
+    # def extract_tabu_search_data(self):
