@@ -107,7 +107,7 @@ def handle_aceei_form(form_data):
     initial_budgets = get_initial_budgets(form_data, number_of_students)
     print(f"initial budgets {initial_budgets}")
 
-    instance = Instance(valuations, agent_capacity, courses_capacities)
+    instance = Instance(valuations, agent_capacity, item_capacities=courses_capacities)
     print("Instance is: ", instance)
     epsilon, delta, eftb = get_aceei_other_parameters(form_data)
     print("Epsilon is: ", epsilon)
@@ -158,7 +158,7 @@ def handle_manipulation_form(form_data):
     print("criteria is: ", criteria)
 
     algorithm = find_ACEEI_with_EFTB
-    instance = Instance(valuations, agent_capacity, courses_capacities)
+    instance = Instance(valuations, agent_capacity, item_capacities=courses_capacities)
 
     answer = find_profitable_manipulation(mechanism=algorithm, student=student,
                                           true_student_utility=valuations[student],
@@ -198,7 +198,7 @@ def handle_tabusearch_form(form_data):
     print("beta is: ", beta)
     print("delta is: ", delta)
 
-    instance = Instance(valuations, agent_capacity, courses_capacities)
+    instance = Instance(valuations, agent_capacity, item_capacities=courses_capacities)
     print("Instance is: ", instance)
 
     answer = divide(tabu_search, instance=instance, initial_budgets=initial_budgets, beta=beta, delta=delta)
