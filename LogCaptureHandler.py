@@ -16,6 +16,7 @@ class LogCaptureHandler(logging.Handler):
 
     def extract_manipulation_status(self):
         log_message = self.get_logs()
+        print(log_message)
         if 'NO MANIPULATION' in log_message:
             return 'NO MANIPULATION'
         elif 'MANIPULATION!!!!!' in log_message:
