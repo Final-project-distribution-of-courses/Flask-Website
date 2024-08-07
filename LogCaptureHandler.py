@@ -22,3 +22,16 @@ class LogCaptureHandler(logging.Handler):
             return 'MENIPULATION!!!!!'
         else:
             return 'Unknown Status'
+
+    def extract_aceei_data(self):
+        log_message = self.get_logs()
+        result_lines = []
+
+        # Extract lines starting with "final budget b*" or "final prices p*"
+        for line in log_message.splitlines():
+            if line.startswith("final budget b*") or line.startswith("final prices p*"):
+                result_lines.append(line)
+
+        # Join the extracted lines into a single string with newline separators
+        return '\n'.join(result_lines)
+
