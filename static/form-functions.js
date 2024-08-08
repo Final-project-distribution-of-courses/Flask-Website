@@ -419,5 +419,18 @@ document.addEventListener('DOMContentLoaded', function() {
     };
 });
 
+document.addEventListener('DOMContentLoaded', function() {
+    // Get the progress bar container
+    const progressBarContainer = document.getElementById('progressBarContainer');
+
+    // Hide the progress bar when the page is loaded
+    progressBarContainer.style.visibility = 'hidden';
+
+    // Hide the progress bar when the user navigates away from the form
+    window.addEventListener('beforeunload', function() {
+        progressBarContainer.style.visibility = 'hidden';
+    });
+});
+
 
 
