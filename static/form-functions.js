@@ -364,5 +364,23 @@ function goToHomePage() {
 function goBackToAlgorithmPage() {
     window.history.back();
 }
+document.addEventListener('DOMContentLoaded', function() {
+    const form = document.getElementById('manipulationForm');
+    const progressBarContainer = document.getElementById('progressBarContainer');
+
+    form.onsubmit = function(event) {
+        // Prevent the form from submitting immediately
+        event.preventDefault();
+
+        // Show the progress text
+        progressBarContainer.style.visibility = 'visible';
+
+        // Submit the form after a brief delay to show the progress message
+        setTimeout(function() {
+            form.submit();
+        }, 500);  // Adjust the delay as needed
+    };
+});
+
 
 
