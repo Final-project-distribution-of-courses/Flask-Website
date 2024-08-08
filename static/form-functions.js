@@ -366,19 +366,3 @@ function goBackToAlgorithmPage() {
 }
 
 
-document.getElementById('epsilonLearnMore').onclick = function() {
-    document.getElementById('popup-epsilon').style.display = 'block';
-}
-
-document.querySelector('.popup-parameter-close').onclick = function() {
-    document.getElementById('popup-epsilon').style.display = 'none';
-}
-
-window.onclick = function(event) {
-    if (event.target == document.getElementById('popup-epsilon')) {
-        document.getElementById('popup-epsilon').style.display = 'none';
-    }
-}
-
-
-
