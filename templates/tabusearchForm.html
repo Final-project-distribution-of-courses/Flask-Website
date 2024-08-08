@@ -18,7 +18,7 @@
 </header>
     <div class="formContainer">
         <h2>Insert the parameters and run the algorithm</h2>
-        <form action="/process" method="POST" id="manipulationForm">
+        <form action="/process" method="POST" id="tabusearchForm">
             <input type="hidden" name="algorithm" value="tabusearch">
             <div class="fieldsContainer">
                 <!-- Choose Number of Courses -->
@@ -84,8 +84,10 @@
                 <input type="submit" value="Run">
                 <button type="button" onclick="addRandomDataInTabuSearch()">Random</button>
             </div>
-
-
+            <!-- Progress Bar Container (Updated) -->
+            <div id="progressBarContainer" class="progressBarContainer">
+                <p>Processing, please wait...</p>
+            </div>
         </form>
     </div>
 
