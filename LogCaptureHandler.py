@@ -15,27 +15,30 @@ class LogCaptureHandler(logging.Handler):
         return self.log_stream.getvalue()
 
     def extract_manipulation_status(self):
-        #  todo: handle extract_manipulation_status
         log_message = self.get_logs()  # Capture logs before resetting
         result_lines = []
 
-        # Extract lines starting with "final budget b*" or "final prices p*"
+        # Extract lines starting with "NO MENIPULATION" or "MENIPULATION!!!!!"
+        found_status = False  # Flag to indicate if a status was found
         for line in log_message.splitlines():
-            if line.startswith("NO MANIPULATION"):
+            if "NO MENIPULATION" in line:
                 result_lines.append("NO MANIPULATION")
-            elif line.startswith("MANIPULATION!!!!!"):
+                found_status = True
+            elif "MENIPULATION!!!!!" in line:
                 result_lines.append("MANIPULATION!!!!!")
-            else:
-                return 'Unknown Status'
+                found_status = True
 
         # After processing, reset the log stream to clear processed logs
         self.log_stream.seek(0)
         self.log_stream.truncate(0)
 
-        print("result_lines: ", result_lines)
-        print("_________________________________")
-
-        return '\n'.join(result_lines)
+        # Return the status if found, otherwise return 'Unknown Status'
+        if found_status:
+            print("result_lines: ", result_lines)
+            print("_________________________________")
+            return '\n'.join(result_lines)
+        else:
+            return 'Unknown Status'
 
     def extract_ACEEI_data(self):
         log_message = self.get_logs()  # Capture logs before resetting
