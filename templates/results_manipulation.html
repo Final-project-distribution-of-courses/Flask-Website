@@ -21,12 +21,17 @@
             <h2>Results Of {{ response.algorithm }} Algorithm</h2>
         {% endif %}
         <div class="resultsTextContainer">
-            {% if response.logs == 'NO MANIPULATION' %}
+            {% if response.status == 'NO MANIPULATION' %}
                 <h3 class="resultsText">There is no manipulation. Which means the student want to tell his true preferences.</h3>
-            {% elif response.logs == 'MANIPULATION!!!!!' %}
+            {% elif response.status == 'MANIPULATION!!!!!' %}
                 <h3 class="resultsText">There is manipulation. The new preference are: {{ response.answer }}</h3>
             {% endif %}
         </div>
+    <br>
+        <h2>Logs:</h2>
+        <pre>
+            {{ response.logs }}
+        </pre>
         <button class="tryAgainBtn" onclick="goBackToAlgorithmPage()">Try The Algorithm Again</button>
     </div>
 </div>

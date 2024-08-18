@@ -36,9 +36,9 @@ class LogCaptureHandler(logging.Handler):
         if found_status:
             print("result_lines: ", result_lines)
             print("_________________________________")
-            return '\n'.join(result_lines)
+            return log_message, '\n'.join(result_lines)
         else:
-            return 'Unknown Status'
+            return log_message, 'Unknown Status'
 
     def extract_ACEEI_data(self):
         log_message = self.get_logs()  # Capture logs before resetting

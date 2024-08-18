@@ -20,6 +20,8 @@ logger.setLevel(logging.INFO)
 
 app = Flask(__name__)
 
+# TODO: the logs contain logs of the site
+
 
 # Route for the root URL '/
 @app.route('/')
@@ -121,7 +123,6 @@ def handle_aceei_form(form_data):
     logs, filtered_logs = log_capture_handler.extract_ACEEI_data()
     print("The answer of the ACEEI is: ", answer)
 
-    # TODO: the logs contain logs of the site
     return {"answer": answer, "filtered_logs": filtered_logs, "logs": logs}
 
 
@@ -162,12 +163,12 @@ def handle_manipulation_form(form_data):
                                           criteria=criteria, eta=eta, instance=instance,
                                           initial_budgets=initial_budgets, beta=beta, delta=delta, epsilon=epsilon,
                                           t=eftb)
-    log_messages = log_capture_handler.extract_manipulation_status()
+    log_messages, status = log_capture_handler.extract_manipulation_status()
 
     print("Answer is:", answer)
     print("Log messages:\n", log_messages)
 
-    return {"answer": answer, "logs": log_messages}
+    return {"answer": answer, "logs": log_messages, "status": status}
 
 
 def handle_tabusearch_form(form_data):
