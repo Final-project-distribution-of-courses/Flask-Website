@@ -201,8 +201,8 @@ def handle_tabusearch_form(form_data):
 
     answer = divide(tabu_search, instance=instance, initial_budgets=initial_budgets, beta=beta, delta=delta)
     print("answer is ", answer)
-    logs = log_capture_handler.extract_tabu_search_data()
-    return {"answer": answer, "logs": logs}
+    logs, filtered_logs = log_capture_handler.extract_tabu_search_data()
+    return {"answer": answer, "logs": logs, "filtered_logs": filtered_logs}
 
 
 if __name__ == '__main__':

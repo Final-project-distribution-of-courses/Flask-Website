@@ -65,7 +65,7 @@
                 </tr>
             </thead>
             <tbody>
-                {% set prices_part = response.logs.split('final prices p* = ')[1].strip('{}').replace('\'', '') %}
+                {% set prices_part = response.filtered_logs.split('final prices p* = ')[1].strip('{}').replace('\'', '') %}
                 {% for entry in prices_part.split(', ') %}
                     {% set course_name = entry.split(':')[0].strip() %}
                     {% set price_value = entry.split(':')[1].strip() %}
@@ -76,6 +76,12 @@
                 {% endfor %}
             </tbody>
         </table>
+
+        <br>
+        <h2>Logs:</h2>
+        <pre>
+            {{ response.logs }}
+        </pre>
 
         <br>
         <button class="tryAgainBtn" onclick="goBackToAlgorithmPage()">Try The Algorithm Again</button>
