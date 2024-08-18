@@ -56,7 +56,7 @@ class LogCaptureHandler(logging.Handler):
         print("result_lines: ", result_lines)
         print("_________________________________")
 
-        return '\n'.join(result_lines)
+        return log_message, '\n'.join(result_lines)
 
     def extract_tabu_search_data(self):
         log_message = self.get_logs()  # Capture logs before resetting
