@@ -172,37 +172,43 @@ def handle_manipulation_form(form_data):
 
 
 def handle_tabusearch_form(form_data):
-    number_of_courses = get_number_of_courses(form_data)
-    print("Number of courses is: ", number_of_courses)
+    try:
+        number_of_courses = get_number_of_courses(form_data)
+        print("Number of courses is: ", number_of_courses)
 
-    courses_capacities = get_courses_capacities(form_data, number_of_courses)
-    print("courses_capacities  is: ", courses_capacities)
+        courses_capacities = get_courses_capacities(form_data, number_of_courses)
+        print("courses_capacities  is: ", courses_capacities)
 
-    number_of_students = get_number_of_students(form_data)
-    print("Number of students is: ", number_of_students)
+        number_of_students = get_number_of_students(form_data)
+        print("Number of students is: ", number_of_students)
 
-    valuations = get_student_preferences(form_data, number_of_students, courses_capacities)
-    print(f"Valuations are: {valuations}")
+        valuations = get_student_preferences(form_data, number_of_students, courses_capacities)
+        print(f"Valuations are: {valuations}")
 
-    # 's' + i + 'CoursesToTake'
-    agent_capacity = get_agent_capacity(form_data, number_of_students)
-    print(f"CoursesToTake: {agent_capacity}")
+        # 's' + i + 'CoursesToTake'
+        agent_capacity = get_agent_capacity(form_data, number_of_students)
+        print(f"CoursesToTake: {agent_capacity}")
 
-    # 's' + i + 'Budget'
-    initial_budgets = get_initial_budgets(form_data, number_of_students)
-    print(f"Initial Budgets: {initial_budgets}")
+        # 's' + i + 'Budget'
+        initial_budgets = get_initial_budgets(form_data, number_of_students)
+        print(f"Initial Budgets: {initial_budgets}")
 
-    beta, delta = get_tabusaerch_other_parameters(form_data)
-    print("beta is: ", beta)
-    print("delta is: ", delta)
+        beta, delta = get_tabusaerch_other_parameters(form_data)
+        print("beta is: ", beta)
+        print("delta is: ", delta)
 
-    instance = Instance(valuations, agent_capacity, item_capacities=courses_capacities)
-    print("Instance is: ", instance)
+        instance = Instance(valuations, agent_capacity, item_capacities=courses_capacities)
+        print("Instance is: ", instance)
 
-    answer = divide(tabu_search, instance=instance, initial_budgets=initial_budgets, beta=beta, delta=delta)
-    print("answer is ", answer)
-    logs, filtered_logs = log_capture_handler.extract_tabu_search_data()
-    return {"answer": answer, "logs": logs, "filtered_logs": filtered_logs}
+        answer = divide(tabu_search, instance=instance, initial_budgets=initial_budgets, beta=beta, delta=delta)
+        if answer is None:
+            raise ValueError("Tabu Search returned None instead of a valid answer.")
+        print("answer is ", answer)
+        logs, filtered_logs = log_capture_handler.extract_tabu_search_data()
+        return {"answer": answer, "logs": logs, "filtered_logs": filtered_logs}
+    except Exception as e:
+        logger.error(f"Error during Tabu Search execution: {str(e)}")
+        return {"error": str(e)}
 
 
 if __name__ == '__main__':
