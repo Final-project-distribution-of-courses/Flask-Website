@@ -20,9 +20,6 @@ logger.setLevel(logging.INFO)
 
 app = Flask(__name__)
 
-# TODO: the logs contain logs of the site
-
-
 # Route for the root URL '/
 @app.route('/')
 def index():
@@ -212,4 +209,6 @@ def handle_tabusearch_form(form_data):
 
 
 if __name__ == '__main__':
+    log = logging.getLogger('werkzeug')
+    log.setLevel(logging.ERROR)
     app.run(debug=True)
