@@ -211,4 +211,4 @@ def handle_tabusearch_form(form_data):
 if __name__ == '__main__':
     log = logging.getLogger('werkzeug')
     log.setLevel(logging.ERROR)
-    app.run(debug=True)
+    app.run(debug=True, port=8080)
