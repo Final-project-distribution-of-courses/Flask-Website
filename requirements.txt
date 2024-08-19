@@ -1,1 +1,2 @@
-fairpyx @ git+https://github.com/ariel-research/fairpyx.git@main
+fairpyx @ git+https://github.com/Final-project-distribution-of-courses/Final_project-distribution_of_courses.git@main
+flask
