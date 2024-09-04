@@ -21,7 +21,6 @@
             <div class="algoContainer">
                 <h3 id="titleOfAlgorCard">
                     <span>A</span><span>C</span><span>E</span><span>E</span><span>I</span>
-{#                    <span></span><span>A</span><span>l</span><span>g</span><span>o</span><span>r</span><span>i</span><span>t</span><span>h</span><span>m</span>#}
                 </h3>
                 <p>Find a fair and envy-free allocation of courses to students.</p>
                 <button class="learnMoreBtn" onclick="openPopup('aceeiPopup')">Learn More</button>
@@ -61,7 +60,8 @@
                     <span></span>
                     <span></span>
                     <span></span>
-                </div></button>
+                </div>
+            </button>
         </form>
     </div>
 
@@ -94,5 +94,20 @@
     </div>
 
     <script src="{{ url_for('static', filename='index.js') }}"></script>
+
+    <!-- References and Credits -->
+    <footer>
+        <p>These algorithms are based on the paper:
+            <a href="https://arxiv.org/abs/2305.11406" target="_blank">Practical algorithms and experimentally validated incentives for equilibrium-based fair division (A-CEEI)</a>
+        </p>
+        <p>Code implementation:
+            <a href="https://github.com/Final-project-distribution-of-courses/Final_project-distribution_of_courses.git" target="_blank">GitHub Repository</a>
+        </p>
+        <p>Written by:
+            <a href="https://github.com/RenanaTurgeman" target="_blank">Renana Turgeman</a>,
+            <a href="https://github.com/ofirshitrit" target="_blank">Ofir Shitrit</a>,
+            <a href="https://github.com/ErgaDN" target="_blank">Erga Bar Ilan</a>
+        </p>
+    </footer>
 </body>
 </html>
